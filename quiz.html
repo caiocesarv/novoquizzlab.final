@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUIZZ PORTAL LAB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="quiz-container">
+    <header>
+      <img src="assets/logo.png" alt="Logo Portal Lab" class="quiz-page">
+      <h1>QUIZZ PORTAL LAB</h1>
+    </header>
+
+    <section class="card">
+      <p id="enunciado">Carregando pergunta...</p>
+    </section>
+
+    <section class="imagem-container">
+      <img id="imagem" src="" alt="Imagem da pergunta">
+    </section>
+
+    <section id="alternativas" class="alternativas"></section>
+
+    <div class="botao-container">
+      <button id="btnProxima">Próxima</button>
+    </div>
+    <div class="botao-video-container">
+        <button id="btnVideoExplicacao" style="display: none;">▶️ Assistir Explicação em Vídeo</button>
+      <div id="videoPlayerContainer">
+        <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <p id="feedback"></p>
+  </div>
+
+  <script src="perguntas.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
