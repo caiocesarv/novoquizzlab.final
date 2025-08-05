@@ -676,35 +676,479 @@ const perguntas = [
     "correta": "B",
     "topico": "HEMOPARASITAS"
   },
+  {
+    "enunciado": "Esse fungo primitivamente pulmonar, geralmente benigno, pode evoluir para as formas graves disseminadas, com inclusão na forma amastigota no citoplasma dos neutrófilos e monócitos (imagem). O habitat deste fungo é geralmente o solo, principalmente naqueles associados com aves (pardais, pombos e galináceos) e morcegos. A forma disseminada apresenta-se como “oportunista” em pacientes imunodeprimidos. Que fungo é esse?",
+    "imagem": "questao52.jpg",
+    "alternativas": [
+      "A - Toxoplasma gondii.",
+      "B - Esporotricose.",
+      "C - Leishmania donovani (calazar).",
+      "D - Histoplasma capsulatum.",
+      "E - Criptococose."
+    ],
+    "correta": "D",
+    "topico": "HEMOPARASITAS"
+  },
+  {
+    "enunciado": "A filariose também conhecida como elefantíase, é uma doença parasitária infecciosa. O parasita infecta o sistema linfático humano, causando inflamação e bloqueio dos vasos linfáticos, o que pode levar a edemas (inchaço) em diversas partes do corpo.⠀ Essa doença parasitária é causada por qual nematoide e qual agente transmissor?",
+    "imagem": "questao53.png",
+    "alternativas": [
+      "A - Wuchereria bancrofti / Culex.",
+      "B - Wuchereria bancrofti / Anopheles.",
+      "C - Onchocerca volvulus / Anopheles.",
+      "D - Mansonella ozzardi / Culex.",
+      "E - Wuchereria bancrofti / Aedes aegypti."
+    ],
+    "correta": "A",
+    "topico": "HEMOPARASITAS"
+  },
+  {
+    "enunciado": "Essa doença infecciosa é transmitida pela picada de mosquitos flebotomíneos (mosquitos palha) e se manifesta principalmente como lesões na pele, mas pode também afetar as mucosas. O material foi coletado em uma lesão de pele (imagem). O que são essas estruturas observadas nessa imagem?",
+    "imagem": "questao54.jpg",
+    "alternativas": [
+      "A - Toxoplasma gondii na forma epimastigota extracelular.",
+      "B - Leishmania tegumentar na forma amastigota extracelular.",
+      "C - Leishmania visceral na forma epimastigota extracelular.",
+      "D - Histoplasma capsulatum na forma amastigota extracelular.",
+      "E - Esporotricose na forma amastigota extracelular."
+    ],
+    "correta": "B",
+    "topico": "HEMOPARASITAS"
+  },
+  {
+    "enunciado": 'Em uma pesquisa de leishmania em uma lesão cutânea, foi observada formas de leveduras no interior de alguns macrófagos, mas, essas leveduras se apresentavam em formas ovais e redondas (setas vermelhas) e até alongadas (setas amarelas) "forma de charuto". A paciente relatou que a lesão cutânea foi provocada por uma arranhadura de um gato. A biologia molecular para leishmania foi negativa! Que doença é essa?',
+    "imagem": "questao55.jpg",
+    "alternativas": [
+      "A - Histoplasmose.",
+      "B - Babesiose.",
+      "C - Criptococose.",
+      "D - Hanseníase. ",
+      "E - Esporotricose."
+    ],
+    "correta": "E",
+    "topico": "HEMOPARASITAS"
+  },
+ 
   // ... continue com as outras questões de HEMOPARASITAS
   
   // LEUCEMIAS e LINFOMAS - Questões 56 a 100
   {
-    "enunciado": "A leucemia linfóide aguda (LLA) é mais comum em:",
-    "imagem": "lla.png",
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
     "alternativas": [
-      "1 - Idosos acima de 70 anos",
-      "2 - Adultos de 30 a 50 anos",
-      "3 - Crianças e adolescentes",
-      "4 - Recém-nascidos",
-      "5 - Adultos jovens de 20 a 30 anos"
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
     ],
-    "correta": "3",
+    "correta": "E",
     "topico": "LEUCEMIAS e LINFOMAS"
   },
   {
-    "enunciado": "O linfoma de Hodgkin é caracterizado pela presença de:",
-    "imagem": "hodgkin.png",
+    "enunciado": "Os bastonetes de Auer são inclusões citoplasmáticas cristalinas em forma de agulha ou bastão, geralmente azurófilas. Sobre os bastonetes de Auer, qual afirmativa abaixo está errada?",
+    "imagem": "questao57.jpg",
     "alternativas": [
-      "1 - Células de Reed-Sternberg",
-      "2 - Células de Burkitt",
-      "3 - Blastos mielóides",
-      "4 - Células plasmáticas",
-      "5 - Linfócitos atípicos"
+      "A - Podem surgir em blastos mieloides e promielócitos anômalos.",
+      'B - "Faggot" são células com numerosos bastonetes de Auer.',
+      "C - São comuns em monoblastos.",
+      "D - O nome Auer é uma homenagem ao fisiologista John Auer (1875-1948).",
+      "E - Através da microscopia eletrônica, em 1977, concluiu-se que a formação dos bastonetes de Auer é causada por defeitos na formação, agregação e concentração de grânulos de peroxidase e enzimas lisossomais."
     ],
-    "correta": "1",
+    "correta": "C",
     "topico": "LEUCEMIAS e LINFOMAS"
-  }
+  },
+  {
+    "enunciado": "Nessa neoplasia hematológica é bastante comum a presença de rouleaux eritrocitário, pico monoclonal da imunoglobulina M (IgM),  linfócitos plasmocitoides geralmente com evidente alteração celular (imagem) e aumento da viscosidade do sangue. Os sintomas mais comuns são: fadiga, perda de peso, sangramento e alterações neurológicos. Qual o nome dessa neoplasia hematológica?",
+    "imagem": "questao58.jpg",
+    "alternativas": [
+      "A - Macroglobulinemia de Waldenström.",
+      "B - Linfocitose persistente policlonal de células B.",
+      "C - Linfoma hepatoesplênico do tipo Gama/Delta.",
+      "D - Plasmocitoma.",
+      "E - Linfoma difuso de grandes células B."
+    ],
+    "correta": "A",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "O crescimento desordenado de células plasmáticas maduras e imaturas com substituição medular é a melhor definição para o Mieloma Múltiplo. Mas, esse paciente com Mieloma Múltiplo apresentou numerosos vacúolos na maioria dos plasmócitos. Por que isso ocorreu?",
+    "imagem": "questao59.jpg",
+    "alternativas": [
+      "A - As proteínas intracelulares de Bence Jones podem ser tóxicas e capazes de causar vacuolização com ativação de enzimas lisossomais. O produto final da reação é a fosfatase ácida. Esses vacúolos são considerados autofágicos e surgem em numerosos plasmócitos.",
+      "B - São células de Mott associadas a uma doença de depósito lisossômico.",
+      "C - São vacúolos promovidos por alteração na coloração.",
+      "D - São vacúolos promovidos por alteração no armazenamento da lâmina.",
+      "E - Artefato."
+    ],
+    "correta": "A",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "São células com projeções citoplasmáticas com semelhança aos tricoleucócitos, porém, essas projeções são diferentes, são polares. No entanto, a maior diferença entre essas células da imagem e os tricoleucócitos é a cromatina, onde nessas células se apresenta mais condensada. Que células são essas?",
+    "imagem": "questao60.jpg",
+    "alternativas": [
+      " A - Linfócitos pilosos.",
+      "B - Linfócitos vilosos.",
+      "C - Linfócitos reativos.",
+      "D - Linfócitos com polimorfismo nuclear.",
+      "E – Plasmócitos."
+    ],
+    "correta": "B",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "A leucemia linfoide aguda (LLA) tem maior incidência em pacientes de cor branca e na idade de 2 a 5 anos, diminuindo a frequência na adolescência e na idade adulta e novamente crescendo na faixa etária de 60 anos. O tipo de LLA mais comum (CD10+), de células precursoras B, é a que predomina na infância, com incidência igual em ambos os sexos, enquanto a LLA de células T (LLA-T) tem predomínio no sexo masculino. Neste paciente com LLA quem são os linfócitos dessa imagem?",
+    "imagem": "questao61.jpg",
+    "alternativas": [
+      "A - Células 1, 2, 4, 5, 7, e 9.",
+      "B - Células 1, 4, 5, 7 e 9.",
+      "C - Células 1 e 9.",
+      "D - Células 7 e 9.",
+      "E - Células 4, 7 e 9."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "É um tipo agressivo de linfoma, causado pela associação com o vírus linfotrópico de células T humanas (HTLV-I), geralmente é fatal e classifica-se na forma aguda, crônica, linfomatosa e indolente (smoldering). Outra forma clínica, a tumoral primária de pele, tem características diferentes. A forma aguda, linfomatosa e a tumoral primária de pele são as de pior prognóstico. No sangue periférico (imagem) e medula óssea ocorre a infiltração de células linfoides pleomórficas e convolutas. Qual linfoma está sugerindo?",
+    "imagem": "questao62.jpg",
+    "alternativas": [
+      "A - Linfoma de células do Manto.",
+      "B - Linfoma/Leucemia de células T no Adulto.",
+      "C - Micose fungóide / Síndrome de Sézary.",
+      "D - Linfoma T angioimunoblástico.",
+      "E - Linfoma de células T tipo paniculítico subcutâneo."
+    ],
+    "correta": "B",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Esses blastos são grandes e apresentam citoplasmas abundantes, basofílicos e frequentemente sem grânulos visíveis, o núcleo tem cromatina frouxa apresentando um ou mais nucléolos proeminentes, refletindo a sua alta atividade metabólica, necessária para sustentar sua proliferação e maturação. Nesses blastos não são observados os bastonetes de Auer. Que tipo de blasto sugerem essas células da imagem?",
+    "imagem": "questao63.jpg",
+    "alternativas": [
+      "A - Linfoblastos.",
+      "B - Mieloblastos.",
+      "C - Megacarioblastos.",
+      "D - Monoblastos.",
+      "E - Proeritroblastos."
+    ],
+    "correta": "D",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Essa neoplasia hematológica afeta principalmente idosos do sexo masculino. Apresenta-se com a contagem de blastos mieloides inferior a 5%, sendo que na contagem diferencial pode chegar a mais de 80% dessas células da imagem. Cerca de 20% dos casos, progride para leucemia mieloide aguda. Qual o nome dessa neoplasia hematológica e que células são essas?",
+    "imagem": "questao64.jpg",
+    "alternativas": [
+      "A - Linfoma/leucemia de Células T do Adulto – Células linfoides.",
+      "B - Leucemia Mielomonocítica Crônica – Monócitos displásicos.",
+      "C - Linfoma de Células do Manto – Células linfoides endentadas.",
+      "D - Leucemia Mieloide Crônica – Mielócitos displásicos.",
+      "E - Leucemia Promielocítica Aguda – Promielócitos anômalos."
+    ],
+    "correta": "B",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Um paciente portador de uma neoplasia mieloproliferativa crônica em remissão, apresentou recidiva da doença, com aumento do número de leucócitos e percentual de blastos. Nesta imagem do sangue periférico, tem quantos blastos?",
+    "imagem": "questao65.jpg",
+    "alternativas": [
+      "A - 2 blasto.",
+      "B - 3 blastos.",
+      "C - 4 blastos.",
+      "D - 5 blastos.",
+      "E - Todas as células são blastos."
+    ],
+    "correta": "C",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "A maturação do mieloblasto (1) até o promielócito normal (6) é rápida, mas, passa por algumas fases: a cromatina começa a ficar heterogênea (2) e após estímulo, a zona de Golgi vai começando a produção dos grânulos e o amadurecimento da cromatina (3,4,5). Mas, quais os valores normais dos promielócitos na medula óssea e no sangue periférico?",
+    "imagem": "questao66.jpg",
+    "alternativas": [
+      "A - Medula óssea: até 5% e sangue periférico até 2%",
+      "B - Medula óssea: até 15% e sangue periférico até 3%",
+      "C - Medula óssea: até 1% e sangue periférico até  2%",
+      "D - Medula óssea: até 15% e sangue periférico: 0%",
+      "E - Medula óssea: até 5% e sangue periférico: 0%"
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Uma amostra de sangue de um paciente de 60 anos apresentou 100.000 leucócitos/mm3, com predomínio de células com alta relação núcleo/citoplasma, núcleo arredondado e exibindo geralmente um único e grande nucléolo. A plataforma digital classificou essas células como blastos, você concorda?",
+    "imagem": "questao67.jpg",
+    "alternativas": [
+      "A - Sim! são blastos.",
+      "B - Não! essas células são prolinfócitos.",
+      "C - Não! essas células são linfócitos reativos.",
+      "D - Não! essas células são promonócitos.",
+      "E - Não! essas células são monócitos anômalos."
+    ],
+    "correta": "B",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "A tricoleucemia é uma leucemia indolente e rara que representa apenas de 2% a 4% de todas as leucemias. Muitos pacientes são diagnosticados durante exames de rotina devido à ausência de sintomas.  A incidência é maior nos homens (cerca de quatro vezes mais que nas mulheres). A destruição do citoplasma dos tricoleucócitos ocorre em que local do corpo? e por ação de qual célula?",
+    "imagem": "questao68.jpg",
+    "alternativas": [
+      "A - No sangue periférico – Neutrófilos.",
+      "B - No baço e no fígado – Macrófagos.",
+      "C - Na medula óssea – Neutrófilos.",
+      "D - Nos linfonodos – Macrófagos.",
+      "E - Na medula óssea – Mastócitos."
+    ],
+    "correta": "B",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Essa síndrome é uma transformação agressiva da Leucemia Linfoide Crônica (LLC) geralmente para o linfoma difuso de grandes células B (imagem). Essa síndrome é um evento de mau prognóstico. Estudos confirmam que essa transformação agressiva acomete cerca de 2% a 8% dos pacientes com LLC e só ocorre em pacientes que tiveram infecção prévia pelo vírus Epstain barr. Qual o nome dessa síndrome?",
+    "imagem": "questao69.jpg",
+    "alternativas": [
+      "A - Síndrome de Sézary. ",
+      "B - Síndrome de lise tumoral.",
+      "C - Síndrome de Richter. ",
+      "D - Síndrome de Virchow.",
+      "E - Síndrome de Patau."
+    ],
+    "correta": "C",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "O mieloma múltiplo ocorre com maior frequência em homens do que em mulheres, sendo a idade média do surgimento da doença de 62 anos. A incidência da doença em pacientes afrodescendentes é o dobro em relação aos brancos. O mieloma múltiplo representa 1% de todos os casos de câncer e 10% de todos os casos de doenças hematológicas. Nessa imagem exibe uma característica morfológica dos plasmócitos (setas), que pode contribuir para o comportamento agressivo do mieloma, qual o seu nome?",
+    "imagem": "questao70.jpg",
+    "alternativas": [
+      "A - Halo perinuclear (Complexo de Golgi).",
+      "B - Bolha perinuclear (Retículo endolasmático).",
+      "C - Vacúolo nuclear (Complexo de Golgi).",
+      "D - Inclusão perinuclear (Complexo de Golgi).",
+      "E - Halo perinuclear (Retículo endolasmático)."
+    ],
+    "correta": "A",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Paciente com perda de peso inexplicada, fez hemograma e se surpreendeu com a uma contagem de leucócitos superior a 660.000/mm3. Foi diagnosticada uma Leucemia Mieloide Crônica (LMC). Sobre a LMC, qual alternativa abaixo está correta?",
+    "imagem": "questao71.jpg",
+    "alternativas": [
+      "A - A leucemia mieloide crônica (LMC) é mais comum em homens na faixa etária de 20 a 50 anos.",
+      "B - O cromossomo Ph1 é produto da translocação recíproca t(9;22) (q34;q11), o qual leva ao surgimento de um gene híbrido, o BCR-ABL.",
+      "C - A LMC é caracterizada por três fases bem definidas: crônica, acelerada e blástica, e por uma anormalidade citogenética específica, presente em 99% dos casos de LMC, o cromossomo Philadelphia (Ph1).",
+      "D - Na LMC, é bastante comum haver uma basofilia inexplicada, porém se observou que, quanto maior o número de basófilos no sangue periférico, pior o prognóstico do paciente.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+  {
+    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
+    "imagem": "questao56.jpg",
+    "alternativas": [
+      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
+      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
+      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
+      "D - Os nucléolos participam da regulação da mitose.",
+      "E - Todas estão corretas."
+    ],
+    "correta": "E",
+    "topico": "LEUCEMIAS e LINFOMAS"
+  },
+
   // ... continue com as outras questões até completar 100
 ];
 
