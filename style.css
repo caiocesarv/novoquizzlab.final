@@ -609,6 +609,7 @@ header h1 {
   color: white;
   cursor: pointer;
   transition: background 0.3s;
+  margin: 0 auto;
 }
 
 #btnVideoExplicacao:hover {
@@ -625,4 +626,8 @@ header h1 {
   max-width: 700px;
   height: 400px;
   border-radius: 12px;
+}
+#btnVideoExplicacao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

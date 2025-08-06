@@ -370,15 +370,20 @@ function reiniciarQuiz() {
 
 // Voltar ao menu
 function voltarMenu() {
-  location.reload();
+  window.location.href = 'index.html'; // ou 'menu.html', dependendo do nome real do seu arquivo de menu
 }
+
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
-  // Se não houver menu, iniciar quiz completo
+  const urlParams = new URLSearchParams(window.location.search);
+  const tema = urlParams.get('tema');
+
+  // Se não houver menu, iniciar quiz com tema (se existir)
   if (!document.getElementById('menu')) {
-    iniciarQuiz();
+    iniciarQuiz(tema);
   }
+
   
   // Prevenir fechar acidentalmente
   window.addEventListener('beforeunload', (e) => {
@@ -416,43 +421,78 @@ btnVideo.addEventListener('click', () => {
 
   // ... [todo o seu código acima permanece igual até o final do arquivo]
 
+// =========================
+// CONTROLES DO VÍDEO
+// =========================
+// =========================
+// CONTROLES DO VÍDEO
+// =========================
 const btnVideo = document.getElementById('btnVideoExplicacao');
 const videoContainer = document.getElementById('videoPlayerContainer');
 const videoPlayer = document.getElementById('videoPlayer');
 
+// Inicializa oculto
 videoContainer.style.display = 'none';
 videoPlayer.src = '';
 
+// Evento: clique no botão
 btnVideo.addEventListener('click', () => {
   videoContainer.style.display = 'block';
   btnVideo.style.display = 'none';
 });
 
-// Função para extrair parâmetros da URL
-function getParametroUrl(nome) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(nome);
-}
+// =========================
+// EXIBE A PERGUNTA ATUAL
+// =========================
+function exibirPergunta() {
+  const pergunta = perguntasSelecionadas[perguntaAtual];
 
-// DOMContentLoaded com suporte a ?tema=...
-document.addEventListener('DOMContentLoaded', () => {
-  const temaUrl = getParametroUrl('tema');
-
-  if (!document.getElementById('menu')) {
-    if (temaUrl && temas[temaUrl]) {
-      iniciarQuiz(temaUrl);
-    } else {
-      iniciarQuiz(); // Quiz completo se não houver tema válido
-    }
+  // Exibe botão sempre, mas desativa se não houver vídeo
+  btnVideo.style.display = 'block';
+  if (pergunta.video && pergunta.video !== '') {
+    btnVideo.disabled = false;
+    videoPlayer.src = pergunta.video;
+    videoContainer.style.display = 'none';
+  } else {
+    btnVideo.disabled = true;
+    videoPlayer.src = '';
+    videoContainer.style.display = 'none';
   }
 
-  window.addEventListener('beforeunload', (e) => {
-    if (quizIniciado && perguntaAtual < perguntasSelecionadas.length) {
-      e.preventDefault();
-      e.returnValue = '';
+  setTimeout(() => {
+    // Atualizar enunciado e imagem
+    enunciado.textContent = pergunta.enunciado;
+
+    if (pergunta.imagem && pergunta.imagem !== '') {
+      imagem.src = `assets/${pergunta.imagem}`;
+      imagem.style.display = 'block';
+      imagem.onerror = () => imagem.style.display = 'none';
+    } else {
+      imagem.style.display = 'none';
     }
-  });
-});
+
+    // Alternativas
+    alternativasContainer.innerHTML = '';
+    pergunta.alternativas.forEach((alt, index) => {
+      const botao = document.createElement('button');
+      botao.textContent = alt;
+      botao.onclick = () => selecionarAlternativa(index, botao);
+      alternativasContainer.appendChild(botao);
+    });
+
+    // Feedback e botão
+    feedback.textContent = '';
+    btnProxima.style.display = 'none';
+
+    // Animação e progresso
+    document.querySelector('.card').style.opacity = '1';
+    alternativasContainer.style.opacity = '1';
+
+    atualizarProgresso();
+    iniciarTimer();
+  }, 300);
+}
+
 
 });
 
