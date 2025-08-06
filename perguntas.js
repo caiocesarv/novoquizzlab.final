@@ -941,16 +941,16 @@ const perguntas = [
     "topico": "LEUCEMIAS e LINFOMAS"
   },
   {
-    "enunciado": "Os nucléolos possuem formato arredondado e a sua principal função é a produção dos ribossomos. Qual afirmação abaixo sobre os nucléolos está correta?",
-    "imagem": "questao56.jpg",
+    "enunciado": "Considera-se a leucemia de células plasmáticas como primária quando o diagnóstico é feito na forma leucêmica da doença (60% dos casos) e secundária se ela for decorrente de um mieloma múltiplo (40% dos casos). A Leucemia de células plasmáticas é caracterizada pela presença de mais de:",
+    "imagem": "questao72.jpg",
     "alternativas": [
-      "A - Uma vida celular útil e prolongada tem sido associada a presença de nucléolos menores (redução parcial na atividade nucleolar aumenta a longevidade em vários modelos animais).",
-      "B - Mudanças na atividade e morfologia nucleolar estão frequentemente associadas a doenças.",
-      "C - Nucléolos maiores podem ser observados em células com elevada atividade de síntese de proteínas e divisão celular, ex: blastos mieloides (imagens).",
-      "D - Os nucléolos participam da regulação da mitose.",
-      "E - Todas estão corretas."
+      "A - 2.000 plasmócitos/mm3 no sangue periférico.",
+      "B - 500 plasmócitos /mm3 no sangue periférico.",
+      "C - 2.000 plasmócitos /mm3 na medula óssea.",
+      "D - 5.000 plasmócitos /mm3 no sangue periférico.",
+      "E - 15.000 plasmócitos /mm3 na medula óssea."
     ],
-    "correta": "E",
+    "correta": "A",
     "topico": "LEUCEMIAS e LINFOMAS"
   },
   {
