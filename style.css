@@ -45,6 +45,13 @@ header h1 {
   display: flex;
   text-align: center;
 }
+header h2 {
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
 
 /* Card sombreado como Figma */
 .card {
@@ -422,7 +429,7 @@ header h1 {
 
 /* Adicione estes estilos ao seu style.css existente */
 
-/* Barra do Timer Visual */
+Barra do Timer Visual
 .timer-barra-container {
   margin-top: 0.5rem;
   width: 100%;

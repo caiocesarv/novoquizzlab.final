@@ -2,8 +2,8 @@
 let perguntaAtual = 0;
 let pontuacao = 0;
 let perguntasSelecionadas = [];
-let tempoRestante = 30;
-let timerInterval;
+// let tempoRestante = 30; // COMENTADO: Removido cronômetro
+// let timerInterval; // COMENTADO: Removido cronômetro
 let alternativaSelecionada = null;
 let quizIniciado = false;
 
@@ -27,7 +27,7 @@ const temas = {
 const sons = {
   correto: new Audio('assets/game-start-317318.mp3'),
   errado: new Audio('assets/errado.mp3'),
-  tempo: new Audio('assets/tempo.mp3'),
+  // tempo: new Audio('assets/tempo.mp3'), // COMENTADO: Som de tempo esgotado removido
   conclusao: new Audio('assets/conclusao.mp3')
 };
 
@@ -75,17 +75,19 @@ function criarBarraProgresso() {
     <div class="progresso-info">
       <span id="pergunta-numero">Pergunta ${perguntaAtual + 1} de ${perguntasSelecionadas.length}</span>
       <span id="pontuacao">Pontuação: ${pontuacao}</span>
-      <span id="timer">Tempo: 30s</span>
     </div>
     <div class="progresso-barra">
       <div id="progresso-fill"></div>
     </div>
+  `;
+  // COMENTADO: Removida a barra do timer
+  /*
     <div class="timer-barra-container">
       <div class="timer-barra">
         <div id="timer-fill"></div>
       </div>
     </div>
-  `;
+  */
   
   header.appendChild(progressoContainer);
 }
@@ -104,6 +106,8 @@ function atualizarProgresso() {
   }
 }
 
+// COMENTADO: Timer removido completamente
+/*
 // Timer com barra visual
 function iniciarTimer() {
   tempoRestante = 30;
@@ -169,22 +173,23 @@ function pararTimer() {
     timerFill.style.transition = 'none';
   }
 }
+*/
 
 // Exibir pergunta
 function exibirPergunta() {
-// Verificar vídeo
   const pergunta = perguntasSelecionadas[perguntaAtual];
+
+  // Verificar vídeo
   if (pergunta.video && pergunta.video !== '') {
     btnVideo.style.display = 'block';
     videoPlayer.src = pergunta.video;
     videoContainer.style.display = 'none';
-  }   else {
+  } else {
     btnVideo.style.display = 'none';
     videoPlayer.src = '';
     videoContainer.style.display = 'none';
   }
 
-  
   setTimeout(() => {
     // Atualizar conteúdo
     enunciado.textContent = pergunta.enunciado;
@@ -207,18 +212,29 @@ function exibirPergunta() {
       alternativasContainer.appendChild(botao);
     });
     
-    // Feedback e botão
+    // Feedback e botão próxima sempre visível
     feedback.textContent = '';
-    btnProxima.style.display = 'none';
+    btnProxima.style.display = 'block'; // MODIFICADO: Botão sempre visível
+    btnProxima.textContent = 'Próxima Pergunta'; // ADICIONADO: Texto do botão
+    btnProxima.onclick = () => pularPergunta(); // ADICIONADO: Função para pular pergunta
     
     // Animação de entrada
     document.querySelector('.card').style.opacity = '1';
     alternativasContainer.style.opacity = '1';
     
-    // Atualizar progresso e iniciar timer
+    // Atualizar progresso (sem iniciar timer)
     atualizarProgresso();
-    iniciarTimer();
+    // iniciarTimer(); // COMENTADO: Removido timer
   }, 300);
+}
+
+// ADICIONADO: Nova função para pular pergunta
+function pularPergunta() {
+  if (alternativaSelecionada !== null) return; // Se já respondeu, não pode pular
+  
+  mostrarFeedback(false, 'Pergunta pulada! ⏭️');
+  desabilitarAlternativas();
+  setTimeout(() => proximaPergunta(), 1500);
 }
 
 // Selecionar alternativa
@@ -226,7 +242,7 @@ function selecionarAlternativa(index, botao) {
   if (alternativaSelecionada !== null) return;
   
   alternativaSelecionada = index;
-  pararTimer();
+  // pararTimer(); // COMENTADO: Removido timer
   
   const pergunta = perguntasSelecionadas[perguntaAtual];
   const respostaCorreta = parseInt(pergunta.correta) - 1;
@@ -244,7 +260,11 @@ function selecionarAlternativa(index, botao) {
       atualizarProgresso();
     }
     
-    setTimeout(() => proximaPergunta(), 3000);
+    // MODIFICADO: Alterar texto do botão após responder
+    btnProxima.textContent = 'Continuar';
+    btnProxima.onclick = () => proximaPergunta();
+    
+    // setTimeout(() => proximaPergunta(), 3000); // COMENTADO: Progressão automática removida
   }, 500);
 }
 
@@ -266,7 +286,7 @@ function mostrarFeedbackVisual(acertou, respostaCorreta) {
 function mostrarFeedback(acertou, mensagem = null) {
   if (mensagem) {
     feedback.textContent = mensagem;
-    feedback.className = 'tempo-esgotado';
+    feedback.className = 'pergunta-pulada'; // MODIFICADO: Nova classe para pergunta pulada
   } else if (acertou) {
     feedback.textContent = 'Correto! Parabéns! 🎉';
     feedback.className = 'correto';
@@ -284,11 +304,11 @@ function mostrarFeedback(acertou, mensagem = null) {
   }, 200);
 }
 
-// Calcular pontuação baseada no tempo restante
+// MODIFICADO: Calcular pontuação sem bonus de tempo
 function calcularPontuacao() {
   const pontuacaoBase = 100;
-  const bonusTempo = Math.floor(tempoRestante * 2);
-  return pontuacaoBase + bonusTempo;
+  // const bonusTempo = Math.floor(tempoRestante * 2); // COMENTADO: Removido bonus de tempo
+  return pontuacaoBase; // MODIFICADO: Apenas pontuação base
 }
 
 // Desabilitar alternativas
@@ -308,10 +328,9 @@ function proximaPergunta() {
   }
 }
 
-
 // Exibir resultado final
 function exibirResultadoFinal() {
-  pararTimer();
+  // pararTimer(); // COMENTADO: Removido timer
   sons.conclusao.play();
   
   const totalPerguntas = perguntasSelecionadas.length;
@@ -373,7 +392,6 @@ function voltarMenu() {
   window.location.href = 'index.html'; // ou 'menu.html', dependendo do nome real do seu arquivo de menu
 }
 
-
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -384,14 +402,15 @@ document.addEventListener('DOMContentLoaded', () => {
     iniciarQuiz(tema);
   }
 
-  
-  // Prevenir fechar acidentalmente
+  // COMENTADO: Prevenir fechar acidentalmente - pode manter se desejar
+  /*
   window.addEventListener('beforeunload', (e) => {
     if (quizIniciado && perguntaAtual < perguntasSelecionadas.length) {
       e.preventDefault();
       e.returnValue = '';
     }
   });
+  */
 });
 
 // Atalhos de teclado
@@ -406,7 +425,17 @@ document.addEventListener('keydown', (e) => {
       selecionarAlternativa(index, botoes[index]);
     }
   }
+  
+  // ADICIONADO: Atalho para pular pergunta (tecla Escape ou espaço)
+  if (tecla === 'Escape' || tecla === ' ') {
+    e.preventDefault();
+    pularPergunta();
+  }
 });
+
+// =========================
+// CONTROLES DO VÍDEO
+// =========================
 const btnVideo = document.getElementById('btnVideoExplicacao');
 const videoContainer = document.getElementById('videoPlayerContainer');
 const videoPlayer = document.getElementById('videoPlayer');
@@ -415,27 +444,6 @@ const videoPlayer = document.getElementById('videoPlayer');
 videoContainer.style.display = 'none';
 videoPlayer.src = '';
 
-btnVideo.addEventListener('click', () => {
-  videoContainer.style.display = 'block';
-  btnVideo.style.display = 'none';
-
-  // ... [todo o seu código acima permanece igual até o final do arquivo]
-
-// =========================
-// CONTROLES DO VÍDEO
-// =========================
-// =========================
-// CONTROLES DO VÍDEO
-// =========================
-const btnVideo = document.getElementById('btnVideoExplicacao');
-const videoContainer = document.getElementById('videoPlayerContainer');
-const videoPlayer = document.getElementById('videoPlayer');
-
-// Inicializa oculto
-videoContainer.style.display = 'none';
-videoPlayer.src = '';
-
-// Evento: clique no botão
 btnVideo.addEventListener('click', () => {
   videoContainer.style.display = 'block';
   btnVideo.style.display = 'none';
@@ -480,19 +488,17 @@ function exibirPergunta() {
       alternativasContainer.appendChild(botao);
     });
 
-    // Feedback e botão
+    // Feedback e botão próxima sempre visível
     feedback.textContent = '';
-    btnProxima.style.display = 'none';
+    btnProxima.style.display = 'block';
+    btnProxima.textContent = 'Próxima Pergunta';
+    btnProxima.onclick = () => pularPergunta();
 
     // Animação e progresso
     document.querySelector('.card').style.opacity = '1';
     alternativasContainer.style.opacity = '1';
 
     atualizarProgresso();
-    iniciarTimer();
+    // iniciarTimer(); // COMENTADO: Removido timer
   }, 300);
 }
-
-
-});
-
