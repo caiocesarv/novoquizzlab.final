@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #3e1e24, #4e1e2b,#2D0F0F);
+  background: linear-gradient(to bottom, #0a8572, #0a8572,#043b33);
   color: #fff;
 }
 
@@ -28,9 +28,9 @@ header {
 
 /* Logo */
 .logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 350px;
+  height: 110px;
+  border-radius: 0%;
   object-fit: cover;
   /* display: flex; */
   text-align: center;
