@@ -2,7 +2,7 @@
 const perguntas = [
   // HEMÁCIAS e ANEMIAS - Questões 1 a 22
   {
-    "enunciado": "1- A deficiência da glicose-6-fosfato-desidrogenase (G-6-PD) atinge 3% de toda população mundial. O gene que promove a deficiência de G-6-PD encontra-se no cromossomo X. Logo, as mulheres heterozigotas não apresentam sinais clínicos da doença. Essa deficiência é mais frequente em africanos, negros norte americanos, afrocaribenhos e populações do Mediterrâneo. Qual o nome das formas de hemácias mais frequentes na deficiência G-6-PD que estão nessa imagem?",
+    "enunciado": "QUESTÃO 01- A deficiência da glicose-6-fosfato-desidrogenase (G-6-PD) atinge 3% de toda população mundial. O gene que promove a deficiência de G-6-PD encontra-se no cromossomo X. Logo, as mulheres heterozigotas não apresentam sinais clínicos da doença. Essa deficiência é mais frequente em africanos, negros norte americanos, afrocaribenhos e populações do Mediterrâneo. Qual o nome das formas de hemácias mais frequentes na deficiência G-6-PD que estão nessa imagem?",
     "imagem": "questao01.jpg", // ou "" se não houver imagem
     "alternativas": [
       "A - Hemácias irregularmente contraídas (A) Picnócito (B) Hemácia pinçada (C).",
@@ -16,7 +16,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "2- O corpúsculo de Howell-Jolly é um fragmento de material nuclear, formado por um cromossomo que se separou do fuso mitótico em uma expressão nuclear incompleta. Apresenta-se como uma inclusão arredondada com 1 a 2µ de diâmetro e de coloração semelhante ao do núcleo. Onde o corpúsculo de Howell-Jolly está mais presente?",
+    "enunciado": "QUESTÃO 02- O corpúsculo de Howell-Jolly é um fragmento de material nuclear, formado por um cromossomo que se separou do fuso mitótico em uma expressão nuclear incompleta. Apresenta-se como uma inclusão arredondada com 1 a 2µ de diâmetro e de coloração semelhante ao do núcleo. Onde o corpúsculo de Howell-Jolly está mais presente?",
     "imagem": "questao02.png",
     "alternativas": [
       "A - Em pacientes esplenectomisados.",
@@ -30,7 +30,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "3- Qual das células da eritropoese constitui de 1 a 4% das células da medula óssea, onde ocorre também o início da hemoglobinização e é considerada a célula do segundo dia da eritropoese? Células da imagem: 1 = Proeritroblasto / 2 = Eritroblasto basófilo / 3 =  Eritroblasto policromático / 4 =  Eritroblasto ortocromático.",
+    "enunciado": "QUESTÃO 03- Qual das células da eritropoese constitui de 1 a 4% das células da medula óssea, onde ocorre também o início da hemoglobinização e é considerada a célula do segundo dia da eritropoese? Células da imagem: 1 = Proeritroblasto / 2 = Eritroblasto basófilo / 3 =  Eritroblasto policromático / 4 =  Eritroblasto ortocromático.",
     "imagem": "questao03.jpg",
     "alternativas": [
       "A - Célula 1 ",
@@ -44,7 +44,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "4- A hemácia em lágrima também é conhecida como ___________, hemácia em gota, hemácia em raquete ou hemácia em pera. É observada com maior frequência na ____________________________e na anemia megaloblástica, mas, as anemias com oxidação da hemoglobina e formação de corpos de Heinz, também formam hemácias em lágrima. Após esplenectomia, as hemácias em lágrima ____________em muito nos pacientes com mielofibrose e talassemia maior.",
+    "enunciado": "QUESTÃO 04- A hemácia em lágrima também é conhecida como ___________, hemácia em gota, hemácia em raquete ou hemácia em pera. É observada com maior frequência na ____________________________e na anemia megaloblástica, mas, as anemias com oxidação da hemoglobina e formação de corpos de Heinz, também formam hemácias em lágrima. Após esplenectomia, as hemácias em lágrima ____________em muito nos pacientes com mielofibrose e talassemia maior.",
     "imagem": "questao04.png",
     "alternativas": [
       "A - dacriócito / mielofibrose, na talassemia beta maior  / aumentam.",
@@ -58,7 +58,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "5- Qual afirmação abaixo sobre a anemia falciforme está incorreta?",
+    "enunciado": "QUESTÃO 05- Qual afirmação abaixo sobre a anemia falciforme está incorreta?",
     "imagem": "questao05.png",
     "alternativas": [
       "A - Os pacientes homozigotos (Hb SS) sem tratamento com hidroxiureia têm um percentual de hemácias irreversivelmente falcizadas entre 4% e 44% do total. ",
@@ -72,7 +72,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "6- A microangiopatia que ocorre na PTT, também pode correr em outras patologias, como exemplo: na coagulação intravascular disseminada (CIVD), na síndrome hemolítico-urêmica (SHU) e na síndrome HELLP. O diagnóstico diferencial entre a síndrome HELLP, a SHU e o PTT, é difícil, já que todas são caracterizadas no sangue periférico por apresentarem esquistócitos e plaquetopenia. Quem são as hemácias que compõe os esquistócitos?",
+    "enunciado": "QUESTÃO 06- A microangiopatia que ocorre na PTT, também pode correr em outras patologias, como exemplo: na coagulação intravascular disseminada (CIVD), na síndrome hemolítico-urêmica (SHU) e na síndrome HELLP. O diagnóstico diferencial entre a síndrome HELLP, a SHU e o PTT, é difícil, já que todas são caracterizadas no sangue periférico por apresentarem esquistócitos e plaquetopenia. Quem são as hemácias que compõe os esquistócitos?",
     "imagem": "questao06.png",
     "alternativas": [
       "A - esquizócitos em capacete (1), picnócitos (2), hemácia pinçada (3).",
@@ -86,7 +86,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "7- Na Anemia Hemolítica Autoimune por anticorpo frio, _______________ costumam ser produzidos em resposta a infecções ou por doenças linfoproliferativas. As formas mais comuns em resposta a infecções, ocorre em pneumonias (por Mycobacterium pneumoniae) e em infecções virais (mononucleose infecciosa causada pelo vírus Epstein-Barr). Os sintomas são causados pela aglutinação das hemácias _____________________, que levam à redução do fluxo sanguíneo. No hemograma, a citomorfologia do sangue periférico apresenta as hemácias agrupadas, que são responsáveis por falsas ____________ dos índices hematimétricos (VCM, HCM e CHCM) da amostra.",
+    "enunciado": "QUESTÃO 07- Na Anemia Hemolítica Autoimune por anticorpo frio, _______________ costumam ser produzidos em resposta a infecções ou por doenças linfoproliferativas. As formas mais comuns em resposta a infecções, ocorre em pneumonias (por Mycobacterium pneumoniae) e em infecções virais (mononucleose infecciosa causada pelo vírus Epstein-Barr). Os sintomas são causados pela aglutinação das hemácias _____________________, que levam à redução do fluxo sanguíneo. No hemograma, a citomorfologia do sangue periférico apresenta as hemácias agrupadas, que são responsáveis por falsas ____________ dos índices hematimétricos (VCM, HCM e CHCM) da amostra.",
     "imagem": "questao07.png",
     "alternativas": [
       "A - as crioaglutininas / nos órgão internos / elevações.",
@@ -100,7 +100,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "8- Nos pacientes que apresentam homozigose dessa anemia, geralmente as alterações hematológicas são graves, costumando apresentar uma Hb inferior a 6g/dL (evidente hipocromia), intensa pecilocitose, esquizócitos, hemácias em lágrima e eritroblastos circulantes, alguns com grânulos basofílicos característicos (RNA). Quando há o hiperesplenismo, pode ocorrer leucopenia ou plaquetopenia. Na maioria das vezes, a dosagem de bilirrubina indireta está elevada, bem como a ferritina sérica. Obtém-se o diagnóstico pela eletroforese da hemoglobina, que mostra evidente aumento das hemoglobinas fetal e A2. Que anemia é essa?",
+    "enunciado": "QUESTÃO 08- Nos pacientes que apresentam homozigose dessa anemia, geralmente as alterações hematológicas são graves, costumando apresentar uma Hb inferior a 6g/dL (evidente hipocromia), intensa pecilocitose, esquizócitos, hemácias em lágrima e eritroblastos circulantes, alguns com grânulos basofílicos característicos (RNA). Quando há o hiperesplenismo, pode ocorrer leucopenia ou plaquetopenia. Na maioria das vezes, a dosagem de bilirrubina indireta está elevada, bem como a ferritina sérica. Obtém-se o diagnóstico pela eletroforese da hemoglobina, que mostra evidente aumento das hemoglobinas fetal e A2. Que anemia é essa?",
     "imagem": "questao08.png",
     "alternativas": [
       "1 – Hemoglobinopatia C.",
@@ -114,7 +114,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "9- A diseritropoiese é um processo anormal de formação de glóbulos vermelhos na medula óssea, caracterizado pela presença de eritroblastos displásicos, ou seja, células precursoras dos glóbulos vermelhos com alterações morfológicas. A diseritropoese pode ser um achado em diversas condições, incluindo anemias congênitas e síndromes mielodisplásicas também. Mas, que célula é essa da seta?",
+    "enunciado": "QUESTÃO 09- A diseritropoiese é um processo anormal de formação de glóbulos vermelhos na medula óssea, caracterizado pela presença de eritroblastos displásicos, ou seja, células precursoras dos glóbulos vermelhos com alterações morfológicas. A diseritropoese pode ser um achado em diversas condições, incluindo anemias congênitas e síndromes mielodisplásicas também. Mas, que célula é essa da seta?",
     "imagem": "questao09.png",
     "alternativas": [
       "1 – Mastócito.",
@@ -129,7 +129,7 @@ const perguntas = [
     
   },
   {
-    "enunciado": "10- _______________ é uma hemácia que apresenta projeções citoplasmáticas denominadas ___________, distribuídas _______________ ao redor da célula e em menor quantidade que ________________. No distúrbio hereditário denominado abetalipoproteinemia, o colesterol é  mal absorvido, promovendo a sua formação. Também pode está presente nas cirroses, nas anemias hemolíticas associadas ao fígado, na administração de heparina, no hemagioma hepático, nas hepatites",
+    "enunciado": "QUESTÃO 10- _______________ é uma hemácia que apresenta projeções citoplasmáticas denominadas ___________, distribuídas _______________ ao redor da célula e em menor quantidade que ________________. No distúrbio hereditário denominado abetalipoproteinemia, o colesterol é  mal absorvido, promovendo a sua formação. Também pode está presente nas cirroses, nas anemias hemolíticas associadas ao fígado, na administração de heparina, no hemagioma hepático, nas hepatites",
     "imagem": "questao10.png",
     "alternativas": [
       "1 – A hemácia crenada / espinhos  / irregularmente / no acantócito.",
@@ -143,7 +143,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "11- Essas hemácias perderam a definição do contorno da membrana celular, ficando com aparência imprecisa e deformada. Este tipo de fenômeno não é incomum, já que pacientes com altas taxas de lipídios (hiperlipidemia), mais precisamente com dosagem bioquímica de triglicerídeos superiores a 1.000mg/dL no soro, podem apresentar. A origem desta hemácia deve-se ao excesso de lipídios, que prejudica o equilíbrio da composição da membrana da hemácia, que é lipoproteica. Qual o nome dessas hemácias da imagem?",
+    "enunciado": "QUESTÃO 11- Essas hemácias perderam a definição do contorno da membrana celular, ficando com aparência imprecisa e deformada. Este tipo de fenômeno não é incomum, já que pacientes com altas taxas de lipídios (hiperlipidemia), mais precisamente com dosagem bioquímica de triglicerídeos superiores a 1.000mg/dL no soro, podem apresentar. A origem desta hemácia deve-se ao excesso de lipídios, que prejudica o equilíbrio da composição da membrana da hemácia, que é lipoproteica. Qual o nome dessas hemácias da imagem?",
     "imagem": "questao11.png",
     "alternativas": [
       "1 - Hemácias crescentes. ",
@@ -157,7 +157,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "12- Qual das afirmativas abaixo está errada sobre os esferócitos?",
+    "enunciado": "QUESTÃO 12- Qual das afirmativas abaixo está errada sobre os esferócitos?",
     "imagem": "questao12.png",
     "alternativas": [
       "1 - Esferócito é uma hemácia extremamente compacta com forma esférica e geralmente bastante pequena, em torno de 5 a 6µm (micrômetros)",
@@ -171,7 +171,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "13- Os achados morfológicos mais importantes no sangue periférico dos pacientes portadores dessa hemoglobinopatia são as numerosas hemácias em alvo e os ______________________________ (setas na imagem). Esses cristais são densos e apresentam vários graus de curvatura. Essa hemoglobinopatia é uma variante falcêmica de caráter hereditário. Clinicamente, os pacientes portadores podem se apresentar de modo mais brando que os pacientes portadores da HB SS.",
+    "enunciado": "QUESTÃO 13- Os achados morfológicos mais importantes no sangue periférico dos pacientes portadores dessa hemoglobinopatia são as numerosas hemácias em alvo e os ______________________________ (setas na imagem). Esses cristais são densos e apresentam vários graus de curvatura. Essa hemoglobinopatia é uma variante falcêmica de caráter hereditário. Clinicamente, os pacientes portadores podem se apresentar de modo mais brando que os pacientes portadores da HB SS.",
     "imagem": "questao13.png",
     "alternativas": [
       "1 - Cristais de Hemoglobina S.",
@@ -185,7 +185,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "14- As Hemácias “cruzadas”, sobrepostas em forma de “X” foram observadas em grande número por campo em alguns pacientes com eliptocitose hereditária sintomática. Nesses pacientes apresentando este fenômeno, as hemácias foram lavadas com solução salina a 0,9%, por 5 vezes. Após a lavagem, foram confeccionados alguns novos esfregaços, e a pesquisa citológica de hemácias “cruzadas” foi negativa, comprovando a alteração de cargas elétricas entre as hemácias, anulada pela lavagem delas. Em qual alteração as Hemácias “cruzadas” são classificadas?",
+    "enunciado": "QUESTÃO 14- As Hemácias “cruzadas”, sobrepostas em forma de “X” foram observadas em grande número por campo em alguns pacientes com eliptocitose hereditária sintomática. Nesses pacientes apresentando este fenômeno, as hemácias foram lavadas com solução salina a 0,9%, por 5 vezes. Após a lavagem, foram confeccionados alguns novos esfregaços, e a pesquisa citológica de hemácias “cruzadas” foi negativa, comprovando a alteração de cargas elétricas entre as hemácias, anulada pela lavagem delas. Em qual alteração as Hemácias “cruzadas” são classificadas?",
     "imagem": "questao14.png",
     "alternativas": [
       "1 - Aglutinação das hemácias por alteração de cargas elétricas de membrana.",
@@ -199,7 +199,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "15- Qual afirmativa abaixo sobre os corpúsculos de Heinz está errada?",
+    "enunciado": "QUESTÃO 15- Qual afirmativa abaixo sobre os corpúsculos de Heinz está errada?",
     "imagem": "questao15.png",
     "alternativas": [
       "1 - Os corpúsculos de Heinz são partículas de polipeptídios originadas da desnaturação da hemoglobina oxidada, podendo alcançar 1µ de tamanho.",
@@ -213,7 +213,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "16- O reticulócito não apresenta núcleo e tem um tempo de maturação médio de 18h antes de se transformar em uma hemácia madura. Mantém uma capacidade residual de sintetizar proteínas e mitocôndrias. O reticulócito apresenta vestígios de RNA, responsável pela policromasia. Estas células surgem no 5o a 7o dia do início da eritropoese e são observadas apenas na coloração com o azul de cresil brilhante. Na imagem observamos uma intensa reticulocitose de 42% (vn: 0,5 – 1,5%). Em qual situação isso pode ocorrer?",
+    "enunciado": "QUESTÃO 16- O reticulócito não apresenta núcleo e tem um tempo de maturação médio de 18h antes de se transformar em uma hemácia madura. Mantém uma capacidade residual de sintetizar proteínas e mitocôndrias. O reticulócito apresenta vestígios de RNA, responsável pela policromasia. Estas células surgem no 5o a 7o dia do início da eritropoese e são observadas apenas na coloração com o azul de cresil brilhante. Na imagem observamos uma intensa reticulocitose de 42% (vn: 0,5 – 1,5%). Em qual situação isso pode ocorrer?",
     "imagem": "questao16.png",
     "alternativas": [
       "1 – Anemia aplástica.",
@@ -227,7 +227,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "17- Essas pequenas inclusões irregulares, que se localizam na periferia da hemácia, representa mitocôndrias e ribossomos carregados de ferro, agregados de ferritina, ou fagossomos que contêm ferritina agregada. O eritroblasto ortocromático, o reticulócito e a hemácia podem apresentar um ou mais dessas inclusões. O siderócito é uma hemácia que apresenta essas inclusões. Em pacientes esplenectomizados é normal o aumento dessas pequenas inclusões, já que é o baço que faz sua retirada. Também se observa esse aumento na síndrome mielodisplásica, na anemia sideroblástica, no alcoolismo, na anemia deseritropoética e na toxicidade por isoniazida. Que o nome dessa inclusão nas hemácias?",
+    "enunciado": "QUESTÃO 17- Essas pequenas inclusões irregulares, que se localizam na periferia da hemácia, representa mitocôndrias e ribossomos carregados de ferro, agregados de ferritina, ou fagossomos que contêm ferritina agregada. O eritroblasto ortocromático, o reticulócito e a hemácia podem apresentar um ou mais dessas inclusões. O siderócito é uma hemácia que apresenta essas inclusões. Em pacientes esplenectomizados é normal o aumento dessas pequenas inclusões, já que é o baço que faz sua retirada. Também se observa esse aumento na síndrome mielodisplásica, na anemia sideroblástica, no alcoolismo, na anemia deseritropoética e na toxicidade por isoniazida. Que o nome dessa inclusão nas hemácias?",
     "imagem": "questao17.png",
     "alternativas": [
       "1 – Corpúsculos de Pappenheimer.",
@@ -241,7 +241,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "18- Sobre o rouleaux eritrocitário qual afirmativa abaixo está errada?",
+    "enunciado": "QUESTÃO 18- Sobre o rouleaux eritrocitário qual afirmativa abaixo está errada?",
     "imagem": "questao18.png",
     "alternativas": [
       "1 - No interior da hemácia, a carga elétrica é positiva, devido à concentração de íons K+ (potássio) ser maior que a de íons Na (sódio). Com isso, a carga elétrica ao redor da hemácia é negativa e, por isso, todas as hemácias se repelem uma das outras e não se empilham.",
@@ -255,7 +255,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "19- A anemia megaloblástica é causada pela deficiência de cobalamina (vitamina B12) e/ou ácido fólico (vitamina B9). As principais causas da anemia megaloblástica são: dieta insuficiente (vegetariana), baixa absorção, medicação (quimioterapia), hepatopatias, anemia hemolítica e alcoolismo. A anemia perniciosa é outra causa de anemia megaloblástica, onde os autoanticorpos são produzidos contra as células parietais do estômago, causando gastrite atrófica e reduzindo a produção de fator intrínseco, indispensável para a absorção da vitamina B12 no duodeno. Em uma anemia megaloblástica (imagem), que alterações citológicas são essas?",
+    "enunciado": "QUESTÃO 19- A anemia megaloblástica é causada pela deficiência de cobalamina (vitamina B12) e/ou ácido fólico (vitamina B9). As principais causas da anemia megaloblástica são: dieta insuficiente (vegetariana), baixa absorção, medicação (quimioterapia), hepatopatias, anemia hemolítica e alcoolismo. A anemia perniciosa é outra causa de anemia megaloblástica, onde os autoanticorpos são produzidos contra as células parietais do estômago, causando gastrite atrófica e reduzindo a produção de fator intrínseco, indispensável para a absorção da vitamina B12 no duodeno. Em uma anemia megaloblástica (imagem), que alterações citológicas são essas?",
     "imagem": "questao19.png",
     "alternativas": [
       "1 - macrófago  / 2 – dacriócito / 3 - macroovalócito / 4 - hiposegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
@@ -269,7 +269,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "20-  Alguns grupos étnicos são mais acometidos pela ____________________(imagem), entre eles os caucasianos, chineses, japoneses e indianos, porém nos africanos ocidentais a incidência é ainda maior. No sangue periférico, é muito importante quantificar essas hemácias em percentagem. Isso porque uma contagem ______________ sugere ser homozigota. Os genes mais frequentemente associados são os da ___________________da proteína 4.1R (EPB41), onde promovem modificações na estrutura, e quando a hemácia passa em um capilar muito fino, e se alonga para passar, não consegue mais voltar a sua forma normal.",
+    "enunciado": "QUESTÃO 20-  Alguns grupos étnicos são mais acometidos pela ____________________(imagem), entre eles os caucasianos, chineses, japoneses e indianos, porém nos africanos ocidentais a incidência é ainda maior. No sangue periférico, é muito importante quantificar essas hemácias em percentagem. Isso porque uma contagem ______________ sugere ser homozigota. Os genes mais frequentemente associados são os da ___________________da proteína 4.1R (EPB41), onde promovem modificações na estrutura, e quando a hemácia passa em um capilar muito fino, e se alonga para passar, não consegue mais voltar a sua forma normal.",
     "imagem": "questao20.png",
     "alternativas": [
       "1 - ovalocitose hereditária / inferior a 75% / espectrina.",
@@ -283,7 +283,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "21- Sobre as alterações displásicas nos eritroblastos da imagem, qual afirmativa abaixo está incorreta?",
+    "enunciado": "QUESTÃO 21- Sobre as alterações displásicas nos eritroblastos da imagem, qual afirmativa abaixo está incorreta?",
     "imagem": "questao21.png",
     "alternativas": [
       "1 – O eritroblasto  da (seta amarela) é o eritroblasto com o núcleo em formação em “roseta” e o da (seta azul) apresenta grânulos basofílicos que é RNA ribossômico.",
@@ -297,7 +297,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "22- Existem alguns tipos de hemácias que podem apresentar formas alongadas e isso pode gerar um erro na identificação. Essas alterações morfológicas podem indicar condições como anemia falciforme, anemia por deficiência de ferro e até anemias por anormalidades na membrana. Quais os nomes dessas formas de hemácias alongadas da imagem?",
+    "enunciado": "QUESTÃO 22- Existem alguns tipos de hemácias que podem apresentar formas alongadas e isso pode gerar um erro na identificação. Essas alterações morfológicas podem indicar condições como anemia falciforme, anemia por deficiência de ferro e até anemias por anormalidades na membrana. Quais os nomes dessas formas de hemácias alongadas da imagem?",
     "imagem": "questao22.png",
     "alternativas": [
       "1 - Hemácias puntiformes (1)  Drepanócitos (2) leptócitos (3) eliptócitos (4).",
