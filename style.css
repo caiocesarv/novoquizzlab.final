@@ -48,7 +48,7 @@ header h1 {
 header h2 {
   font-size: 1.8rem;
   font-weight: normal;
-  color: #fff;
+  color: #f8cdd5;
   margin: 0;
   text-align: center;
 }
@@ -101,6 +101,8 @@ header h2 {
   cursor: pointer;
   color: #222;
   transition: all 0.3s ease;
+  text-align: justify;
+  line-height: 1.5;
 }
 
 .alternativas button:hover {
