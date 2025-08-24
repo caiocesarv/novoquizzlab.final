@@ -2,10 +2,9 @@
 let perguntaAtual = 0;
 let pontuacao = 0;
 let perguntasSelecionadas = [];
-// let tempoRestante = 30; // COMENTADO: Removido cronômetro
-// let timerInterval; // COMENTADO: Removido cronômetro
 let alternativaSelecionada = null;
 let quizIniciado = false;
+let perguntaRespondida = false; // NOVO: Controla se a pergunta foi respondida
 
 // Elementos do DOM
 const enunciado = document.getElementById('enunciado');
@@ -13,6 +12,11 @@ const imagem = document.getElementById('imagem');
 const alternativasContainer = document.getElementById('alternativas');
 const btnProxima = document.getElementById('btnProxima');
 const feedback = document.getElementById('feedback');
+
+// Elementos do vídeo
+const btnVideo = document.getElementById('btnVideoExplicacao');
+const videoContainer = document.getElementById('videoPlayerContainer');
+const videoPlayer = document.getElementById('videoPlayer');
 
 // Configuração dos temas
 const temas = {
@@ -27,7 +31,6 @@ const temas = {
 const sons = {
   correto: new Audio('assets/game-start-317318.mp3'),
   errado: new Audio('assets/errado.mp3'),
-  // tempo: new Audio('assets/tempo.mp3'), // COMENTADO: Som de tempo esgotado removido
   conclusao: new Audio('assets/conclusao.mp3')
 };
 
@@ -80,14 +83,6 @@ function criarBarraProgresso() {
       <div id="progresso-fill"></div>
     </div>
   `;
-  // COMENTADO: Removida a barra do timer
-  /*
-    <div class="timer-barra-container">
-      <div class="timer-barra">
-        <div id="timer-fill"></div>
-      </div>
-    </div>
-  */
   
   header.appendChild(progressoContainer);
 }
@@ -106,90 +101,61 @@ function atualizarProgresso() {
   }
 }
 
-// COMENTADO: Timer removido completamente
-/*
-// Timer com barra visual
-function iniciarTimer() {
-  tempoRestante = 30;
-  const timerElement = document.getElementById('timer');
-  const timerFill = document.getElementById('timer-fill');
+// NOVO: Controlar disponibilidade do botão de vídeo
+function controlarBotaoVideo(pergunta) {
+  if (!btnVideo) return;
   
-  // Resetar barra do timer
-  if (timerFill) {
-    timerFill.style.width = '100%';
-    timerFill.style.background = '#4caf50';
-    timerFill.style.transition = 'width 0.1s linear, background-color 0.3s ease';
-    timerFill.style.animation = 'none';
+  // Se a pergunta tem vídeo
+  if (pergunta.video && pergunta.video !== '') {
+    btnVideo.style.display = 'block';
+    
+    // Se ainda não foi respondida, desabilitar
+    if (!perguntaRespondida) {
+      btnVideo.disabled = true;
+      btnVideo.style.opacity = '0.5';
+      btnVideo.style.cursor = 'not-allowed';
+      btnVideo.title = 'Responda a pergunta para assistir o vídeo';
+      videoPlayer.src = ''; // Não carregar o vídeo ainda
+    } else {
+      // Pergunta foi respondida, habilitar vídeo
+      btnVideo.disabled = false;
+      btnVideo.style.opacity = '1';
+      btnVideo.style.cursor = 'pointer';
+      btnVideo.title = 'Clique para assistir a explicação';
+      videoPlayer.src = pergunta.video;
+    }
+  } else {
+    // Pergunta não tem vídeo, esconder botão
+    btnVideo.style.display = 'none';
+    videoPlayer.src = '';
   }
   
-  timerInterval = setInterval(() => {
-    tempoRestante--;
-    if (timerElement) timerElement.textContent = `Tempo: ${tempoRestante}s`;
-    
-    // Atualizar barra visual do timer
-    if (timerFill) {
-      const porcentagemTempo = (tempoRestante / 30) * 100;
-      timerFill.style.width = `${porcentagemTempo}%`;
-      
-      // Mudar cor baseada no tempo restante
-      if (porcentagemTempo > 66) {
-        timerFill.style.background = '#4caf50'; // Verde
-      } else if (porcentagemTempo > 33) {
-        timerFill.style.background = '#ff9800'; // Laranja
-      } else {
-        timerFill.style.background = '#f44336'; // Vermelho
-      }
-      
-      // Animação pulsante nos últimos 10 segundos
-      if (tempoRestante <= 10) {
-        timerFill.style.animation = 'pulse-timer 0.5s infinite';
-      }
-    }
-    
-    // Aviso visual nos últimos 10 segundos
-    if (tempoRestante <= 10) {
-      if (timerElement) timerElement.style.color = '#ff4444';
-    }
-    
-    if (tempoRestante <= 0) {
-      clearInterval(timerInterval);
-      sons.tempo.play();
-      mostrarFeedback(false, 'Tempo esgotado!');
-      desabilitarAlternativas();
-      setTimeout(() => proximaPergunta(), 2000);
-    }
-  }, 1000);
+  // Sempre esconder o container do vídeo no início
+  videoContainer.style.display = 'none';
 }
 
-// Parar timer
-function pararTimer() {
-  clearInterval(timerInterval);
-  const timerElement = document.getElementById('timer');
-  const timerFill = document.getElementById('timer-fill');
+// NOVO: Habilitar botão de vídeo após resposta
+function habilitarBotaoVideo() {
+  if (!btnVideo || btnVideo.style.display === 'none') return;
   
-  if (timerElement) timerElement.style.color = '#fff';
-  if (timerFill) {
-    timerFill.style.animation = 'none';
-    timerFill.style.transition = 'none';
+  const pergunta = perguntasSelecionadas[perguntaAtual];
+  
+  btnVideo.disabled = false;
+  btnVideo.style.opacity = '1';
+  btnVideo.style.cursor = 'pointer';
+  btnVideo.title = 'Clique para assistir a explicação';
+  
+  // Carregar o vídeo só agora
+  if (pergunta.video && pergunta.video !== '') {
+    videoPlayer.src = pergunta.video;
   }
 }
-*/
 
 // Exibir pergunta
 function exibirPergunta() {
   const pergunta = perguntasSelecionadas[perguntaAtual];
-
-  // Verificar vídeo
-  if (pergunta.video && pergunta.video !== '') {
-    btnVideo.style.display = 'block';
-    videoPlayer.src = pergunta.video;
-    videoContainer.style.display = 'none';
-  } else {
-    btnVideo.style.display = 'none';
-    videoPlayer.src = '';
-    videoContainer.style.display = 'none';
-  }
-
+  perguntaRespondida = false; // NOVO: Reset do status da pergunta
+  
   setTimeout(() => {
     // Atualizar conteúdo
     enunciado.textContent = pergunta.enunciado;
@@ -212,29 +178,41 @@ function exibirPergunta() {
       alternativasContainer.appendChild(botao);
     });
     
-    // Feedback e botão próxima sempre visível
+    // Controlar botão de vídeo
+    controlarBotaoVideo(pergunta);
+    
+    // Feedback e botão próxima
     feedback.textContent = '';
-    btnProxima.style.display = 'block'; // MODIFICADO: Botão sempre visível
-    btnProxima.textContent = 'Próxima Pergunta'; // ADICIONADO: Texto do botão
-    btnProxima.onclick = () => pularPergunta(); // ADICIONADO: Função para pular pergunta
+    btnProxima.style.display = 'block';
+    btnProxima.textContent = 'Pular Pergunta';
+    btnProxima.onclick = () => pularPergunta();
     
     // Animação de entrada
     document.querySelector('.card').style.opacity = '1';
     alternativasContainer.style.opacity = '1';
     
-    // Atualizar progresso (sem iniciar timer)
+    // Atualizar progresso
     atualizarProgresso();
-    // iniciarTimer(); // COMENTADO: Removido timer
   }, 300);
 }
 
-// ADICIONADO: Nova função para pular pergunta
+// Função para pular pergunta
 function pularPergunta() {
   if (alternativaSelecionada !== null) return; // Se já respondeu, não pode pular
   
+  perguntaRespondida = true; // NOVO: Marcar como respondida
+  habilitarBotaoVideo(); // NOVO: Habilitar vídeo mesmo pulando
+  
   mostrarFeedback(false, 'Pergunta pulada! ⏭️');
   desabilitarAlternativas();
-  setTimeout(() => proximaPergunta(), 1500);
+  
+  // Alterar botão
+  btnProxima.textContent = 'Continuar';
+  btnProxima.onclick = () => proximaPergunta();
+  
+  setTimeout(() => {
+    // Auto-avançar removido para dar tempo de ver o vídeo se quiser
+  }, 1500);
 }
 
 // Selecionar alternativa
@@ -242,7 +220,7 @@ function selecionarAlternativa(index, botao) {
   if (alternativaSelecionada !== null) return;
   
   alternativaSelecionada = index;
-  // pararTimer(); // COMENTADO: Removido timer
+  perguntaRespondida = true; // NOVO: Marcar pergunta como respondida
   
   const pergunta = perguntasSelecionadas[perguntaAtual];
   const respostaCorreta = parseInt(pergunta.correta) - 1;
@@ -255,16 +233,17 @@ function selecionarAlternativa(index, botao) {
     mostrarFeedbackVisual(acertou, respostaCorreta);
     mostrarFeedback(acertou);
     
+    // NOVO: Habilitar botão de vídeo após responder
+    habilitarBotaoVideo();
+    
     if (acertou) {
       pontuacao += calcularPontuacao();
       atualizarProgresso();
     }
     
-    // MODIFICADO: Alterar texto do botão após responder
+    // Alterar texto do botão após responder
     btnProxima.textContent = 'Continuar';
     btnProxima.onclick = () => proximaPergunta();
-    
-    // setTimeout(() => proximaPergunta(), 3000); // COMENTADO: Progressão automática removida
   }, 500);
 }
 
@@ -286,7 +265,7 @@ function mostrarFeedbackVisual(acertou, respostaCorreta) {
 function mostrarFeedback(acertou, mensagem = null) {
   if (mensagem) {
     feedback.textContent = mensagem;
-    feedback.className = 'pergunta-pulada'; // MODIFICADO: Nova classe para pergunta pulada
+    feedback.className = 'pergunta-pulada';
   } else if (acertou) {
     feedback.textContent = 'Correto! Parabéns! 🎉';
     feedback.className = 'correto';
@@ -304,11 +283,9 @@ function mostrarFeedback(acertou, mensagem = null) {
   }, 200);
 }
 
-// MODIFICADO: Calcular pontuação sem bonus de tempo
+// Calcular pontuação
 function calcularPontuacao() {
-  const pontuacaoBase = 100;
-  // const bonusTempo = Math.floor(tempoRestante * 2); // COMENTADO: Removido bonus de tempo
-  return pontuacaoBase; // MODIFICADO: Apenas pontuação base
+  return 100; // Pontuação base
 }
 
 // Desabilitar alternativas
@@ -320,6 +297,8 @@ function desabilitarAlternativas() {
 // Próxima pergunta
 function proximaPergunta() {
   alternativaSelecionada = null; // resetar seleção
+  perguntaRespondida = false; // NOVO: resetar status da resposta
+  
   if (perguntaAtual < perguntasSelecionadas.length - 1) {
     perguntaAtual++;
     exibirPergunta();
@@ -330,7 +309,6 @@ function proximaPergunta() {
 
 // Exibir resultado final
 function exibirResultadoFinal() {
-  // pararTimer(); // COMENTADO: Removido timer
   sons.conclusao.play();
   
   const totalPerguntas = perguntasSelecionadas.length;
@@ -389,7 +367,29 @@ function reiniciarQuiz() {
 
 // Voltar ao menu
 function voltarMenu() {
-  window.location.href = 'index.html'; // ou 'menu.html', dependendo do nome real do seu arquivo de menu
+  window.location.href = 'index.html';
+}
+
+// =========================
+// CONTROLES DO VÍDEO
+// =========================
+
+// Event listener para o botão de vídeo
+if (btnVideo) {
+  btnVideo.addEventListener('click', () => {
+    if (!btnVideo.disabled) {
+      videoContainer.style.display = 'block';
+      btnVideo.textContent = '⏹️ Fechar Vídeo';
+      btnVideo.onclick = () => {
+        videoContainer.style.display = 'none';
+        btnVideo.textContent = '▶️ Assistir Explicação em Vídeo';
+        btnVideo.onclick = () => {
+          videoContainer.style.display = 'block';
+          btnVideo.textContent = '⏹️ Fechar Vídeo';
+        };
+      };
+    }
+  });
 }
 
 // Event listeners
@@ -401,16 +401,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!document.getElementById('menu')) {
     iniciarQuiz(tema);
   }
-
-  // COMENTADO: Prevenir fechar acidentalmente - pode manter se desejar
-  /*
-  window.addEventListener('beforeunload', (e) => {
-    if (quizIniciado && perguntaAtual < perguntasSelecionadas.length) {
-      e.preventDefault();
-      e.returnValue = '';
-    }
-  });
-  */
 });
 
 // Atalhos de teclado
@@ -426,79 +416,15 @@ document.addEventListener('keydown', (e) => {
     }
   }
   
-  // ADICIONADO: Atalho para pular pergunta (tecla Escape ou espaço)
-  if (tecla === 'Escape' || tecla === ' ') {
+  // Atalho para pular pergunta (tecla Escape)
+  if (tecla === 'Escape') {
     e.preventDefault();
     pularPergunta();
   }
-});
-
-// =========================
-// CONTROLES DO VÍDEO
-// =========================
-const btnVideo = document.getElementById('btnVideoExplicacao');
-const videoContainer = document.getElementById('videoPlayerContainer');
-const videoPlayer = document.getElementById('videoPlayer');
-
-// Inicializa vídeo oculto
-videoContainer.style.display = 'none';
-videoPlayer.src = '';
-
-btnVideo.addEventListener('click', () => {
-  videoContainer.style.display = 'block';
-  btnVideo.style.display = 'none';
-});
-
-// =========================
-// EXIBE A PERGUNTA ATUAL
-// =========================
-function exibirPergunta() {
-  const pergunta = perguntasSelecionadas[perguntaAtual];
-
-  // Exibe botão sempre, mas desativa se não houver vídeo
-  btnVideo.style.display = 'block';
-  if (pergunta.video && pergunta.video !== '') {
-    btnVideo.disabled = false;
-    videoPlayer.src = pergunta.video;
-    videoContainer.style.display = 'none';
-  } else {
-    btnVideo.disabled = true;
-    videoPlayer.src = '';
-    videoContainer.style.display = 'none';
+  
+  // NOVO: Atalho para assistir vídeo (tecla V)
+  if (tecla.toLowerCase() === 'v' && perguntaRespondida && btnVideo && !btnVideo.disabled) {
+    e.preventDefault();
+    btnVideo.click();
   }
-
-  setTimeout(() => {
-    // Atualizar enunciado e imagem
-    enunciado.textContent = pergunta.enunciado;
-
-    if (pergunta.imagem && pergunta.imagem !== '') {
-      imagem.src = `assets/${pergunta.imagem}`;
-      imagem.style.display = 'block';
-      imagem.onerror = () => imagem.style.display = 'none';
-    } else {
-      imagem.style.display = 'none';
-    }
-
-    // Alternativas
-    alternativasContainer.innerHTML = '';
-    pergunta.alternativas.forEach((alt, index) => {
-      const botao = document.createElement('button');
-      botao.textContent = alt;
-      botao.onclick = () => selecionarAlternativa(index, botao);
-      alternativasContainer.appendChild(botao);
-    });
-
-    // Feedback e botão próxima sempre visível
-    feedback.textContent = '';
-    btnProxima.style.display = 'block';
-    btnProxima.textContent = 'Próxima Pergunta';
-    btnProxima.onclick = () => pularPergunta();
-
-    // Animação e progresso
-    document.querySelector('.card').style.opacity = '1';
-    alternativasContainer.style.opacity = '1';
-
-    atualizarProgresso();
-    // iniciarTimer(); // COMENTADO: Removido timer
-  }, 300);
-}
+});
