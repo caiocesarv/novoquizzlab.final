@@ -33,6 +33,40 @@ header {
   border-radius: 12px;
   box-sizing: border-box;
   width: 100%;
+  position: relative;
+}
+
+/* NOVO: Estilo para o topo do cabeçalho com o botão início */
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+/* NOVO: Botão Início */
+.btn-inicio {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(76, 175, 80, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.btn-inicio:hover {
+  background: rgba(67, 160, 71, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
 /* Logo responsiva */
@@ -44,20 +78,18 @@ header {
   object-fit: contain;
 }
 
-/* Títulos responsivos */
 header h1 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #f8cdd5;
-  margin: 0;
+  color: #e69936 !important; /* Vermelho puro */
   text-align: center;
   word-wrap: break-word;
 }
 
 header h2 {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: normal;
-  color: #f8cdd5;
+  color: #e69936; /* Mesma cor para manter consistência */
   margin: 0;
   text-align: center;
   word-wrap: break-word;
@@ -534,8 +566,17 @@ header h2 {
     gap: 0.5rem;
   }
   
+  /* Ajustes do botão início em telas menores */
+  .btn-inicio {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    position: absolute;
+    left: 0.5rem;
+    top: -0.5rem;
+  }
+  
   .logo {
-    max-width: 250px;
+    max-width: 180px;
   }
   
   header h1 {
@@ -568,228 +609,3 @@ header h2 {
   .progresso-info {
     flex-direction: column;
     gap: 0.3rem;
-    text-align: center;
-  }
-  
-  .timer-barra {
-    height: 10px;
-  }
-  
-  #timer {
-    font-size: 0.9rem;
-  }
-  
-  .estatisticas {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-  }
-  
-  .stat .numero {
-    font-size: 1.8rem;
-  }
-  
-  .acoes-finais {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .temas-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .tema-card {
-    padding: 1.5rem;
-  }
-  
-  .menu-header h1 {
-    font-size: 1.8rem;
-  }
-  
-  .resultado-card {
-    padding: 1.5rem;
-  }
-  
-  .resultado-card h2 {
-    font-size: 1.8rem;
-  }
-}
-
-/* Celulares em modo retrato */
-@media (max-width: 480px) {
-  .quiz-container {
-    padding: 0.5rem;
-  }
-  
-  header {
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-  }
-  
-  .logo {
-    max-width: 200px;
-  }
-  
-  header h1 {
-    font-size: 1.3rem;
-  }
-  
-  header h2 {
-    font-size: 1rem;
-  }
-  
-  .card {
-    padding: 0.8rem;
-    border-radius: 12px;
-  }
-  
-  #enunciado {
-    font-size: 0.85rem;
-    line-height: 1.4;
-  }
-  
-  .alternativas {
-    gap: 0.8rem;
-  }
-  
-  .alternativas button {
-    font-size: 0.8rem;
-    padding: 0.7rem;
-    min-height: 45px;
-    border-radius: 8px;
-  }
-  
-  #btnProxima, #btnVideoExplicacao {
-    font-size: 0.9rem;
-    padding: 0.6rem 1.5rem;
-    min-width: 100px;
-  }
-  
-  #btnVideoExplicacao {
-    min-width: 150px;
-  }
-  
-  #videoPlayerContainer iframe {
-    height: 200px;
-    border-radius: 8px;
-  }
-  
-  #feedback {
-    font-size: 0.9rem;
-    padding: 0.4rem;
-  }
-  
-  .progresso-info {
-    font-size: 0.8rem;
-  }
-  
-  .timer-barra {
-    height: 8px;
-  }
-  
-  #timer {
-    font-size: 0.8rem;
-    padding: 0.1rem 0.3rem;
-  }
-  
-  .tema-card {
-    padding: 1rem;
-  }
-  
-  .tema-card h3 {
-    font-size: 1.1rem;
-  }
-  
-  .tema-card p {
-    font-size: 0.9rem;
-  }
-  
-  .menu-header h1 {
-    font-size: 1.5rem;
-  }
-  
-  .menu-header p {
-    font-size: 1rem;
-  }
-  
-  .resultado-card {
-    padding: 1rem;
-  }
-  
-  .resultado-card h2 {
-    font-size: 1.5rem;
-  }
-  
-  .estatisticas {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-  }
-  
-  .stat {
-    padding: 1rem;
-  }
-  
-  .stat .numero {
-    font-size: 1.5rem;
-  }
-  
-  .stat .label {
-    font-size: 0.8rem;
-  }
-  
-  .btn-reiniciar, .btn-menu {
-    padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
-    min-width: 100px;
-  }
-}
-
-/* Celulares muito pequenos */
-@media (max-width: 320px) {
-  .quiz-container {
-    padding: 0.3rem;
-  }
-  
-  header {
-    padding: 0.5rem;
-  }
-  
-  .logo {
-    max-width: 180px;
-  }
-  
-  header h1 {
-    font-size: 1.1rem;
-  }
-  
-  header h2 {
-    font-size: 0.9rem;
-  }
-  
-  .card {
-    padding: 0.6rem;
-  }
-  
-  #enunciado {
-    font-size: 0.8rem;
-  }
-  
-  .alternativas button {
-    font-size: 0.75rem;
-    padding: 0.6rem;
-    min-height: 40px;
-  }
-  
-  #btnProxima, #btnVideoExplicacao {
-    font-size: 0.8rem;
-    padding: 0.5rem 1rem;
-  }
-  
-  #videoPlayerContainer iframe {
-    height: 180px;
-  }
-  
-  .estatisticas {
-    grid-template-columns: 1fr;
-  }
-}
