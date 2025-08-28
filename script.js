@@ -306,8 +306,10 @@ function selecionarAlternativa(index, botao) {
   perguntaRespondida = true; // NOVO: Marcar pergunta como respondida
   
   const pergunta = perguntasSelecionadas[perguntaAtual];
-  const respostaCorreta = parseInt(pergunta.correta) - 1;
+  const respostaCorreta = pergunta.correta.charCodeAt(0) - 65; 
+// "A"->0, "B"->1, "C"->2, "D"->3, "E"->4...
   const acertou = index === respostaCorreta;
+
   
   // Feedback visual
   botao.classList.add('selecionada');
