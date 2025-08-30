@@ -160,7 +160,8 @@ function criarBarraProgresso() {
   progressoContainer.innerHTML = `
     <div class="progresso-info">
       <span id="pergunta-numero">Pergunta ${perguntaAtual + 1} de ${perguntasSelecionadas.length}</span>
-      <span id="pontuacao">Pontuação: ${pontuacao}</span>
+      <!-- PONTUAÇÃO COMENTADA - Para reativar, descomente a linha abaixo -->
+      <!--<span id="pontuacao">Pontuação: ${pontuacao}</span>-->
     </div>
     <div class="progresso-barra">
       <div id="progresso-fill"></div>
@@ -173,11 +174,13 @@ function criarBarraProgresso() {
 // Atualizar progresso
 function atualizarProgresso() {
   const perguntaNumero = document.getElementById('pergunta-numero');
-  const pontuacaoElement = document.getElementById('pontuacao');
+  // PONTUAÇÃO COMENTADA - Para reativar, descomente as 2 linhas abaixo
+  // const pontuacaoElement = document.getElementById('pontuacao');
   const progressoFill = document.getElementById('progresso-fill');
   
   if (perguntaNumero) perguntaNumero.textContent = `Pergunta ${perguntaAtual + 1} de ${perguntasSelecionadas.length}`;
-  if (pontuacaoElement) pontuacaoElement.textContent = `Pontuação: ${pontuacao}`;
+  // PONTUAÇÃO COMENTADA - Para reativar, descomente a linha abaixo
+  // if (pontuacaoElement) pontuacaoElement.textContent = `Pontuação: ${pontuacao}`;
   if (progressoFill) {
     const porcentagem = ((perguntaAtual + 1) / perguntasSelecionadas.length) * 100;
     progressoFill.style.width = `${porcentagem}%`;
@@ -392,7 +395,7 @@ function proximaPergunta() {
   }
 }
 
-// FUNÇÃO MODIFICADA: Exibir resultado final com avaliação diagnóstica
+// FUNÇÃO MODIFICADA: Exibir resultado final com avaliação diagnóstica (PONTUAÇÃO COMENTADA)
 function exibirResultadoFinal() {
   sons.conclusao.play();
   
@@ -434,7 +437,7 @@ function exibirResultadoFinal() {
       ${criarHtmlAvaliacaoDiagnostica(acertos)}
     `;
   } else {
-    // Para quizzes de temas específicos, usar sistema atual
+    // Para quizzes de temas específicos, usar sistema sem pontuação total
     htmlEstatisticas = `
       <div class="estatisticas">
         <div class="stat">
@@ -449,10 +452,11 @@ function exibirResultadoFinal() {
           <span class="numero" style="color: #ff9800;">${porcentagemAcertos}%</span>
           <span class="label">Aproveitamento</span>
         </div>
-        <div class="stat">
+        <!-- PONTUAÇÃO TOTAL COMENTADA - Para reativar, descomente o bloco abaixo -->
+        <!--<div class="stat">
           <span class="numero" style="color: #2196f3;">${pontuacao}</span>
           <span class="label">Pontuação Total</span>
-        </div>
+        </div>-->
       </div>
     `;
   }
