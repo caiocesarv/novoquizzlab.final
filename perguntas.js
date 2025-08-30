@@ -30,7 +30,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "QUESTÃO 03- Qual das células da eritropoese constitui de 1 a 4% das células da medula óssea, onde ocorre também o início da hemoglobinização e é considerada a célula do segundo dia da eritropoese? Células da imagem: 1 = Proeritroblasto / 2 = Eritroblasto basófilo / 3 =  Eritroblasto policromático / 4 =  Eritroblasto ortocromático.",
+    "enunciado": "QUESTÃO 03- Qual das células da eritropoese constitui de 1 a 4% das células da medula óssea, onde ocorre também o início da hemoglobinização e é considerada a célula do segundo dia da eritropoese?\n Células da imagem:\n 1 = Proeritroblasto / 2 = Eritroblasto basófilo / 3 =  Eritroblasto policromático / 4 =  Eritroblasto ortocromático.",
     "imagem": "questao03.jpg",
     "alternativas": [
       "A - Célula 1 ",
@@ -44,7 +44,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "QUESTÃO 04- Preencha os espaços em branco: A hemácia em lágrima também é conhecida como ___________, hemácia em gota, hemácia em raquete ou hemácia em pera. É observada com maior frequência na ____________________________e na anemia megaloblástica, mas, as anemias com oxidação da hemoglobina e formação de corpos de Heinz, também formam hemácias em lágrima. Após esplenectomia, as hemácias em lágrima ____________em muito nos pacientes com mielofibrose e talassemia maior.",
+    "enunciado": "QUESTÃO 04- Preencha os espaços em branco:\n A hemácia em lágrima também é conhecida como ___________, hemácia em gota, hemácia em raquete ou hemácia em pera. É observada com maior frequência na ____________________________e na anemia megaloblástica, mas, as anemias com oxidação da hemoglobina e formação de corpos de Heinz, também formam hemácias em lágrima. Após esplenectomia, as hemácias em lágrima ____________em muito nos pacientes com mielofibrose e talassemia maior.",
     "imagem": "questao04.png",
     "alternativas": [
       "A - dacriócito / mielofibrose, na talassemia beta maior  / aumentam.",
@@ -53,7 +53,7 @@ const perguntas = [
       "D - codócito / mielofibrose, no mieloma múltiplo / diminuem. ",
       "E - dacriócito / mielofibrose, na talassemia beta maior  / diminuem."
     ],
-    "correta": "A",
+    "correta": "E",
     "topico": "HEMÁCIAS e ANEMIAS",
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
@@ -250,7 +250,7 @@ const perguntas = [
       "D – Quando o rouleaux eritrocitário se forma as hemácias ficam mais pesadas e sedimentam-se mais rapidamente, elevando o resultado do VHS.",
       "E - O rouleaux eritrocitário mesmo evidente não tem valor clínico e pode se formar também a partir de anticorpos frios."
     ],
-    "correta": "D",
+    "correta": "E",
     "topico": "HEMÁCIAS e ANEMIAS",
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
@@ -427,7 +427,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "QUESTÃO 31 - Essa anomalia é muito rara e se apresenta com uma inclusão de coloração azulada, aderida a parede celular dos neutrófilos, eosinófilos e basófilos (setas), que corresponde ao retículo endoplasmático destruído. Devido à presença de macroplaquetas e plaquetas gigantes na forma elíptica, geralmente a contagem de plaquetas automatizada é mais baixa que o número real.",
+    "enunciado": "QUESTÃO 31 - Essa anomalia é muito rara e se apresenta com uma inclusão de coloração azulada, aderida a parede celular dos neutrófilos, eosinófilos e basófilos (setas), que corresponde ao retículo endoplasmático destruído. Devido à presença de macroplaquetas e plaquetas gigantes na forma elíptica, geralmente a contagem de plaquetas automatizada é mais baixa que o número real. Qual o nome dessa anomalia?",
     "imagem": "questao31.jpg",
     "alternativas": [
       "A - Anomalia de Dress.",
@@ -483,7 +483,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "QUESTÃO 35 - Preencha os espaços em branco: A dengue é uma doença viral aguda classificada em quatro tipos imunológicos. No sangue periférico, geralmente observam-se leucopenia, plaquetopenia variável e pequenos ___________________________ citoplasmática. Na dengue hemorrágica, além das manifestações citadas, ocorre também ___________________ com ____________________ e plaquetopenia acentuada.",
+    "enunciado": "QUESTÃO 35 - Preencha os espaços em branco:\n A dengue é uma doença viral aguda classificada em quatro tipos imunológicos. No sangue periférico, geralmente observam-se leucopenia, plaquetopenia variável e pequenos ___________________________ citoplasmática. Na dengue hemorrágica, além das manifestações citadas, ocorre também ___________________ com ____________________ e plaquetopenia acentuada.",
     "imagem": "questao35.png",
     "alternativas": [
       "A - linfócitos pleomórficos / hemoconcentração / aumento do hematócrito",
@@ -654,7 +654,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "QUESTÃO 47 - Preencha os espaços em branco:__________________ ocorre porque os autoanticorpos plasmáticos se ligam ao complexo de glicoproteínas __________ das plaquetas, que foram expostas, devido a ação do EDTA. Logo depois, estes autoanticorpos se ligam pela _________, ao receptor III dos neutrófilos, formando as pontes entre plaquetas e neutrófilos. Este fenômeno ocorre __________ e é mais frequente em pacientes com doenças autoimunes ou neoplasias, principalmente na leucemia linfoide crônica.",
+    "enunciado": "QUESTÃO 47 - Preencha os espaços em branco:\n__________________ ocorre porque os autoanticorpos plasmáticos se ligam ao complexo de glicoproteínas __________ das plaquetas, que foram expostas, devido a ação do EDTA. Logo depois, estes autoanticorpos se ligam pela _________, ao receptor III dos neutrófilos, formando as pontes entre plaquetas e neutrófilos. Este fenômeno ocorre __________ e é mais frequente em pacientes com doenças autoimunes ou neoplasias, principalmente na leucemia linfoide crônica.",
     "imagem": "questao47.jpg",
     "alternativas": [
       "A - O Satelitismo plaquetário / GPIIb-IIIa / porção FC / “in vitro”.",
@@ -1178,7 +1178,7 @@ const perguntas = [
       "D - Reação leucemoide.",
       "E - Apoptose.  "
     ],
-    "correta": "D",
+    "correta": "B",
     "topico": "LEUCEMIAS e LINFOMAS"
   },
   {

@@ -81,7 +81,7 @@ header {
 header h1 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #e69936 !important; /* Vermelho puro */
+  color: #1928f1 !important; /* Vermelho puro */
   text-align: center;
   word-wrap: break-word;
 }
@@ -111,6 +111,7 @@ header h2 {
   line-height: 1.6;
   margin: 0;
   word-wrap: break-word;
+  white-space: pre-line; /* Mantém quebras de linha no enunciado */
 }
 
 /* Imagem responsiva */
