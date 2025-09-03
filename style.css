@@ -71,8 +71,8 @@ header {
 
 /* Logo responsiva */
 .logo {
-  width: 100%;
-  max-width: 200px;
+  width: 400%;
+  max-width: 500px;
   height: auto;
   border-radius: 8px;
   object-fit: contain;
@@ -81,7 +81,7 @@ header {
 header h1 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #1928f1 !important; /* Vermelho puro */
+  color: #352085 !important; /* Vermelho puro */
   text-align: center;
   word-wrap: break-word;
 }
@@ -406,6 +406,16 @@ header h2 {
 
 .tema-card {
   background: linear-gradient(135deg, rgba(45,11,58,0.8), rgba(85,15,105,0.8));
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+}
+.tema-card-material {
+  background: linear-gradient(135deg, rgba(43, 137, 214, 0.8), rgba(16, 79, 255, 0.8));
   padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.3);
