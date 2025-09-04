@@ -29,7 +29,7 @@ const temas = {
 
 // Sons do quiz
 const sons = {
-  correto: new Audio('assets/game-start-317318.mp3'),
+  correto: new Audio('assets/correto.mp3'),
   errado: new Audio('assets/errado.mp3'),
   conclusao: new Audio('assets/conclusao.mp3')
 };

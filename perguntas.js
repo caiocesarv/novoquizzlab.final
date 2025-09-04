@@ -484,7 +484,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 35 - Preencha os espaços em branco:\n A dengue é uma doença viral aguda classificada em quatro tipos imunológicos. No sangue periférico, geralmente observam-se leucopenia, plaquetopenia variável e pequenos ___________________________ citoplasmática. Na dengue hemorrágica, além das manifestações citadas, ocorre também ___________________ com ____________________ e plaquetopenia acentuada.",
-    "imagem": "questao35.png",
+    "imagem": "questao35.jpg",
     "alternativas": [
       "A - linfócitos pleomórficos / hemoconcentração / aumento do hematócrito",
       "B - linfócitos reativos com hiperbasofilia / hemodiluição / diminuição do hematócrito",
@@ -599,7 +599,7 @@ const perguntas = [
   // PLAQUETAS - Questões 43 a 49
   {
     "enunciado": "QUESTÃO 43 - As plaquetas agregadas perdem a sua individualidade e formam uma massa com características de faixa sobre a lesão no vaso sanguíneo, criando uma teia plaquetária ou também denominado: tampão plaquetário. Ocasionalmente essas “faixas” largam do tampão plaquetário e caem na circulação. Quando essas “faixas”são observadas na lâmina, como são denominadas?",
-    "imagem": "questa43.png",
+    "imagem": "questao43.png",
     "alternativas": [
       "A - Fragmentos de megacariócitos.",
       "B - Lóbulos de megacariócitos.",
@@ -613,7 +613,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 44 - As macroplaquetas e as plaquetas gigantes apresentam atividade enzimática e metabólica maiores, e com isso, alto potencial trombótico. O volume plaquetário médio (MPV), também é um marcador da função plaquetária. Níveis elevados de MPV têm sido identificados como fatores de risco para o infarto do miocárdio em pacientes com doença coronariana. Um paciente, sem sintomas, apresentou uma falsa contagem das plaquetas de 75.000 /mm3 (imagem). As macroplaquetas e as plaquetas gigantes geralmente não são contadas pelos contadores automatizados, devido ao tamanho. O que ocorreu?",
-    "imagem": "questa44.jpg",
+    "imagem": "questao44.jpg",
     "alternativas": [
       "A - As macroplaquetas foram contadas como leucócitos.",
       "B - As macroplaquetas foram contadas como hemácias.",
@@ -627,7 +627,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 45 - A plaqueta é denominada como gigante, quando seu tamanho é maior que a média do tamanho das hemácias. Este tipo de plaqueta tem uma maior predisposição para as alterações nos grânulos plaquetários.  As plaquetas gigantes devem ser citadas no laudo do hemograma em qualquer percentagem, até mesmo na presença de raras na lâmina. Qual das doenças abaixo não é caracterizada pela presença de plaquetas gigantes?",
-    "imagem": "questa45.jpg",
+    "imagem": "questao45.jpg",
     "alternativas": [
       "A - Síndrome de Bernard-Soulier.",
       "B - Anomalia de May-Hegglin.",
@@ -669,7 +669,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 48 - Uma das principais alterações quantitativas das plaquetas é a trombocitose ou também denominada plaquetose, que se refere a um número aumentado de plaquetas  no sangue periférico. A trombocitose primária ou clonal é causada pela proliferação neoplásica na medula óssea, já a trombocitose secundária ou reativa ocorre principalmente devido ao aumento de trombopoetina, IL-6 e catecolaminas. Qual alternativa abaixo é uma trombocitose primária?",
-    "imagem": "questa48.jpg",
+    "imagem": "questao48.jpg",
     "alternativas": [
       "A - Trombocitopenia idiopática.",
       "B - Trombocitemia essencial.",
