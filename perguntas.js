@@ -270,7 +270,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 20- Essa anemia por anormalidades na membrana celular        acomete principalmente os caucasianos, chineses, japoneses e indianos, porém nos africanos ocidentais a incidência é ainda maior. Os genes mais frequentemente associados são os da espectrina e da proteína 4.1r, onde promovem modificações na estrutura da membrana, e quando a hemácia se alonga para passa em um capilar muito fino, não consegue mais voltar a sua forma normal. Qual o nome dessa anemia e qual a percentagem no sangue periférico desses pecilócitos para sugerir homozigose?",
-    "imagem": "questao20.png",
+    "imagem": "questao20.jpg",
     "alternativas": [
       "A - Ovalocitose hereditária / superior a 75%.",
       "B - Eliptocitose hereditária / superior a 50%.",
