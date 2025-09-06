@@ -186,7 +186,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 14- As Hemácias “cruzadas”, sobrepostas em forma de “X” foram observadas em grande número por campo em alguns pacientes com eliptocitose hereditária sintomática. Nesses pacientes apresentando este fenômeno, as hemácias foram lavadas com solução salina a 0,9%, por 5 vezes. Após a lavagem, foram confeccionados alguns novos esfregaços, e a pesquisa citológica de hemácias “cruzadas” foi negativa, comprovando a alteração de cargas elétricas entre as hemácias, anulada pela lavagem delas. Em qual alteração as Hemácias “cruzadas” são classificadas?",
-    "imagem": "questao14.png",
+    "imagem": "questao14.jpg",
     "alternativas": [
       "A - Aglutinação das hemácias por alteração de cargas elétricas de membrana.",
       "B - Aglutinação das hemácias por rouleaux.",
@@ -698,7 +698,7 @@ const perguntas = [
   // HEMOPARASITAS - Questões 50 a 55
   {
     "enunciado": "QUESTÃO 50 - Essa hemoparasitose pode se apresentar em duas fases: aguda e crônica. A fase aguda pode ser assintomática ou apresentar sintomas como febre, fraqueza e inchaços. A fase crônica pode afetar o coração e o sistema digestivo, com complicações como insuficiência cardíaca e problemas gastrointestinais. Na fase aguda, no sangue periférico pode surgir o protozoário unicelular Trypanosoma cruzi (setas), apresentando um único flagelo e uma única mitocôndria alongada e terminada e um cinetoplasto que contêm o DNA mitocondrial. Qual o nome dessa hemoparasitose?",
-    "imagem": "questao50.png",
+    "imagem": "questao50.jpg",
     "alternativas": [
       "A - Tripanossomíase americana.",
       "B - Chaguismo.",
