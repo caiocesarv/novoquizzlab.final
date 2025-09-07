@@ -469,7 +469,7 @@ const perguntas = [
     "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
   },
   {
-    "enunciado": "QUESTÃO 34 - É uma doença genética rara e grave, caracterizada por infecções recorrentes, albinismo oculocutâneo e alterações neurológicas. É causada por mutações em um gene denominado LYST, que afeta o transporte e a função dos lisossomos dentro das células do sistema imunológico. Devido à deficiência do sistema imunológico, há mais predisposição a infecções bacterianas graves, especialmente nas vias respiratórias. No sangue periférico é observada inclusões de coloração variável: eosinofílica e acinzentada em granulócitos e blasto (1,2, e 4) e avermelhada em linfócitos (3).  Q	ue doença é essa?",
+    "enunciado": "QUESTÃO 34 - É uma doença genética rara e grave, caracterizada por infecções recorrentes, albinismo oculocutâneo e alterações neurológicas. É causada por mutações em um gene denominado LYST, que afeta o transporte e a função dos lisossomos dentro das células do sistema imunológico. Devido à deficiência do sistema imunológico, há mais predisposição a infecções bacterianas graves, especialmente nas vias respiratórias. No sangue periférico é observada inclusões de coloração variável: eosinofílica e acinzentada em granulócitos e blasto (1,2, e 4) e avermelhada em linfócitos (3). Que doença é essa?",
     "imagem": "questao34.png",
     "alternativas": [
       "A - A Síndrome de Richer",
@@ -861,7 +861,7 @@ const perguntas = [
     "imagem": "questao62.jpg",
     "alternativas": [
       "A - Linfoma de células do Manto.",
-      "B - Linfoma/Leucemia de células T no Adulto.",
+      "B - Linfoma/Leucemia de células T do adulto.",
       "C - Micose fungóide / Síndrome de Sézary.",
       "D - Linfoma T angioimunoblástico.",
       "E - Linfoma de células T tipo paniculítico subcutâneo."
@@ -1362,7 +1362,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCEMIAS e LINFOMAS"
-  },
+  }
 
 
 
