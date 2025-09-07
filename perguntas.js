@@ -316,7 +316,7 @@ const perguntas = [
   // LEUCÓCITOS - Questões 23 a 42
   {
     "enunciado": "QUESTÃO 23 - Qual afirmativa abaixo está errada sobre os linfócitos Natural Killer (NK)?",
-    "imagem": "questao23.png",
+    "imagem": "questao23.jpg",
     "alternativas": [
       'A - Os linfócitos Natural Killer (NK) apresentam o núcleo excêntrico de forma oval ou redondo com cromatina densa e sem nucléolo visível, o citoplasma é azul-acinzentado e geralmente apresentando grânulos.',
       "B - São vistos em pequena percentagem no sangue periférico (cerca de 5 á 15% de todos os linfócitos), porém esse nível pode se elevar em alguns distúrbios como infecções virais e aberrações imunes. Contudo, após o distúrbio, os níveis de células NK voltam ao normal.",
@@ -737,7 +737,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 53 - A filariose também conhecida como elefantíase, é uma doença parasitária infecciosa. O parasita infecta o sistema linfático humano, causando inflamação e bloqueio dos vasos linfáticos, o que pode levar a edemas (inchaço) em diversas partes do corpo.⠀ Essa doença parasitária é causada por qual nematoide e qual agente transmissor?",
-    "imagem": "questao53.png",
+    "imagem": "questao53.jpg",
     "alternativas": [
       "A - Wuchereria bancrofti / Culex.",
       "B - Wuchereria bancrofti / Anopheles.",
