@@ -41,24 +41,43 @@ Object.values(sons).forEach(som => {
 });
 
 // Função: avaliação diagnóstica
+// NOVA FUNÇÃO: Determinar avaliação diagnóstica
 function obterAvaliacaoDiagnostica(acertos, totalQuestoes) {
-    const porcentagem = (acertos / totalQuestoes) * 100;
-    let nivel = "";
-    let cor = "#ff9800";
+    // Só aplica a avaliação diagnóstica se for o quiz completo (100 questões)
+    if (totalQuestoes !== 100) {
+        return null; // Retorna null para usar o sistema normal de porcentagem
+    }
     
-    if (porcentagem >= 90) nivel = "Referência no assunto", cor = "#9c27b0";
-    else if (porcentagem >= 80) nivel = "Professor no assunto", cor = "#673ab7";
-    else if (porcentagem >= 70) nivel = "Ótimo conhecimento", cor = "#4caf50";
-    else if (porcentagem >= 60) nivel = "Bom conhecimento", cor = "#2196f3";
-    else if (porcentagem >= 50) nivel = "Conhecimento regular", cor = "#ff9800";
-    else nivel = "Necessita mais estudos", cor = "#f44336";
+    let nivel = "";
+    let cor = "#ff9800"; // Cor padrão (laranja)
+    
+    if (acertos > 90) {
+        nivel = "Referência no assunto";
+        cor = "#9c27b0"; // Roxo para o nível mais alto
+    } else if (acertos > 80) {
+        nivel = "Professor no assunto";
+        cor = "#673ab7"; // Roxo escuro
+    } else if (acertos > 70) {
+        nivel = "Ótimo conhecimento";
+        cor = "#4caf50"; // Verde
+    } else if (acertos > 60) {
+        nivel = "Bom conhecimento";
+        cor = "#2196f3"; // Azul
+    } else if (acertos > 50) {
+        nivel = "Conhecimento regular";
+        cor = "#ff9800"; // Laranja
+    } else {
+        nivel = "Necessita mais estudos";
+        cor = "#f44336"; // Vermelho
+    }
     
     return { nivel, cor };
 }
 
-// Criar HTML da avaliação diagnóstica
+// NOVA FUNÇÃO: Criar HTML da avaliação diagnóstica
 function criarHtmlAvaliacaoDiagnostica(acertos) {
     const avaliacao = obterAvaliacaoDiagnostica(acertos, 100);
+    
     return `
         <div class="avaliacao-diagnostica" style="
             background: rgba(255, 255, 255, 0.1);
@@ -77,6 +96,7 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
                 AVALIAÇÃO DIAGNÓSTICA<br>
                 EM CITOLOGIA HEMATOLÓGICA
             </h3>
+            
             <div class="resultado-diagnostico" style="
                 text-align: center;
                 padding: 1rem;
