@@ -37,8 +37,138 @@ const sons = {
 // Configurar sons com tratamento de erro melhorado
 Object.values(sons).forEach(som => {
   som.volume = 0.3;
+  som.preload = 'auto';
   som.onerror = () => console.log('Arquivo de som não encontrado');
 });
+
+// Variável para controlar se o áudio foi inicializado
+let audioInicializado = false;
+let tentativasInicializacao = 0;
+
+// Função melhorada para inicializar áudio no mobile
+function inicializarAudio() {
+  if (audioInicializado || tentativasInicializacao > 3) return;
+  
+  tentativasInicializacao++;
+  console.log(`Tentativa de inicialização de áudio: ${tentativasInicializacao}`);
+  
+  // Criar um contexto de áudio temporário para "desbloquear"
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Criar um buffer de áudio silencioso
+    const buffer = audioContext.createBuffer(1, 1, 22050);
+    const source = audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(audioContext.destination);
+    
+    // Reproduzir o buffer silencioso
+    if (source.start) {
+      source.start(0);
+    } else if (source.noteOn) {
+      source.noteOn(0);
+    }
+    
+    // Fechar o contexto após um pequeno delay
+    setTimeout(() => {
+      if (audioContext.state !== 'closed') {
+        audioContext.close();
+      }
+    }, 100);
+    
+  } catch (e) {
+    console.log('AudioContext não disponível:', e);
+  }
+  
+  // Tentar reproduzir cada som brevemente para desbloqueá-los
+  Object.values(sons).forEach((som, index) => {
+    setTimeout(() => {
+      som.volume = 0; // Silencioso primeiro
+      const playPromise = som.play();
+      if (playPromise) {
+        playPromise.then(() => {
+          som.pause();
+          som.currentTime = 0;
+          som.volume = 0.3; // Restaurar volume
+          console.log(`Som ${index} desbloqueado com sucesso`);
+        }).catch(e => {
+          console.log(`Som ${index} ainda bloqueado:`, e.message);
+          // Tentar novamente em 500ms
+          setTimeout(() => {
+            som.volume = 0;
+            som.play().then(() => {
+              som.pause();
+              som.currentTime = 0;
+              som.volume = 0.3;
+            }).catch(() => {});
+          }, 500);
+        });
+      }
+    }, index * 50); // Pequeno delay entre cada som
+  });
+  
+  audioInicializado = true;
+  console.log('Áudio inicializado com sucesso');
+}
+
+// Função para forçar reinicialização (para casos persistentes)
+function forcarReinicializacaoAudio() {
+  audioInicializado = false;
+  tentativasInicializacao = 0;
+  
+  // Recriar os objetos de áudio
+  sons.correto = new Audio('assets/correto.mp3');
+  sons.errado = new Audio('assets/errado.mp3');
+  sons.conclusao = new Audio('assets/conclusao.mp3');
+  
+  // Reconfigurar
+  Object.values(sons).forEach(som => {
+    som.volume = 0.3;
+    som.preload = 'auto';
+    som.onerror = () => console.log('Arquivo de som não encontrado');
+  });
+  
+  inicializarAudio();
+}
+
+// Função para reproduzir som com múltiplas tentativas
+function reproduzirSom(som) {
+  if (!som) return;
+  
+  // Tentar inicializar áudio se ainda não foi feito
+  if (!audioInicializado) {
+    inicializarAudio();
+  }
+  
+  // Resetar o som para o início
+  som.currentTime = 0;
+  
+  // Primeira tentativa
+  const playPromise = som.play();
+  if (playPromise) {
+    playPromise.catch(e => {
+      console.log('Primeira tentativa falhou, tentando reinicializar:', e.message);
+      
+      // Se falhar, tentar reinicializar e tocar novamente
+      forcarReinicializacaoAudio();
+      
+      setTimeout(() => {
+        som.currentTime = 0;
+        som.play().catch(err => {
+          console.log('Segunda tentativa também falhou:', err.message);
+          
+          // Última tentativa com delay maior
+          setTimeout(() => {
+            som.currentTime = 0;
+            som.play().catch(finalErr => {
+              console.log('Todas as tentativas de som falharam:', finalErr.message);
+            });
+          }, 1000);
+        });
+      }, 200);
+    });
+  }
+}
 
 // FUNÇÃO CORRIGIDA: avaliação diagnóstica (usando >= como no código antigo)
 function obterAvaliacaoDiagnostica(acertos, totalQuestoes) {
@@ -326,7 +456,7 @@ function mostrarFeedbackVisual(acertou, respostaCorreta) {
   });
 }
 
-// Mostrar feedback (CORRIGIDO)
+// Mostrar feedback (CORRIGIDO com nova função de som)
 function mostrarFeedback(acertou, mensagem = null) {
   const feedbackElement = document.getElementById('feedback');
   
@@ -336,17 +466,13 @@ function mostrarFeedback(acertou, mensagem = null) {
   } else if (acertou) {
     feedbackElement.textContent = 'Correto! Parabéns! 🎉';
     feedbackElement.className = 'correto';
-    // Tocar som apenas se carregado
-    if (sons.correto && sons.correto.readyState >= 2) {
-      sons.correto.play().catch(e => console.log('Erro ao tocar som:', e));
-    }
+    // Usar a nova função para reproduzir som
+    reproduzirSom(sons.correto);
   } else {
     feedbackElement.textContent = 'Incorreto 😔';
     feedbackElement.className = 'errado';
-    // Tocar som apenas se carregado
-    if (sons.errado && sons.errado.readyState >= 2) {
-      sons.errado.play().catch(e => console.log('Erro ao tocar som:', e));
-    }
+    // Usar a nova função para reproduzir som
+    reproduzirSom(sons.errado);
   }
   
   feedbackElement.style.transform = 'scale(1.1)';
@@ -389,10 +515,8 @@ function proximaPergunta() {
 
 // FUNÇÃO CORRIGIDA: Exibir resultado final com avaliação diagnóstica 
 function exibirResultadoFinal() {
-  // Tocar som de conclusão com proteção
-  if (sons.conclusao && sons.conclusao.readyState >= 2) {
-    sons.conclusao.play().catch(e => console.log('Erro ao tocar som:', e));
-  }
+  // Usar a nova função para reproduzir som de conclusão
+  reproduzirSom(sons.conclusao);
   
   const totalPerguntas = perguntasSelecionadas.length;
   const acertos = Math.floor(pontuacao / 100);
