@@ -40,44 +40,25 @@ Object.values(sons).forEach(som => {
   som.onerror = () => console.log('Arquivo de som não encontrado');
 });
 
-// Função: avaliação diagnóstica
-// NOVA FUNÇÃO: Determinar avaliação diagnóstica
+// FUNÇÃO CORRIGIDA: avaliação diagnóstica (usando >= como no código antigo)
 function obterAvaliacaoDiagnostica(acertos, totalQuestoes) {
-    // Só aplica a avaliação diagnóstica se for o quiz completo (100 questões)
-    if (totalQuestoes !== 100) {
-        return null; // Retorna null para usar o sistema normal de porcentagem
-    }
-    
+    const porcentagem = (acertos / totalQuestoes) * 100;
     let nivel = "";
-    let cor = "#ff9800"; // Cor padrão (laranja)
+    let cor = "#ff9800";
     
-    if (acertos > 90) {
-        nivel = "Referência no assunto";
-        cor = "#9c27b0"; // Roxo para o nível mais alto
-    } else if (acertos > 80) {
-        nivel = "Professor no assunto";
-        cor = "#673ab7"; // Roxo escuro
-    } else if (acertos > 70) {
-        nivel = "Ótimo conhecimento";
-        cor = "#4caf50"; // Verde
-    } else if (acertos > 60) {
-        nivel = "Bom conhecimento";
-        cor = "#2196f3"; // Azul
-    } else if (acertos > 50) {
-        nivel = "Conhecimento regular";
-        cor = "#ff9800"; // Laranja
-    } else {
-        nivel = "Necessita mais estudos";
-        cor = "#f44336"; // Vermelho
-    }
+    if (porcentagem >= 90) nivel = "Referência no assunto", cor = "#9c27b0";
+    else if (porcentagem >= 80) nivel = "Professor no assunto", cor = "#673ab7";
+    else if (porcentagem >= 70) nivel = "Ótimo conhecimento", cor = "#4caf50";
+    else if (porcentagem >= 60) nivel = "Bom conhecimento", cor = "#2196f3";
+    else if (porcentagem >= 50) nivel = "Conhecimento regular", cor = "#ff9800";
+    else nivel = "Necessita mais estudos", cor = "#f44336";
     
     return { nivel, cor };
 }
 
-// NOVA FUNÇÃO: Criar HTML da avaliação diagnóstica
+// Criar HTML da avaliação diagnóstica
 function criarHtmlAvaliacaoDiagnostica(acertos) {
     const avaliacao = obterAvaliacaoDiagnostica(acertos, 100);
-    
     return `
         <div class="avaliacao-diagnostica" style="
             background: rgba(255, 255, 255, 0.1);
@@ -96,7 +77,6 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
                 AVALIAÇÃO DIAGNÓSTICA<br>
                 EM CITOLOGIA HEMATOLÓGICA
             </h3>
-            
             <div class="resultado-diagnostico" style="
                 text-align: center;
                 padding: 1rem;
@@ -407,7 +387,7 @@ function proximaPergunta() {
   }
 }
 
-// Exibir resultado final
+// FUNÇÃO CORRIGIDA: Exibir resultado final com avaliação diagnóstica 
 function exibirResultadoFinal() {
   // Tocar som de conclusão com proteção
   if (sons.conclusao && sons.conclusao.readyState >= 2) {
@@ -418,33 +398,59 @@ function exibirResultadoFinal() {
   const acertos = Math.floor(pontuacao / 100);
   const erros = totalPerguntas - acertos;
   const porcentagemAcertos = ((acertos / totalPerguntas) * 100).toFixed(1);
-  const avaliacaoDiagnostica = obterAvaliacaoDiagnostica(acertos, totalPerguntas);
+  
+  // Verificar se é quiz completo (100 questões) para aplicar avaliação diagnóstica
+  const isQuizCompleto = totalPerguntas === 100;
+  
+  // Classificação para quizzes de tema específico
   let classificacao = '';
   if (porcentagemAcertos >= 90) classificacao = 'Excelente! 🏆';
   else if (porcentagemAcertos >= 70) classificacao = 'Muito Bom! 🥈';
   else if (porcentagemAcertos >= 50) classificacao = 'Bom! 🥉';
-  else classificacao = '';
+  else classificacao = 'Continue estudando! 📚';
   
   let htmlEstatisticas = '';
-  if (avaliacaoDiagnostica) {
+  
+  // Se for quiz completo (100 questões), usar avaliação diagnóstica
+  if (isQuizCompleto) {
     htmlEstatisticas = `
       <div class="estatisticas">
-        <div class="stat"><span class="numero" style="color: #4caf50;">${acertos}</span><span class="label">Acertos</span></div>
-        <div class="stat"><span class="numero" style="color: #f44336;">${erros}</span><span class="label">Erros</span></div>
-        <div class="stat"><span class="numero" style="color: #2196f3;">${totalPerguntas}</span><span class="label">Total de Questões</span></div>
+        <div class="stat">
+          <span class="numero" style="color: #4caf50;">${acertos}</span>
+          <span class="label">Acertos</span>
+        </div>
+        <div class="stat">
+          <span class="numero" style="color: #f44336;">${erros}</span>
+          <span class="label">Erros</span>
+        </div>
+        <div class="stat">
+          <span class="numero" style="color: #2196f3;">${totalPerguntas}</span>
+          <span class="label">Total de Questões</span>
+        </div>
       </div>
-      ${criarHtmlAvaliacaoDiagnostica(acertos, totalPerguntas)}
+      ${criarHtmlAvaliacaoDiagnostica(acertos)}
     `;
   } else {
+    // Para quizzes de temas específicos, usar sistema de porcentagem
     htmlEstatisticas = `
       <div class="estatisticas">
-        <div class="stat"><span class="numero" style="color: #4caf50;">${acertos}</span><span class="label">Acertos</span></div>
-        <div class="stat"><span class="numero" style="color: #f44336;">${erros}</span><span class="label">Erros</span></div>
-        <div class="stat"><span class="numero" style="color: #ff9800;">${porcentagemAcertos}%</span><span class="label">Aproveitamento</span></div>
+        <div class="stat">
+          <span class="numero" style="color: #4caf50;">${acertos}</span>
+          <span class="label">Acertos</span>
+        </div>
+        <div class="stat">
+          <span class="numero" style="color: #f44336;">${erros}</span>
+          <span class="label">Erros</span>
+        </div>
+        <div class="stat">
+          <span class="numero" style="color: #ff9800;">${porcentagemAcertos}%</span>
+          <span class="label">Aproveitamento</span>
+        </div>
       </div>
     `;
   }
   
+  // Tela de resultados
   document.querySelector('.quiz-container').innerHTML = `
     <div class="resultado-final">
       <header>
@@ -452,7 +458,7 @@ function exibirResultadoFinal() {
         <h1>RESULTADO FINAL</h1>
       </header>
       <div class="resultado-card">
-        <h2 style="color: #ff9800;"></h2>
+        <h2 style="color: #ff9800;">${isQuizCompleto ? '' : classificacao}</h2>
         ${htmlEstatisticas}
         <div class="acoes-finais">
           <button onclick="reiniciarQuiz()" class="btn-reiniciar">Refazer Quiz</button>
@@ -490,6 +496,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const tema = urlParams.get('tema');
   if (!document.getElementById('menu')) iniciarQuiz(tema);
 });
+
+// Inicializar áudio na primeira interação do usuário
+document.addEventListener('click', inicializarAudio, { once: true });
+document.addEventListener('touchstart', inicializarAudio, { once: true });
 
 document.addEventListener('keydown', (e) => {
   if (!quizIniciado || alternativaSelecionada !== null) return;
