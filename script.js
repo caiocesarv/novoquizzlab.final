@@ -5,8 +5,8 @@ let perguntasSelecionadas = [];
 let alternativaSelecionada = null;
 let quizIniciado = false;
 let perguntaRespondida = false;
-let audioContext = null;
-let audioHabilitado = false;
+let audioInicializado = false;
+let userInteracted = false;
 
 // Elementos do DOM
 const enunciado = document.getElementById('enunciado');
@@ -29,108 +29,148 @@ const temas = {
   'LEUCEMIAS e LINFOMAS': { inicio: 55, fim: 99 }
 };
 
-// Sons do quiz com configuração mobile-friendly
-const sons = {
-  correto: null,
-  errado: null,
-  conclusao: null
+// Sons do quiz - NOVA IMPLEMENTAÇÃO PARA iOS
+const audioFiles = {
+  correto: 'assets/correto.mp3',
+  errado: 'assets/errado.mp3',
+  conclusao: 'assets/conclusao.mp3'
 };
 
-// Inicializar áudio para mobile
-function inicializarAudio() {
+let audioElements = {};
+
+// Função SUPER específica para iOS
+function initializeAudioForIOS() {
+  console.log('🔊 Inicializando áudio para iOS...');
+  
   try {
-    // Criar AudioContext apenas quando necessário
-    if (!audioContext && (window.AudioContext || window.webkitAudioContext)) {
-      audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    }
+    // Criar elementos de áudio
+    Object.keys(audioFiles).forEach(key => {
+      const audio = new Audio();
+      audio.preload = 'auto';
+      audio.volume = 0.3;
+      audio.src = audioFiles[key];
+      
+      // Configurações específicas para iOS
+      audio.setAttribute('playsinline', true);
+      audio.setAttribute('webkit-playsinline', true);
+      audio.muted = false;
+      
+      // Event listeners para debug
+      audio.addEventListener('canplaythrough', () => {
+        console.log(`✅ Áudio ${key} carregado completamente`);
+      });
+      
+      audio.addEventListener('error', (e) => {
+        console.error(`❌ Erro ao carregar ${key}:`, e);
+      });
+      
+      audio.addEventListener('loadstart', () => {
+        console.log(`⏳ Carregando ${key}...`);
+      });
+      
+      audioElements[key] = audio;
+    });
     
-    // Configurar objetos Audio
-    sons.correto = new Audio('assets/correto.mp3');
-    sons.errado = new Audio('assets/errado.mp3');
-    sons.conclusao = new Audio('assets/conclusao.mp3');
+    audioInicializado = true;
+    console.log('✅ Áudio inicializado com sucesso!');
     
-    // Configuração específica para mobile
-    Object.values(sons).forEach(som => {
-      if (som) {
-        som.volume = 0.3;
-        som.preload = 'metadata'; // Preload mais leve para mobile
-        som.setAttribute('playsinline', true); // Para iOS
-        
-        // Event listeners para debug
-        som.addEventListener('loadstart', () => console.log('Audio loading started'));
-        som.addEventListener('canplay', () => console.log('Audio can start playing'));
-        som.addEventListener('error', (e) => {
-          console.log('Audio error:', e.error);
-          console.log('Audio src:', som.src);
+  } catch (error) {
+    console.error('❌ Erro ao inicializar áudio:', error);
+    audioInicializado = false;
+  }
+}
+
+// Função para "unlock" áudio no iOS
+function unlockAudioOnIOS() {
+  if (userInteracted) return;
+  
+  console.log('🔓 Tentando desbloquear áudio no iOS...');
+  
+  // Tocar um som silencioso para desbloquear
+  Object.values(audioElements).forEach(audio => {
+    if (audio && audio.readyState >= 2) {
+      const originalVolume = audio.volume;
+      audio.volume = 0.01;
+      audio.currentTime = 0;
+      
+      const playPromise = audio.play();
+      if (playPromise) {
+        playPromise.then(() => {
+          console.log('🔊 Áudio desbloqueado!');
+          audio.pause();
+          audio.currentTime = 0;
+          audio.volume = originalVolume;
+          userInteracted = true;
+        }).catch(e => {
+          console.log('❌ Falha ao desbloquear:', e);
         });
-        
-        // Tentar carregar o áudio
-        som.load();
       }
-    });
-    
-    audioHabilitado = true;
-    console.log('Áudio inicializado para mobile');
-  } catch (error) {
-    console.error('Erro ao inicializar áudio:', error);
-    audioHabilitado = false;
-  }
+    }
+  });
 }
 
-// Função para tocar som com tratamento mobile
-async function tocarSom(tipoSom) {
-  if (!audioHabilitado || !sons[tipoSom]) {
-    console.log(`Áudio não habilitado ou som ${tipoSom} não encontrado`);
-    return;
-  }
-  
-  try {
-    const som = sons[tipoSom];
+// Função para tocar som - VERSÃO iOS OTIMIZADA
+function playAudioIOS(soundType) {
+  return new Promise((resolve) => {
+    console.log(`🔊 Tentando tocar som: ${soundType}`);
     
-    // Resetar o áudio para o início
-    som.currentTime = 0;
-    
-    // Para iOS, é necessário resumir o AudioContext
-    if (audioContext && audioContext.state === 'suspended') {
-      await audioContext.resume();
+    if (!audioInicializado || !audioElements[soundType]) {
+      console.log('❌ Áudio não inicializado ou som não encontrado');
+      resolve(false);
+      return;
     }
     
-    // Tentar tocar o som
-    const playPromise = som.play();
+    const audio = audioElements[soundType];
     
-    if (playPromise !== undefined) {
-      await playPromise;
-      console.log(`Som ${tipoSom} tocado com sucesso`);
+    // Reset do áudio
+    try {
+      audio.currentTime = 0;
+    } catch (e) {
+      console.log('⚠️ Não foi possível resetar currentTime');
     }
-  } catch (error) {
-    console.log(`Erro ao tocar som ${tipoSom}:`, error);
     
-    // Fallback: tentar tocar novamente após um pequeno delay
-    setTimeout(() => {
-      try {
-        sons[tipoSom].play();
-      } catch (e) {
-        console.log(`Fallback também falhou para ${tipoSom}:`, e);
+    // Tentar tocar múltiplas vezes se necessário
+    let attempts = 0;
+    const maxAttempts = 3;
+    
+    function attemptPlay() {
+      attempts++;
+      console.log(`🔄 Tentativa ${attempts} de tocar ${soundType}`);
+      
+      const playPromise = audio.play();
+      
+      if (playPromise) {
+        playPromise.then(() => {
+          console.log(`✅ Som ${soundType} tocado com sucesso!`);
+          resolve(true);
+        }).catch(error => {
+          console.log(`❌ Erro na tentativa ${attempts}:`, error);
+          
+          if (attempts < maxAttempts) {
+            // Tentar novamente após um delay
+            setTimeout(() => {
+              attemptPlay();
+            }, 100);
+          } else {
+            console.log(`❌ Falha após ${maxAttempts} tentativas`);
+            resolve(false);
+          }
+        });
+      } else {
+        // Fallback para navegadores mais antigos
+        try {
+          audio.play();
+          console.log(`✅ Som ${soundType} tocado (fallback)!`);
+          resolve(true);
+        } catch (e) {
+          console.log(`❌ Fallback falhou:`, e);
+          resolve(false);
+        }
       }
-    }, 100);
-  }
-}
-
-// Função para habilitar áudio com interação do usuário (necessário para iOS)
-function habilitarAudioComInteracao() {
-  if (audioHabilitado) return;
-  
-  // Criar um som silencioso para "destrancar" o áudio no iOS
-  const silentAudio = new Audio('data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATQAAL8AAAEAAIA=');
-  silentAudio.volume = 0.01;
-  silentAudio.play()
-    .then(() => {
-      console.log('Áudio desbloqueado para iOS');
-      inicializarAudio();
-    })
-    .catch(e => {
-      console.log('Erro ao desbloquear áudio:', e);
-    });
+    }
+    
+    attemptPlay();
+  });
 }
 
 // Função: avaliação diagnóstica
@@ -199,10 +239,13 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
 
 // Inicializar quiz
 function iniciarQuiz(tema = null) {
+  console.log('🎯 Iniciando quiz...');
   quizIniciado = true;
   
-  // Tentar habilitar áudio na primeira interação
-  habilitarAudioComInteracao();
+  // Inicializar áudio imediatamente
+  if (!audioInicializado) {
+    initializeAudioForIOS();
+  }
   
   if (tema) {
     const config = temas[tema];
@@ -302,10 +345,15 @@ function exibirPergunta() {
     pergunta.alternativas.forEach((alt, index) => {
       const botao = document.createElement('button');
       botao.textContent = alt;
-      botao.onclick = () => selecionarAlternativa(index, botao);
       
-      // Adicionar suporte a touch para mobile
-      botao.addEventListener('touchstart', (e) => {
+      // Event listener único que funciona em todos os dispositivos
+      botao.addEventListener('click', (e) => {
+        e.preventDefault();
+        selecionarAlternativa(index, botao);
+      });
+      
+      // Touch específico para mobile
+      botao.addEventListener('touchend', (e) => {
         e.preventDefault();
         selecionarAlternativa(index, botao);
       }, { passive: false });
@@ -337,50 +385,37 @@ function pularPergunta() {
   btnProxima.onclick = () => proximaPergunta();
 }
 
-// Selecionar alternativa (MELHORADO)
+// Selecionar alternativa
 function selecionarAlternativa(index, botao) {
-  console.log("=== DEBUG SELECIONAR ALTERNATIVA ===");
-  console.log("Index selecionado:", index);
-  console.log("Alternativa já selecionada?", alternativaSelecionada);
+  console.log("🎯 Selecionando alternativa:", index);
   
   if (alternativaSelecionada !== null) {
-    console.log("Alternativa já selecionada, saindo...");
+    console.log("⚠️ Alternativa já selecionada");
     return;
   }
   
-  // Tentar habilitar áudio se ainda não foi feito
-  if (!audioHabilitado) {
-    habilitarAudioComInteracao();
+  // TENTAR DESBLOQUEAR ÁUDIO NA PRIMEIRA INTERAÇÃO
+  if (!userInteracted) {
+    unlockAudioOnIOS();
   }
   
   alternativaSelecionada = index;
   perguntaRespondida = true;
   const pergunta = perguntasSelecionadas[perguntaAtual];
   
-  console.log("Pergunta atual:", pergunta);
-  console.log("Tipo de pergunta.correta:", typeof pergunta.correta);
-  console.log("Valor de pergunta.correta:", pergunta.correta);
-  
   let respostaCorreta = -1;
   
-  // Tratamento melhorado para resposta correta
   if (typeof pergunta.correta === "number") {
     respostaCorreta = pergunta.correta;
-    console.log("Resposta correta (número):", respostaCorreta);
   } else if (typeof pergunta.correta === "string") {
     const letraCorreta = pergunta.correta.trim().toUpperCase();
-    respostaCorreta = letraCorreta.charCodeAt(0) - 65; // A=0, B=1, C=2, D=3, E=4
-    console.log("Resposta correta (string convertida):", `${letraCorreta} → ${respostaCorreta}`);
+    respostaCorreta = letraCorreta.charCodeAt(0) - 65;
   }
   
-  console.log("Total de alternativas:", pergunta.alternativas.length);
-  
-  // Validação melhorada
   if (respostaCorreta < 0 || respostaCorreta >= pergunta.alternativas.length) {
-    console.error("ERRO: Resposta correta fora do range válido!", {
+    console.error("❌ Erro na pergunta!", {
       respostaCorreta,
-      totalAlternativas: pergunta.alternativas.length,
-      perguntaCorreta: pergunta.correta
+      totalAlternativas: pergunta.alternativas.length
     });
     mostrarFeedback(false, "Erro na pergunta! ⚠️");
     desabilitarAlternativas();
@@ -391,12 +426,10 @@ function selecionarAlternativa(index, botao) {
   }
   
   const acertou = index === respostaCorreta;
-  console.log("Acertou?", acertou);
-  console.log("Index selecionado:", index, "Resposta correta:", respostaCorreta);
+  console.log(`${acertou ? '✅' : '❌'} Resposta: ${acertou ? 'CORRETA' : 'INCORRETA'}`);
   
   botao.classList.add('selecionada');
   
-  // Feedback visual imediato para mobile
   setTimeout(() => {
     mostrarFeedbackVisual(acertou, respostaCorreta);
     mostrarFeedback(acertou);
@@ -407,34 +440,27 @@ function selecionarAlternativa(index, botao) {
     }
     btnProxima.textContent = 'Continuar';
     btnProxima.onclick = () => proximaPergunta();
-  }, 200); // Tempo reduzido para melhor responsividade mobile
-  
-  console.log("=== FIM DEBUG ===");
+  }, 200);
 }
 
-// Mostrar feedback visual (MELHORADO)
+// Mostrar feedback visual
 function mostrarFeedbackVisual(acertou, respostaCorreta) {
   const botoes = alternativasContainer.querySelectorAll('button');
   
-  console.log("Aplicando feedback visual:", { acertou, respostaCorreta, totalBotoes: botoes.length });
-  
   botoes.forEach((botao, index) => {
-    // Remove classes antigas primeiro
     botao.classList.remove('correta', 'errada');
     
     if (index === respostaCorreta) {
       botao.classList.add('correta');
-      console.log(`Botão ${index} marcado como correto`);
     } else if (index === alternativaSelecionada && !acertou) {
       botao.classList.add('errada'); 
-      console.log(`Botão ${index} marcado como erro`);
     }
     
     botao.disabled = true;
   });
 }
 
-// Mostrar feedback (MELHORADO com áudio mobile)
+// Mostrar feedback
 async function mostrarFeedback(acertou, mensagem = null) {
   const feedbackElement = document.getElementById('feedback');
   
@@ -444,16 +470,15 @@ async function mostrarFeedback(acertou, mensagem = null) {
   } else if (acertou) {
     feedbackElement.textContent = 'Correto! Parabéns! 🎉';
     feedbackElement.className = 'correto';
-    // Tocar som com nova função mobile-friendly
-    await tocarSom('correto');
+    console.log('🔊 Tentando tocar som CORRETO...');
+    await playAudioIOS('correto');
   } else {
     feedbackElement.textContent = 'Incorreto 😔';
     feedbackElement.className = 'errado';
-    // Tocar som com nova função mobile-friendly
-    await tocarSom('errado');
+    console.log('🔊 Tentando tocar som ERRADO...');
+    await playAudioIOS('errado');
   }
   
-  // Animação de feedback
   feedbackElement.style.transform = 'scale(1.1)';
   setTimeout(() => feedbackElement.style.transform = 'scale(1)', 200);
 }
@@ -464,13 +489,11 @@ function desabilitarAlternativas() {
   alternativasContainer.querySelectorAll('button').forEach(botao => botao.disabled = true);
 }
 
-// Próxima pergunta (MELHORADO)
+// Próxima pergunta
 function proximaPergunta() {
-  // Reset das variáveis
   alternativaSelecionada = null;
   perguntaRespondida = false;
   
-  // Limpar classes das alternativas
   const botoes = alternativasContainer.querySelectorAll('button');
   botoes.forEach(botao => {
     botao.classList.remove('correta', 'errada', 'selecionada');
@@ -480,7 +503,6 @@ function proximaPergunta() {
   if (perguntaAtual < perguntasSelecionadas.length - 1) {
     perguntaAtual++;
     
-    // Fade out antes de mostrar próxima pergunta
     document.querySelector('.card').style.opacity = '0';
     alternativasContainer.style.opacity = '0';
     
@@ -492,21 +514,16 @@ function proximaPergunta() {
   }
 }
 
-// Exibir resultado final (MELHORADO)
+// Exibir resultado final
 async function exibirResultadoFinal() {
-  // Tocar som de conclusão com nova função
-  await tocarSom('conclusao');
+  console.log('🔊 Tentando tocar som CONCLUSÃO...');
+  await playAudioIOS('conclusao');
   
   const totalPerguntas = perguntasSelecionadas.length;
   const acertos = Math.floor(pontuacao / 100);
   const erros = totalPerguntas - acertos;
   const porcentagemAcertos = ((acertos / totalPerguntas) * 100).toFixed(1);
   const avaliacaoDiagnostica = obterAvaliacaoDiagnostica(acertos, totalPerguntas);
-  let classificacao = '';
-  if (porcentagemAcertos >= 90) classificacao = 'Excelente! 🏆';
-  else if (porcentagemAcertos >= 70) classificacao = 'Muito Bom! 🥈';
-  else if (porcentagemAcertos >= 50) classificacao = 'Bom! 🥉';
-  else classificacao = '';
   
   let htmlEstatisticas = '';
   if (avaliacaoDiagnostica) {
@@ -547,24 +564,28 @@ async function exibirResultadoFinal() {
 }
 
 function reiniciarQuiz() { 
-  // Limpar AudioContext se existir
-  if (audioContext) {
-    audioContext.close();
-    audioContext = null;
-  }
+  // Pausar todos os áudios
+  Object.values(audioElements).forEach(audio => {
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  });
   location.reload(); 
 }
 
 function voltarMenu() { 
-  // Limpar AudioContext se existir
-  if (audioContext) {
-    audioContext.close();
-    audioContext = null;
-  }
+  // Pausar todos os áudios
+  Object.values(audioElements).forEach(audio => {
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  });
   window.location.href = 'index.html'; 
 }
 
-// Controles do vídeo (MELHORADO para mobile)
+// Controles do vídeo
 if (btnVideo) {
   btnVideo.addEventListener('click', (e) => {
     e.preventDefault();
@@ -573,7 +594,6 @@ if (btnVideo) {
         videoContainer.style.display = 'block';
         btnVideo.textContent = '⏹️ Fechar Vídeo';
         
-        // Para mobile, garantir que o vídeo seja reproduzido inline
         if (videoPlayer) {
           videoPlayer.setAttribute('playsinline', true);
           videoPlayer.setAttribute('webkit-playsinline', true);
@@ -587,26 +607,38 @@ if (btnVideo) {
       }
     }
   });
-  
-  // Adicionar suporte a touch
-  btnVideo.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    btnVideo.click();
-  }, { passive: false });
 }
 
-// Event listeners (MELHORADOS)
+// Event listeners principais
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('📱 Página carregada - Detectando dispositivo...');
+  
+  // Detectar se é iOS
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  
+  if (isIOS) {
+    console.log('📱 Dispositivo iOS detectado!');
+  }
+  
   const urlParams = new URLSearchParams(window.location.search);
   const tema = urlParams.get('tema');
   if (!document.getElementById('menu')) iniciarQuiz(tema);
   
-  // Adicionar listener para detectar quando o usuário interage pela primeira vez
-  document.addEventListener('touchstart', habilitarAudioComInteracao, { once: true });
-  document.addEventListener('click', habilitarAudioComInteracao, { once: true });
+  // Listeners para desbloquear áudio na primeira interação
+  const unlockEvents = ['touchstart', 'touchend', 'mousedown', 'click'];
+  
+  unlockEvents.forEach(eventType => {
+    document.addEventListener(eventType, () => {
+      if (!userInteracted && audioInicializado) {
+        console.log(`🔓 Primeira interação detectada via ${eventType}`);
+        unlockAudioOnIOS();
+      }
+    }, { once: true, passive: false });
+  });
 });
 
-// Melhorar controles de teclado para desktop
+// Controles de teclado para desktop
 document.addEventListener('keydown', (e) => {
   if (!quizIniciado || alternativaSelecionada !== null) return;
   const tecla = e.key;
@@ -622,11 +654,27 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Adicionar listener para visibilidade da página (pausar áudio quando sair)
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden && audioContext && audioContext.state === 'running') {
-    audioContext.suspend();
-  } else if (!document.hidden && audioContext && audioContext.state === 'suspended') {
-    audioContext.resume();
-  }
-});
+// Debug para iOS
+window.debugAudio = () => {
+  console.log('🔍 DEBUG ÁUDIO:');
+  console.log('- Audio inicializado:', audioInicializado);
+  console.log('- User interacted:', userInteracted);
+  console.log('- Elementos de áudio:', audioElements);
+  Object.keys(audioElements).forEach(key => {
+    const audio = audioElements[key];
+    if (audio) {
+      console.log(`- ${key}:`, {
+        readyState: audio.readyState,
+        paused: audio.paused,
+        volume: audio.volume,
+        src: audio.src
+      });
+    }
+  });
+};
+
+// Expor função de debug globalmente
+window.testAudio = (type) => {
+  console.log(`🧪 Testando áudio: ${type}`);
+  playAudioIOS(type);
+};
