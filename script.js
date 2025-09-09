@@ -4,7 +4,9 @@ let pontuacao = 0;
 let perguntasSelecionadas = [];
 let alternativaSelecionada = null;
 let quizIniciado = false;
-let perguntaRespondida = false; // Controla se a pergunta foi respondida
+let perguntaRespondida = false;
+let audioContext = null;
+let audioHabilitado = false;
 
 // Elementos do DOM
 const enunciado = document.getElementById('enunciado');
@@ -27,150 +29,111 @@ const temas = {
   'LEUCEMIAS e LINFOMAS': { inicio: 55, fim: 99 }
 };
 
-// Sons do quiz
+// Sons do quiz com configuração mobile-friendly
 const sons = {
-  correto: new Audio('assets/correto.mp3'),
-  errado: new Audio('assets/errado.mp3'),
-  conclusao: new Audio('assets/conclusao.mp3')
+  correto: null,
+  errado: null,
+  conclusao: null
 };
 
-// Configurar sons com tratamento de erro melhorado
-Object.values(sons).forEach(som => {
-  som.volume = 0.3;
-  som.preload = 'auto';
-  som.onerror = () => console.log('Arquivo de som não encontrado');
-});
-
-// Variável para controlar se o áudio foi inicializado
-let audioInicializado = false;
-let tentativasInicializacao = 0;
-
-// Função melhorada para inicializar áudio no mobile
+// Inicializar áudio para mobile
 function inicializarAudio() {
-  if (audioInicializado || tentativasInicializacao > 3) return;
-  
-  tentativasInicializacao++;
-  console.log(`Tentativa de inicialização de áudio: ${tentativasInicializacao}`);
-  
-  // Criar um contexto de áudio temporário para "desbloquear"
   try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // Criar um buffer de áudio silencioso
-    const buffer = audioContext.createBuffer(1, 1, 22050);
-    const source = audioContext.createBufferSource();
-    source.buffer = buffer;
-    source.connect(audioContext.destination);
-    
-    // Reproduzir o buffer silencioso
-    if (source.start) {
-      source.start(0);
-    } else if (source.noteOn) {
-      source.noteOn(0);
+    // Criar AudioContext apenas quando necessário
+    if (!audioContext && (window.AudioContext || window.webkitAudioContext)) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
     }
     
-    // Fechar o contexto após um pequeno delay
+    // Configurar objetos Audio
+    sons.correto = new Audio('assets/correto.mp3');
+    sons.errado = new Audio('assets/errado.mp3');
+    sons.conclusao = new Audio('assets/conclusao.mp3');
+    
+    // Configuração específica para mobile
+    Object.values(sons).forEach(som => {
+      if (som) {
+        som.volume = 0.3;
+        som.preload = 'metadata'; // Preload mais leve para mobile
+        som.setAttribute('playsinline', true); // Para iOS
+        
+        // Event listeners para debug
+        som.addEventListener('loadstart', () => console.log('Audio loading started'));
+        som.addEventListener('canplay', () => console.log('Audio can start playing'));
+        som.addEventListener('error', (e) => {
+          console.log('Audio error:', e.error);
+          console.log('Audio src:', som.src);
+        });
+        
+        // Tentar carregar o áudio
+        som.load();
+      }
+    });
+    
+    audioHabilitado = true;
+    console.log('Áudio inicializado para mobile');
+  } catch (error) {
+    console.error('Erro ao inicializar áudio:', error);
+    audioHabilitado = false;
+  }
+}
+
+// Função para tocar som com tratamento mobile
+async function tocarSom(tipoSom) {
+  if (!audioHabilitado || !sons[tipoSom]) {
+    console.log(`Áudio não habilitado ou som ${tipoSom} não encontrado`);
+    return;
+  }
+  
+  try {
+    const som = sons[tipoSom];
+    
+    // Resetar o áudio para o início
+    som.currentTime = 0;
+    
+    // Para iOS, é necessário resumir o AudioContext
+    if (audioContext && audioContext.state === 'suspended') {
+      await audioContext.resume();
+    }
+    
+    // Tentar tocar o som
+    const playPromise = som.play();
+    
+    if (playPromise !== undefined) {
+      await playPromise;
+      console.log(`Som ${tipoSom} tocado com sucesso`);
+    }
+  } catch (error) {
+    console.log(`Erro ao tocar som ${tipoSom}:`, error);
+    
+    // Fallback: tentar tocar novamente após um pequeno delay
     setTimeout(() => {
-      if (audioContext.state !== 'closed') {
-        audioContext.close();
+      try {
+        sons[tipoSom].play();
+      } catch (e) {
+        console.log(`Fallback também falhou para ${tipoSom}:`, e);
       }
     }, 100);
-    
-  } catch (e) {
-    console.log('AudioContext não disponível:', e);
   }
-  
-  // Tentar reproduzir cada som brevemente para desbloqueá-los
-  Object.values(sons).forEach((som, index) => {
-    setTimeout(() => {
-      som.volume = 0; // Silencioso primeiro
-      const playPromise = som.play();
-      if (playPromise) {
-        playPromise.then(() => {
-          som.pause();
-          som.currentTime = 0;
-          som.volume = 0.3; // Restaurar volume
-          console.log(`Som ${index} desbloqueado com sucesso`);
-        }).catch(e => {
-          console.log(`Som ${index} ainda bloqueado:`, e.message);
-          // Tentar novamente em 500ms
-          setTimeout(() => {
-            som.volume = 0;
-            som.play().then(() => {
-              som.pause();
-              som.currentTime = 0;
-              som.volume = 0.3;
-            }).catch(() => {});
-          }, 500);
-        });
-      }
-    }, index * 50); // Pequeno delay entre cada som
-  });
-  
-  audioInicializado = true;
-  console.log('Áudio inicializado com sucesso');
 }
 
-// Função para forçar reinicialização (para casos persistentes)
-function forcarReinicializacaoAudio() {
-  audioInicializado = false;
-  tentativasInicializacao = 0;
+// Função para habilitar áudio com interação do usuário (necessário para iOS)
+function habilitarAudioComInteracao() {
+  if (audioHabilitado) return;
   
-  // Recriar os objetos de áudio
-  sons.correto = new Audio('assets/correto.mp3');
-  sons.errado = new Audio('assets/errado.mp3');
-  sons.conclusao = new Audio('assets/conclusao.mp3');
-  
-  // Reconfigurar
-  Object.values(sons).forEach(som => {
-    som.volume = 0.3;
-    som.preload = 'auto';
-    som.onerror = () => console.log('Arquivo de som não encontrado');
-  });
-  
-  inicializarAudio();
-}
-
-// Função para reproduzir som com múltiplas tentativas
-function reproduzirSom(som) {
-  if (!som) return;
-  
-  // Tentar inicializar áudio se ainda não foi feito
-  if (!audioInicializado) {
-    inicializarAudio();
-  }
-  
-  // Resetar o som para o início
-  som.currentTime = 0;
-  
-  // Primeira tentativa
-  const playPromise = som.play();
-  if (playPromise) {
-    playPromise.catch(e => {
-      console.log('Primeira tentativa falhou, tentando reinicializar:', e.message);
-      
-      // Se falhar, tentar reinicializar e tocar novamente
-      forcarReinicializacaoAudio();
-      
-      setTimeout(() => {
-        som.currentTime = 0;
-        som.play().catch(err => {
-          console.log('Segunda tentativa também falhou:', err.message);
-          
-          // Última tentativa com delay maior
-          setTimeout(() => {
-            som.currentTime = 0;
-            som.play().catch(finalErr => {
-              console.log('Todas as tentativas de som falharam:', finalErr.message);
-            });
-          }, 1000);
-        });
-      }, 200);
+  // Criar um som silencioso para "destrancar" o áudio no iOS
+  const silentAudio = new Audio('data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATQAAL8AAAEAAIA=');
+  silentAudio.volume = 0.01;
+  silentAudio.play()
+    .then(() => {
+      console.log('Áudio desbloqueado para iOS');
+      inicializarAudio();
+    })
+    .catch(e => {
+      console.log('Erro ao desbloquear áudio:', e);
     });
-  }
 }
 
-// FUNÇÃO CORRIGIDA: avaliação diagnóstica (usando >= como no código antigo)
+// Função: avaliação diagnóstica
 function obterAvaliacaoDiagnostica(acertos, totalQuestoes) {
     const porcentagem = (acertos / totalQuestoes) * 100;
     let nivel = "";
@@ -237,6 +200,10 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
 // Inicializar quiz
 function iniciarQuiz(tema = null) {
   quizIniciado = true;
+  
+  // Tentar habilitar áudio na primeira interação
+  habilitarAudioComInteracao();
+  
   if (tema) {
     const config = temas[tema];
     perguntasSelecionadas = perguntas.slice(config.inicio, config.fim + 1);
@@ -336,6 +303,13 @@ function exibirPergunta() {
       const botao = document.createElement('button');
       botao.textContent = alt;
       botao.onclick = () => selecionarAlternativa(index, botao);
+      
+      // Adicionar suporte a touch para mobile
+      botao.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        selecionarAlternativa(index, botao);
+      }, { passive: false });
+      
       alternativasContainer.appendChild(botao);
     });
     
@@ -363,7 +337,7 @@ function pularPergunta() {
   btnProxima.onclick = () => proximaPergunta();
 }
 
-// Selecionar alternativa (CORRIGIDO)
+// Selecionar alternativa (MELHORADO)
 function selecionarAlternativa(index, botao) {
   console.log("=== DEBUG SELECIONAR ALTERNATIVA ===");
   console.log("Index selecionado:", index);
@@ -372,6 +346,11 @@ function selecionarAlternativa(index, botao) {
   if (alternativaSelecionada !== null) {
     console.log("Alternativa já selecionada, saindo...");
     return;
+  }
+  
+  // Tentar habilitar áudio se ainda não foi feito
+  if (!audioHabilitado) {
+    habilitarAudioComInteracao();
   }
   
   alternativaSelecionada = index;
@@ -403,7 +382,6 @@ function selecionarAlternativa(index, botao) {
       totalAlternativas: pergunta.alternativas.length,
       perguntaCorreta: pergunta.correta
     });
-    // Em caso de erro, não marcar como correta ou incorreta
     mostrarFeedback(false, "Erro na pergunta! ⚠️");
     desabilitarAlternativas();
     habilitarBotaoVideo();
@@ -418,7 +396,7 @@ function selecionarAlternativa(index, botao) {
   
   botao.classList.add('selecionada');
   
-  // Timeout reduzido para melhor responsividade
+  // Feedback visual imediato para mobile
   setTimeout(() => {
     mostrarFeedbackVisual(acertou, respostaCorreta);
     mostrarFeedback(acertou);
@@ -429,12 +407,12 @@ function selecionarAlternativa(index, botao) {
     }
     btnProxima.textContent = 'Continuar';
     btnProxima.onclick = () => proximaPergunta();
-  }, 300); // Reduzido de 500ms para 300ms
+  }, 200); // Tempo reduzido para melhor responsividade mobile
   
   console.log("=== FIM DEBUG ===");
 }
 
-// Mostrar feedback visual (CORRIGIDO)
+// Mostrar feedback visual (MELHORADO)
 function mostrarFeedbackVisual(acertou, respostaCorreta) {
   const botoes = alternativasContainer.querySelectorAll('button');
   
@@ -456,8 +434,8 @@ function mostrarFeedbackVisual(acertou, respostaCorreta) {
   });
 }
 
-// Mostrar feedback (CORRIGIDO com nova função de som)
-function mostrarFeedback(acertou, mensagem = null) {
+// Mostrar feedback (MELHORADO com áudio mobile)
+async function mostrarFeedback(acertou, mensagem = null) {
   const feedbackElement = document.getElementById('feedback');
   
   if (mensagem) {
@@ -466,15 +444,16 @@ function mostrarFeedback(acertou, mensagem = null) {
   } else if (acertou) {
     feedbackElement.textContent = 'Correto! Parabéns! 🎉';
     feedbackElement.className = 'correto';
-    // Usar a nova função para reproduzir som
-    reproduzirSom(sons.correto);
+    // Tocar som com nova função mobile-friendly
+    await tocarSom('correto');
   } else {
     feedbackElement.textContent = 'Incorreto 😔';
     feedbackElement.className = 'errado';
-    // Usar a nova função para reproduzir som
-    reproduzirSom(sons.errado);
+    // Tocar som com nova função mobile-friendly
+    await tocarSom('errado');
   }
   
+  // Animação de feedback
   feedbackElement.style.transform = 'scale(1.1)';
   setTimeout(() => feedbackElement.style.transform = 'scale(1)', 200);
 }
@@ -485,7 +464,7 @@ function desabilitarAlternativas() {
   alternativasContainer.querySelectorAll('button').forEach(botao => botao.disabled = true);
 }
 
-// Próxima pergunta (CORRIGIDO)
+// Próxima pergunta (MELHORADO)
 function proximaPergunta() {
   // Reset das variáveis
   alternativaSelecionada = null;
@@ -513,68 +492,42 @@ function proximaPergunta() {
   }
 }
 
-// FUNÇÃO CORRIGIDA: Exibir resultado final com avaliação diagnóstica 
-function exibirResultadoFinal() {
-  // Usar a nova função para reproduzir som de conclusão
-  reproduzirSom(sons.conclusao);
+// Exibir resultado final (MELHORADO)
+async function exibirResultadoFinal() {
+  // Tocar som de conclusão com nova função
+  await tocarSom('conclusao');
   
   const totalPerguntas = perguntasSelecionadas.length;
   const acertos = Math.floor(pontuacao / 100);
   const erros = totalPerguntas - acertos;
   const porcentagemAcertos = ((acertos / totalPerguntas) * 100).toFixed(1);
-  
-  // Verificar se é quiz completo (100 questões) para aplicar avaliação diagnóstica
-  const isQuizCompleto = totalPerguntas === 100;
-  
-  // Classificação para quizzes de tema específico
+  const avaliacaoDiagnostica = obterAvaliacaoDiagnostica(acertos, totalPerguntas);
   let classificacao = '';
   if (porcentagemAcertos >= 90) classificacao = 'Excelente! 🏆';
   else if (porcentagemAcertos >= 70) classificacao = 'Muito Bom! 🥈';
   else if (porcentagemAcertos >= 50) classificacao = 'Bom! 🥉';
-  else classificacao = 'Continue estudando! 📚';
+  else classificacao = '';
   
   let htmlEstatisticas = '';
-  
-  // Se for quiz completo (100 questões), usar avaliação diagnóstica
-  if (isQuizCompleto) {
+  if (avaliacaoDiagnostica) {
     htmlEstatisticas = `
       <div class="estatisticas">
-        <div class="stat">
-          <span class="numero" style="color: #4caf50;">${acertos}</span>
-          <span class="label">Acertos</span>
-        </div>
-        <div class="stat">
-          <span class="numero" style="color: #f44336;">${erros}</span>
-          <span class="label">Erros</span>
-        </div>
-        <div class="stat">
-          <span class="numero" style="color: #2196f3;">${totalPerguntas}</span>
-          <span class="label">Total de Questões</span>
-        </div>
+        <div class="stat"><span class="numero" style="color: #4caf50;">${acertos}</span><span class="label">Acertos</span></div>
+        <div class="stat"><span class="numero" style="color: #f44336;">${erros}</span><span class="label">Erros</span></div>
+        <div class="stat"><span class="numero" style="color: #2196f3;">${totalPerguntas}</span><span class="label">Total de Questões</span></div>
       </div>
-      ${criarHtmlAvaliacaoDiagnostica(acertos)}
+      ${criarHtmlAvaliacaoDiagnostica(acertos, totalPerguntas)}
     `;
   } else {
-    // Para quizzes de temas específicos, usar sistema de porcentagem
     htmlEstatisticas = `
       <div class="estatisticas">
-        <div class="stat">
-          <span class="numero" style="color: #4caf50;">${acertos}</span>
-          <span class="label">Acertos</span>
-        </div>
-        <div class="stat">
-          <span class="numero" style="color: #f44336;">${erros}</span>
-          <span class="label">Erros</span>
-        </div>
-        <div class="stat">
-          <span class="numero" style="color: #ff9800;">${porcentagemAcertos}%</span>
-          <span class="label">Aproveitamento</span>
-        </div>
+        <div class="stat"><span class="numero" style="color: #4caf50;">${acertos}</span><span class="label">Acertos</span></div>
+        <div class="stat"><span class="numero" style="color: #f44336;">${erros}</span><span class="label">Erros</span></div>
+        <div class="stat"><span class="numero" style="color: #ff9800;">${porcentagemAcertos}%</span><span class="label">Aproveitamento</span></div>
       </div>
     `;
   }
   
-  // Tela de resultados
   document.querySelector('.quiz-container').innerHTML = `
     <div class="resultado-final">
       <header>
@@ -582,7 +535,7 @@ function exibirResultadoFinal() {
         <h1>RESULTADO FINAL</h1>
       </header>
       <div class="resultado-card">
-        <h2 style="color: #ff9800;">${isQuizCompleto ? '' : classificacao}</h2>
+        <h2 style="color: #ff9800;"></h2>
         ${htmlEstatisticas}
         <div class="acoes-finais">
           <button onclick="reiniciarQuiz()" class="btn-reiniciar">Refazer Quiz</button>
@@ -593,38 +546,67 @@ function exibirResultadoFinal() {
   `;
 }
 
-function reiniciarQuiz() { location.reload(); }
-function voltarMenu() { window.location.href = 'index.html'; }
-
-// Controles do vídeo
-if (btnVideo) {
-  btnVideo.addEventListener('click', () => {
-    if (!btnVideo.disabled) {
-      videoContainer.style.display = 'block';
-      btnVideo.textContent = '⏹️ Fechar Vídeo';
-      btnVideo.onclick = () => {
-        videoContainer.style.display = 'none';
-        btnVideo.textContent = '▶️ Assistir Explicação em Vídeo';
-        btnVideo.onclick = () => {
-          videoContainer.style.display = 'block';
-          btnVideo.textContent = '⏹️ Fechar Vídeo';
-        };
-      };
-    }
-  });
+function reiniciarQuiz() { 
+  // Limpar AudioContext se existir
+  if (audioContext) {
+    audioContext.close();
+    audioContext = null;
+  }
+  location.reload(); 
 }
 
-// Event listeners
+function voltarMenu() { 
+  // Limpar AudioContext se existir
+  if (audioContext) {
+    audioContext.close();
+    audioContext = null;
+  }
+  window.location.href = 'index.html'; 
+}
+
+// Controles do vídeo (MELHORADO para mobile)
+if (btnVideo) {
+  btnVideo.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!btnVideo.disabled) {
+      if (videoContainer.style.display === 'none' || !videoContainer.style.display) {
+        videoContainer.style.display = 'block';
+        btnVideo.textContent = '⏹️ Fechar Vídeo';
+        
+        // Para mobile, garantir que o vídeo seja reproduzido inline
+        if (videoPlayer) {
+          videoPlayer.setAttribute('playsinline', true);
+          videoPlayer.setAttribute('webkit-playsinline', true);
+        }
+      } else {
+        videoContainer.style.display = 'none';
+        btnVideo.textContent = '▶️ Assistir Explicação em Vídeo';
+        if (videoPlayer) {
+          videoPlayer.pause();
+        }
+      }
+    }
+  });
+  
+  // Adicionar suporte a touch
+  btnVideo.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    btnVideo.click();
+  }, { passive: false });
+}
+
+// Event listeners (MELHORADOS)
 document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const tema = urlParams.get('tema');
   if (!document.getElementById('menu')) iniciarQuiz(tema);
+  
+  // Adicionar listener para detectar quando o usuário interage pela primeira vez
+  document.addEventListener('touchstart', habilitarAudioComInteracao, { once: true });
+  document.addEventListener('click', habilitarAudioComInteracao, { once: true });
 });
 
-// Inicializar áudio na primeira interação do usuário
-document.addEventListener('click', inicializarAudio, { once: true });
-document.addEventListener('touchstart', inicializarAudio, { once: true });
-
+// Melhorar controles de teclado para desktop
 document.addEventListener('keydown', (e) => {
   if (!quizIniciado || alternativaSelecionada !== null) return;
   const tecla = e.key;
@@ -634,5 +616,17 @@ document.addEventListener('keydown', (e) => {
     if (botoes[index]) selecionarAlternativa(index, botoes[index]);
   }
   if (tecla === 'Escape') { e.preventDefault(); pularPergunta(); }
-  if (tecla.toLowerCase() === 'v' && perguntaRespondida && btnVideo && !btnVideo.disabled) { e.preventDefault(); btnVideo.click(); }
+  if (tecla.toLowerCase() === 'v' && perguntaRespondida && btnVideo && !btnVideo.disabled) { 
+    e.preventDefault(); 
+    btnVideo.click(); 
+  }
+});
+
+// Adicionar listener para visibilidade da página (pausar áudio quando sair)
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && audioContext && audioContext.state === 'running') {
+    audioContext.suspend();
+  } else if (!document.hidden && audioContext && audioContext.state === 'suspended') {
+    audioContext.resume();
+  }
 });
