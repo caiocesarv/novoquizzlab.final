@@ -625,17 +625,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const tema = urlParams.get('tema');
   if (!document.getElementById('menu')) iniciarQuiz(tema);
   
-  // Listeners para desbloquear áudio na primeira interação
-  const unlockEvents = ['touchstart', 'touchend', 'mousedown', 'click'];
+  // Listeners ESPECÍFICOS para desbloquear áudio - apenas em elementos importantes
+  const importantElements = [
+    'button', 
+    '.quiz-container button',
+    '#btnProxima',
+    '.alternativas button'
+  ];
   
-  unlockEvents.forEach(eventType => {
-    document.addEventListener(eventType, () => {
-      if (!userInteracted && audioInicializado) {
-        console.log(`🔓 Primeira interação detectada via ${eventType}`);
-        unlockAudioOnIOS();
-      }
-    }, { once: true, passive: false });
-  });
+  // Adicionar listeners apenas nos primeiros cliques em botões importantes
+  let unlockAttempted = false;
+  
+  function attemptUnlock(event) {
+    if (!unlockAttempted && !userInteracted && audioInicializado) {
+      console.log(`🔓 Primeira interação em elemento importante:`, event.target.tagName);
+      unlockAudioOnIOS();
+      unlockAttempted = true;
+    }
+  }
+  
+  // Listeners mais específicos
+  document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON' && !unlockAttempted) {
+      attemptUnlock(e);
+    }
+  }, { once: true });
+  
+  document.addEventListener('touchend', (e) => {
+    if (e.target.tagName === 'BUTTON' && !unlockAttempted) {
+      attemptUnlock(e);
+    }
+  }, { once: true });
 });
 
 // Controles de teclado para desktop
