@@ -616,7 +616,14 @@ header h2 {
   #videoPlayerContainer iframe {
     height: 250px;
   }
-  
-  .progresso-info {
+  .alternativas {
+    touch-action: pan-y pinch-zoom; /* Permitir scroll vertical */
+}
+
+.alternativas button {
+    touch-action: manipulation; /* Controle específico para botões */
+    -webkit-tap-highlight-color: transparent;
+}
+.progresso-info {
     flex-direction: column;
     gap: 0.3rem;

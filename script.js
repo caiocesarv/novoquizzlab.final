@@ -816,3 +816,82 @@ window.checkAudioHealth = () => {
   
   return health;
 };
+
+// Função de debug específica para eventos de toque
+window.debugTouch = () => {
+  console.log('👆 SISTEMA DE CONTROLE DE TOQUE:');
+  console.log('- Touch events suportados:', 'ontouchstart' in window);
+  console.log('- Dispositivo móvel detectado:', /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+  console.log('- iOS detectado:', /iPad|iPhone|iPod/.test(navigator.userAgent));
+  
+  const botoes = document.querySelectorAll('.alternativas button');
+  console.log(`- Botões de alternativas encontrados: ${botoes.length}`);
+  
+  // Adicionar listener temporário para debug
+  botoes.forEach((botao, index) => {
+    const debugListener = (e) => {
+      console.log(`🎯 DEBUG Touch no botão ${index}:`, {
+        type: e.type,
+        timestamp: Date.now(),
+        touches: e.touches ? e.touches.length : 'N/A',
+        target: e.target.textContent.substring(0, 20) + '...'
+      });
+    };
+    
+    ['touchstart', 'touchmove', 'touchend', 'click'].forEach(eventType => {
+      botao.addEventListener(eventType, debugListener, { once: true });
+    });
+  });
+  
+  console.log('✅ Debug de toque ativado - próximos toques serão logados');
+};
+
+// Função para testar comportamento de toque
+window.testTouchBehavior = () => {
+  console.log('🧪 TESTE DE COMPORTAMENTO DE TOQUE');
+  
+  const container = document.querySelector('.alternativas');
+  if (!container) {
+    console.log('❌ Container de alternativas não encontrado');
+    return;
+  }
+  
+  // Adicionar listeners temporários para análise
+  let touchData = {};
+  
+  container.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    touchData = {
+      startTime: Date.now(),
+      startX: touch.clientX,
+      startY: touch.clientY,
+      element: e.target.tagName
+    };
+    console.log('📱 TouchStart:', touchData);
+  }, { once: true });
+  
+  container.addEventListener('touchmove', (e) => {
+    if (!touchData.startTime) return;
+    const touch = e.touches[0];
+    const deltaX = Math.abs(touch.clientX - touchData.startX);
+    const deltaY = Math.abs(touch.clientY - touchData.startY);
+    
+    console.log('📱 TouchMove:', {
+      deltaX,
+      deltaY,
+      isScrolling: deltaY > deltaX && deltaY > 10,
+      element: e.target.tagName
+    });
+  }, { once: true });
+  
+  container.addEventListener('touchend', (e) => {
+    const duration = Date.now() - touchData.startTime;
+    console.log('📱 TouchEnd:', {
+      duration,
+      element: e.target.tagName,
+      shouldClick: duration > 50 && duration < 1000
+    });
+  }, { once: true });
+  
+  console.log('✅ Listeners de teste adicionados - toque em uma alternativa');
+};
