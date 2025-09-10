@@ -29,7 +29,7 @@ const temas = {
   'LEUCEMIAS e LINFOMAS': { inicio: 55, fim: 99 }
 };
 
-// Sons do quiz - NOVA IMPLEMENTAÇÃO PARA iOS
+// Sons do quiz - VERSÃO CORRIGIDA
 const audioFiles = {
   correto: 'assets/correto.mp3',
   errado: 'assets/errado.mp3',
@@ -37,42 +37,66 @@ const audioFiles = {
 };
 
 let audioElements = {};
+let audioContext = null;
+let audioBuffers = {};
 
-// Função SUPER específica para iOS
-function initializeAudioForIOS() {
+// Função melhorada para iOS - usando Web Audio API quando possível
+async function initializeAudioForIOS() {
   console.log('🔊 Inicializando áudio para iOS...');
   
   try {
-    // Criar elementos de áudio
+    // Tentar usar Web Audio API se disponível
+    if (window.AudioContext || window.webkitAudioContext) {
+      try {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        console.log('🎵 Web Audio API inicializada');
+        
+        // Carregar buffers de áudio
+        for (const [key, src] of Object.entries(audioFiles)) {
+          try {
+            const response = await fetch(src);
+            const arrayBuffer = await response.arrayBuffer();
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            audioBuffers[key] = audioBuffer;
+            console.log(`✅ Buffer ${key} carregado`);
+          } catch (e) {
+            console.warn(`⚠️ Falha ao carregar buffer ${key}:`, e);
+          }
+        }
+      } catch (e) {
+        console.warn('⚠️ Web Audio API falhou, usando HTML5 Audio:', e);
+        audioContext = null;
+      }
+    }
+    
+    // Criar elementos HTML5 Audio como fallback
     Object.keys(audioFiles).forEach(key => {
       const audio = new Audio();
       audio.preload = 'auto';
-      audio.volume = 0.3;
-      audio.src = audioFiles[key];
+      audio.volume = 0.5;
+      audio.crossOrigin = 'anonymous';
       
       // Configurações específicas para iOS
       audio.setAttribute('playsinline', true);
       audio.setAttribute('webkit-playsinline', true);
       audio.muted = false;
       
-      // Event listeners para debug
+      // Event listeners melhorados
       audio.addEventListener('canplaythrough', () => {
-        console.log(`✅ Áudio ${key} carregado completamente`);
+        console.log(`✅ Áudio HTML5 ${key} carregado`);
       });
       
       audio.addEventListener('error', (e) => {
-        console.error(`❌ Erro ao carregar ${key}:`, e);
+        console.error(`❌ Erro ao carregar HTML5 ${key}:`, e);
       });
       
-      audio.addEventListener('loadstart', () => {
-        console.log(`⏳ Carregando ${key}...`);
-      });
-      
+      // Carregar fonte após configurar
+      audio.src = audioFiles[key];
       audioElements[key] = audio;
     });
     
     audioInicializado = true;
-    console.log('✅ Áudio inicializado com sucesso!');
+    console.log('✅ Sistema de áudio inicializado!');
     
   } catch (error) {
     console.error('❌ Erro ao inicializar áudio:', error);
@@ -80,97 +104,128 @@ function initializeAudioForIOS() {
   }
 }
 
-// Função para "unlock" áudio no iOS
-function unlockAudioOnIOS() {
+// Função melhorada para desbloquear áudio
+async function unlockAudioOnIOS() {
   if (userInteracted) return;
   
-  console.log('🔓 Tentando desbloquear áudio no iOS...');
+  console.log('🔓 Desbloqueando áudio no iOS...');
   
-  // Tocar um som silencioso para desbloquear
-  Object.values(audioElements).forEach(audio => {
-    if (audio && audio.readyState >= 2) {
-      const originalVolume = audio.volume;
-      audio.volume = 0.01;
-      audio.currentTime = 0;
-      
-      const playPromise = audio.play();
-      if (playPromise) {
-        playPromise.then(() => {
-          console.log('🔊 Áudio desbloqueado!');
+  try {
+    // Desbloquear Web Audio API se disponível
+    if (audioContext && audioContext.state === 'suspended') {
+      await audioContext.resume();
+      console.log('🎵 AudioContext resumido');
+    }
+    
+    // Desbloquear HTML5 Audio
+    const unlockPromises = Object.values(audioElements).map(async (audio) => {
+      if (audio && audio.readyState >= 2) {
+        try {
+          const originalVolume = audio.volume;
+          audio.volume = 0.001; // Volume quase zero
+          audio.currentTime = 0;
+          
+          await audio.play();
           audio.pause();
           audio.currentTime = 0;
           audio.volume = originalVolume;
-          userInteracted = true;
-        }).catch(e => {
-          console.log('❌ Falha ao desbloquear:', e);
-        });
+          
+          return true;
+        } catch (e) {
+          console.log('⚠️ Falha individual no unlock:', e);
+          return false;
+        }
       }
-    }
-  });
+      return false;
+    });
+    
+    await Promise.allSettled(unlockPromises);
+    userInteracted = true;
+    console.log('🔊 Áudio desbloqueado com sucesso!');
+    
+  } catch (error) {
+    console.error('❌ Erro no unlock:', error);
+  }
 }
 
-// Função para tocar som - VERSÃO iOS OTIMIZADA
-function playAudioIOS(soundType) {
-  return new Promise((resolve) => {
-    console.log(`🔊 Tentando tocar som: ${soundType}`);
-    
-    if (!audioInicializado || !audioElements[soundType]) {
-      console.log('❌ Áudio não inicializado ou som não encontrado');
-      resolve(false);
-      return;
+// Função corrigida para tocar som
+async function playAudioIOS(soundType) {
+  console.log(`🔊 Tocando som: ${soundType}`);
+  
+  if (!audioInicializado) {
+    console.log('❌ Áudio não inicializado');
+    return false;
+  }
+  
+  // Garantir que o usuário interagiu
+  if (!userInteracted) {
+    console.log('⚠️ Usuário ainda não interagiu, tentando desbloquear...');
+    await unlockAudioOnIOS();
+  }
+  
+  try {
+    // Tentar Web Audio API primeiro (melhor para iOS)
+    if (audioContext && audioBuffers[soundType]) {
+      try {
+        if (audioContext.state === 'suspended') {
+          await audioContext.resume();
+        }
+        
+        const source = audioContext.createBufferSource();
+        const gainNode = audioContext.createGain();
+        
+        source.buffer = audioBuffers[soundType];
+        gainNode.gain.value = 0.5;
+        
+        source.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        source.start(0);
+        console.log(`✅ Som ${soundType} tocado via Web Audio API`);
+        return true;
+      } catch (e) {
+        console.warn(`⚠️ Web Audio falhou para ${soundType}:`, e);
+      }
     }
     
+    // Fallback para HTML5 Audio
     const audio = audioElements[soundType];
-    
-    // Reset do áudio
-    try {
+    if (audio) {
+      // Parar qualquer reprodução anterior
+      audio.pause();
       audio.currentTime = 0;
-    } catch (e) {
-      console.log('⚠️ Não foi possível resetar currentTime');
-    }
-    
-    // Tentar tocar múltiplas vezes se necessário
-    let attempts = 0;
-    const maxAttempts = 3;
-    
-    function attemptPlay() {
-      attempts++;
-      console.log(`🔄 Tentativa ${attempts} de tocar ${soundType}`);
       
-      const playPromise = audio.play();
+      // Configurar volume
+      audio.volume = 0.5;
       
-      if (playPromise) {
-        playPromise.then(() => {
-          console.log(`✅ Som ${soundType} tocado com sucesso!`);
-          resolve(true);
-        }).catch(error => {
-          console.log(`❌ Erro na tentativa ${attempts}:`, error);
+      // Tentar tocar com retry
+      let attempts = 0;
+      const maxAttempts = 3;
+      
+      while (attempts < maxAttempts) {
+        try {
+          await audio.play();
+          console.log(`✅ Som ${soundType} tocado via HTML5 Audio (tentativa ${attempts + 1})`);
+          return true;
+        } catch (e) {
+          attempts++;
+          console.warn(`⚠️ Tentativa ${attempts} falhou para ${soundType}:`, e);
           
           if (attempts < maxAttempts) {
-            // Tentar novamente após um delay
-            setTimeout(() => {
-              attemptPlay();
-            }, 100);
-          } else {
-            console.log(`❌ Falha após ${maxAttempts} tentativas`);
-            resolve(false);
+            // Pequeno delay antes de tentar novamente
+            await new Promise(resolve => setTimeout(resolve, 100));
           }
-        });
-      } else {
-        // Fallback para navegadores mais antigos
-        try {
-          audio.play();
-          console.log(`✅ Som ${soundType} tocado (fallback)!`);
-          resolve(true);
-        } catch (e) {
-          console.log(`❌ Fallback falhou:`, e);
-          resolve(false);
         }
       }
     }
     
-    attemptPlay();
-  });
+    console.error(`❌ Falha completa ao tocar ${soundType}`);
+    return false;
+    
+  } catch (error) {
+    console.error(`❌ Erro crítico ao tocar ${soundType}:`, error);
+    return false;
+  }
 }
 
 // Função: avaliação diagnóstica
@@ -238,13 +293,13 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
 }
 
 // Inicializar quiz
-function iniciarQuiz(tema = null) {
+async function iniciarQuiz(tema = null) {
   console.log('🎯 Iniciando quiz...');
   quizIniciado = true;
   
   // Inicializar áudio imediatamente
   if (!audioInicializado) {
-    initializeAudioForIOS();
+    await initializeAudioForIOS();
   }
   
   if (tema) {
@@ -385,8 +440,8 @@ function pularPergunta() {
   btnProxima.onclick = () => proximaPergunta();
 }
 
-// Selecionar alternativa
-function selecionarAlternativa(index, botao) {
+// Selecionar alternativa - VERSÃO CORRIGIDA
+async function selecionarAlternativa(index, botao) {
   console.log("🎯 Selecionando alternativa:", index);
   
   if (alternativaSelecionada !== null) {
@@ -394,9 +449,9 @@ function selecionarAlternativa(index, botao) {
     return;
   }
   
-  // TENTAR DESBLOQUEAR ÁUDIO NA PRIMEIRA INTERAÇÃO
+  // GARANTIR DESBLOQUEIO DE ÁUDIO NA PRIMEIRA INTERAÇÃO
   if (!userInteracted) {
-    unlockAudioOnIOS();
+    await unlockAudioOnIOS();
   }
   
   alternativaSelecionada = index;
@@ -430,9 +485,10 @@ function selecionarAlternativa(index, botao) {
   
   botao.classList.add('selecionada');
   
-  setTimeout(() => {
+  // Usar setTimeout para garantir que o áudio toque após a animação visual
+  setTimeout(async () => {
     mostrarFeedbackVisual(acertou, respostaCorreta);
-    mostrarFeedback(acertou);
+    await mostrarFeedback(acertou); // Aguardar o áudio tocar
     habilitarBotaoVideo();
     if (acertou) {
       pontuacao += calcularPontuacao();
@@ -460,7 +516,7 @@ function mostrarFeedbackVisual(acertou, respostaCorreta) {
   });
 }
 
-// Mostrar feedback
+// Mostrar feedback - VERSÃO CORRIGIDA
 async function mostrarFeedback(acertou, mensagem = null) {
   const feedbackElement = document.getElementById('feedback');
   
@@ -470,15 +526,28 @@ async function mostrarFeedback(acertou, mensagem = null) {
   } else if (acertou) {
     feedbackElement.textContent = 'Correto! Parabéns! 🎉';
     feedbackElement.className = 'correto';
-    console.log('🔊 Tentando tocar som CORRETO...');
-    await playAudioIOS('correto');
+    console.log('🔊 Tocando som CORRETO...');
+    
+    // Aguardar o áudio tocar completamente
+    try {
+      await playAudioIOS('correto');
+    } catch (error) {
+      console.error('❌ Erro ao tocar som correto:', error);
+    }
   } else {
     feedbackElement.textContent = 'Incorreto 😔';
     feedbackElement.className = 'errado';
-    console.log('🔊 Tentando tocar som ERRADO...');
-    await playAudioIOS('errado');
+    console.log('🔊 Tocando som ERRADO...');
+    
+    // Aguardar o áudio tocar completamente
+    try {
+      await playAudioIOS('errado');
+    } catch (error) {
+      console.error('❌ Erro ao tocar som errado:', error);
+    }
   }
   
+  // Animação do feedback
   feedbackElement.style.transform = 'scale(1.1)';
   setTimeout(() => feedbackElement.style.transform = 'scale(1)', 200);
 }
@@ -491,6 +560,7 @@ function desabilitarAlternativas() {
 
 // Próxima pergunta
 function proximaPergunta() {
+  // Reset das variáveis
   alternativaSelecionada = null;
   perguntaRespondida = false;
   
@@ -515,20 +585,24 @@ function proximaPergunta() {
 }
 
 // Exibir resultado final
-// Exibir resultado final
 async function exibirResultadoFinal() {
-  console.log('🔊 Tentando tocar som CONCLUSÃO...');
-  await playAudioIOS('conclusao');
+  console.log('🔊 Tocando som CONCLUSÃO...');
+  
+  try {
+    await playAudioIOS('conclusao');
+  } catch (error) {
+    console.error('❌ Erro ao tocar som de conclusão:', error);
+  }
 
   const totalPerguntas = perguntasSelecionadas.length;
   const acertos = Math.floor(pontuacao / 100);
   const erros = totalPerguntas - acertos;
   const porcentagemAcertos = ((acertos / totalPerguntas) * 100).toFixed(1);
 
-  // 🔑 Verifica se é Quiz Completo (sem tema) ou módulo
+  // Verifica se é Quiz Completo (sem tema) ou módulo
   const urlParams = new URLSearchParams(window.location.search);
   const tema = urlParams.get('tema');
-  const isQuizCompleto = !tema; // se não veio tema, é o quiz completo
+  const isQuizCompleto = !tema;
 
   let htmlEstatisticas = `
     <div class="estatisticas">
@@ -541,14 +615,6 @@ async function exibirResultadoFinal() {
   // Se for o quiz completo, adiciona avaliação diagnóstica
   if (isQuizCompleto) {
     htmlEstatisticas += criarHtmlAvaliacaoDiagnostica(acertos);
-  } else {
-    // Apenas nos módulos, mostra também aproveitamento (%)
-    htmlEstatisticas += `
-      <div class="stat">
-        <span class="numero" style="color: #ff9800;">${porcentagemAcertos}%</span>
-        <span class="label">Aproveitamento</span>
-      </div>
-    `;
   }
 
   document.querySelector('.quiz-container').innerHTML = `
@@ -570,24 +636,36 @@ async function exibirResultadoFinal() {
 }
 
 function reiniciarQuiz() { 
-  // Pausar todos os áudios
+  // Parar todos os áudios
   Object.values(audioElements).forEach(audio => {
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
     }
   });
+  
+  // Fechar AudioContext se existir
+  if (audioContext && audioContext.state !== 'closed') {
+    audioContext.close();
+  }
+  
   location.reload(); 
 }
 
 function voltarMenu() { 
-  // Pausar todos os áudios
+  // Parar todos os áudios
   Object.values(audioElements).forEach(audio => {
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
     }
   });
+  
+  // Fechar AudioContext se existir
+  if (audioContext && audioContext.state !== 'closed') {
+    audioContext.close();
+  }
+  
   window.location.href = 'index.html'; 
 }
 
@@ -615,53 +693,45 @@ if (btnVideo) {
   });
 }
 
-// Event listeners principais
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('📱 Página carregada - Detectando dispositivo...');
+// Event listeners principais - VERSÃO MELHORADA
+document.addEventListener('DOMContentLoaded', async () => {
+  console.log('📱 Página carregada - Inicializando sistema...');
   
-  // Detectar se é iOS
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+  // Detectar iOS
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userUser) || 
               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   
   if (isIOS) {
-    console.log('📱 Dispositivo iOS detectado!');
+    console.log('📱 Dispositivo iOS detectado - configurações especiais aplicadas');
   }
+  
+  // Inicializar áudio imediatamente
+  await initializeAudioForIOS();
   
   const urlParams = new URLSearchParams(window.location.search);
   const tema = urlParams.get('tema');
-  if (!document.getElementById('menu')) iniciarQuiz(tema);
-  
-  // Listeners ESPECÍFICOS para desbloquear áudio - apenas em elementos importantes
-  const importantElements = [
-    'button', 
-    '.quiz-container button',
-    '#btnProxima',
-    '.alternativas button'
-  ];
-  
-  // Adicionar listeners apenas nos primeiros cliques em botões importantes
-  let unlockAttempted = false;
-  
-  function attemptUnlock(event) {
-    if (!unlockAttempted && !userInteracted && audioInicializado) {
-      console.log(`🔓 Primeira interação em elemento importante:`, event.target.tagName);
-      unlockAudioOnIOS();
-      unlockAttempted = true;
-    }
+  if (!document.getElementById('menu')) {
+    await iniciarQuiz(tema);
   }
   
-  // Listeners mais específicos
-  document.addEventListener('click', (e) => {
-    if (e.target.tagName === 'BUTTON' && !unlockAttempted) {
-      attemptUnlock(e);
-    }
-  }, { once: true });
+  // Listener específico para primeira interação
+  let firstInteraction = false;
   
-  document.addEventListener('touchend', (e) => {
-    if (e.target.tagName === 'BUTTON' && !unlockAttempted) {
-      attemptUnlock(e);
+  const handleFirstInteraction = async (event) => {
+    if (!firstInteraction) {
+      console.log('🎯 Primeira interação detectada:', event.type);
+      firstInteraction = true;
+      await unlockAudioOnIOS();
     }
-  }, { once: true });
+  };
+  
+  // Adicionar listeners para primeira interação
+  ['click', 'touchend', 'touchstart'].forEach(eventType => {
+    document.addEventListener(eventType, handleFirstInteraction, { 
+      once: true, 
+      passive: false 
+    });
+  });
 });
 
 // Controles de teclado para desktop
@@ -680,12 +750,15 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Debug para iOS
+// Funções de debug melhoradas
 window.debugAudio = () => {
-  console.log('🔍 DEBUG ÁUDIO:');
+  console.log('🔍 DEBUG ÁUDIO COMPLETO:');
   console.log('- Audio inicializado:', audioInicializado);
   console.log('- User interacted:', userInteracted);
-  console.log('- Elementos de áudio:', audioElements);
+  console.log('- AudioContext:', audioContext ? audioContext.state : 'N/A');
+  console.log('- Buffers carregados:', Object.keys(audioBuffers));
+  console.log('- Elementos HTML5:', Object.keys(audioElements));
+  
   Object.keys(audioElements).forEach(key => {
     const audio = audioElements[key];
     if (audio) {
@@ -693,14 +766,53 @@ window.debugAudio = () => {
         readyState: audio.readyState,
         paused: audio.paused,
         volume: audio.volume,
-        src: audio.src
+        src: audio.src.substring(audio.src.lastIndexOf('/') + 1)
       });
     }
   });
 };
 
-// Expor função de debug globalmente
-window.testAudio = (type) => {
+window.testAudio = async (type) => {
   console.log(`🧪 Testando áudio: ${type}`);
-  playAudioIOS(type);
+  const result = await playAudioIOS(type);
+  console.log(`🎵 Resultado do teste: ${result ? 'SUCESSO' : 'FALHA'}`);
+  return result;
+};
+
+// Função para forçar desbloqueio manual
+window.forceUnlock = async () => {
+  console.log('🔧 Forçando desbloqueio manual...');
+  userInteracted = false; // Reset para forçar novo unlock
+  await unlockAudioOnIOS();
+};
+
+// Função adicional para verificar saúde do sistema de áudio
+window.checkAudioHealth = () => {
+  const health = {
+    initialized: audioInicializado,
+    userInteracted: userInteracted,
+    webAudioAvailable: !!audioContext,
+    webAudioState: audioContext ? audioContext.state : 'N/A',
+    buffersLoaded: Object.keys(audioBuffers).length,
+    htmlAudioReady: Object.values(audioElements).filter(a => a && a.readyState >= 2).length,
+    totalAudioFiles: Object.keys(audioFiles).length
+  };
+  
+  console.log('🏥 SAÚDE DO SISTEMA DE ÁUDIO:', health);
+  
+  // Verificar problemas comuns
+  if (!health.initialized) {
+    console.warn('⚠️ Sistema de áudio não inicializado!');
+  }
+  if (!health.userInteracted) {
+    console.warn('⚠️ Usuário ainda não interagiu - áudio pode estar bloqueado!');
+  }
+  if (health.webAudioAvailable && health.webAudioState === 'suspended') {
+    console.warn('⚠️ AudioContext suspenso - pode precisar de interação!');
+  }
+  if (health.buffersLoaded < health.totalAudioFiles) {
+    console.warn('⚠️ Nem todos os buffers foram carregados!');
+  }
+  
+  return health;
 };
