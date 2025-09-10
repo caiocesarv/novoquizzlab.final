@@ -515,36 +515,42 @@ function proximaPergunta() {
 }
 
 // Exibir resultado final
+// Exibir resultado final
 async function exibirResultadoFinal() {
   console.log('🔊 Tentando tocar som CONCLUSÃO...');
   await playAudioIOS('conclusao');
-  
+
   const totalPerguntas = perguntasSelecionadas.length;
   const acertos = Math.floor(pontuacao / 100);
   const erros = totalPerguntas - acertos;
   const porcentagemAcertos = ((acertos / totalPerguntas) * 100).toFixed(1);
-  const avaliacaoDiagnostica = obterAvaliacaoDiagnostica(acertos, totalPerguntas);
-  
-  let htmlEstatisticas = '';
-  if (avaliacaoDiagnostica) {
-    htmlEstatisticas = `
-      <div class="estatisticas">
-        <div class="stat"><span class="numero" style="color: #4caf50;">${acertos}</span><span class="label">Acertos</span></div>
-        <div class="stat"><span class="numero" style="color: #f44336;">${erros}</span><span class="label">Erros</span></div>
-        <div class="stat"><span class="numero" style="color: #2196f3;">${totalPerguntas}</span><span class="label">Total de Questões</span></div>
-      </div>
-      ${criarHtmlAvaliacaoDiagnostica(acertos, totalPerguntas)}
-    `;
+
+  // 🔑 Verifica se é Quiz Completo (sem tema) ou módulo
+  const urlParams = new URLSearchParams(window.location.search);
+  const tema = urlParams.get('tema');
+  const isQuizCompleto = !tema; // se não veio tema, é o quiz completo
+
+  let htmlEstatisticas = `
+    <div class="estatisticas">
+      <div class="stat"><span class="numero" style="color: #4caf50;">${acertos}</span><span class="label">Acertos</span></div>
+      <div class="stat"><span class="numero" style="color: #f44336;">${erros}</span><span class="label">Erros</span></div>
+      <div class="stat"><span class="numero" style="color: #2196f3;">${totalPerguntas}</span><span class="label">Total de Questões</span></div>
+    </div>
+  `;
+
+  // Se for o quiz completo, adiciona avaliação diagnóstica
+  if (isQuizCompleto) {
+    htmlEstatisticas += criarHtmlAvaliacaoDiagnostica(acertos);
   } else {
-    htmlEstatisticas = `
-      <div class="estatisticas">
-        <div class="stat"><span class="numero" style="color: #4caf50;">${acertos}</span><span class="label">Acertos</span></div>
-        <div class="stat"><span class="numero" style="color: #f44336;">${erros}</span><span class="label">Erros</span></div>
-        <div class="stat"><span class="numero" style="color: #ff9800;">${porcentagemAcertos}%</span><span class="label">Aproveitamento</span></div>
+    // Apenas nos módulos, mostra também aproveitamento (%)
+    htmlEstatisticas += `
+      <div class="stat">
+        <span class="numero" style="color: #ff9800;">${porcentagemAcertos}%</span>
+        <span class="label">Aproveitamento</span>
       </div>
     `;
   }
-  
+
   document.querySelector('.quiz-container').innerHTML = `
     <div class="resultado-final">
       <header>

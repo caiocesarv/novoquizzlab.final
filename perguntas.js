@@ -484,7 +484,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 35 - Preencha os espaços em branco:\n A dengue é uma doença viral aguda classificada em quatro tipos imunológicos. No sangue periférico, geralmente observam-se leucopenia, plaquetopenia variável e pequenos ___________________________ citoplasmática. Na dengue hemorrágica, além das manifestações citadas, ocorre também ___________________ com ____________________ e plaquetopenia acentuada.",
-    "imagem": "questao35.jpg",
+    "imagem": "questao35.png",
     "alternativas": [
       "A - linfócitos pleomórficos / hemoconcentração / aumento do hematócrito",
       "B - linfócitos reativos com hiperbasofilia / hemodiluição / diminuição do hematócrito",
@@ -737,7 +737,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 53 - A filariose também conhecida como elefantíase, é uma doença parasitária infecciosa. O parasita infecta o sistema linfático humano, causando inflamação e bloqueio dos vasos linfáticos, o que pode levar a edemas (inchaço) em diversas partes do corpo.⠀ Essa doença parasitária é causada por qual nematoide e qual agente transmissor?",
-    "imagem": "questao53.jpg",
+    "imagem": "questao53.png",
     "alternativas": [
       "A - Wuchereria bancrofti / Culex.",
       "B - Wuchereria bancrofti / Anopheles.",
@@ -1053,7 +1053,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 77 - Este subtipo de leucemia mieloide aguda caracteriza-se pela alta percentagem de blastos na medula óssea, representando mais de 90% das células nucleadas e com maturação inferior a 10%.  Que subtipo de leucemia mieloide aguda é essa?",
-    "imagem": "questao77.jpg",
+    "imagem": "questao77.png",
     "alternativas": [
       "A - Leucemia Mielóide Aguda - Mieloblástica (LMA – M1).",
       "B - Leucemia Mielóide Aguda - Mieloblástica com maturação (LMA –M2).",
