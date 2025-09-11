@@ -293,7 +293,7 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
 }
 
 // Inicializar quiz
-async function iniciarQuiz(tema = null) {
+async function iniciarQuizComConfirmacao(tema) {
   console.log('🎯 Iniciando quiz...');
   quizIniciado = true;
   
@@ -311,7 +311,7 @@ async function iniciarQuiz(tema = null) {
   perguntaAtual = 0;
   pontuacao = 0;
   criarBarraProgresso();
-  exibirPergunta();
+  exibirPerguntaComConfirmacao();
   
   const menu = document.getElementById('menu');
   if (menu) menu.style.display = 'none';
@@ -385,7 +385,7 @@ function habilitarBotaoVideo() {
 }
 
 // Exibir pergunta
-function exibirPergunta() {
+function exibirPerguntaComConfirmacao(){
   const pergunta = perguntasSelecionadas[perguntaAtual];
   perguntaRespondida = false;
   setTimeout(() => {
@@ -577,7 +577,7 @@ function proximaPergunta() {
     alternativasContainer.style.opacity = '0';
     
     setTimeout(() => {
-      exibirPergunta();
+      exibirPerguntaComConfirmacao();
     }, 300);
   } else {
     exibirResultadoFinal();
@@ -711,7 +711,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const tema = urlParams.get('tema');
   if (!document.getElementById('menu')) {
-    await iniciarQuiz(tema);
+    await iniciarQuizComConfirmacao(tema);
   }
   
   // Listener específico para primeira interação
@@ -816,3 +816,361 @@ window.checkAudioHealth = () => {
   
   return health;
 };
+
+// Variáveis para controle de confirmação mobile
+let isMobileDevice = false;
+let alternativaSelecionadaTemp = null;
+let aguardandoConfirmacao = false;
+
+// Detectar se é dispositivo mobile
+function detectarMobile() {
+  const userAgent = navigator.userAgent;
+  const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+  const isTablet = /iPad|Android.*(?:Mobile|Tablet)/i.test(userAgent) && window.innerWidth <= 1024;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  
+  return isMobile || isTablet || (isTouchDevice && window.innerWidth <= 768);
+}
+
+// Criar botão de confirmação para mobile
+function criarBotaoConfirmacao() {
+  const botaoConfirmar = document.createElement('button');
+  botaoConfirmar.id = 'btnConfirmarMobile';
+  botaoConfirmar.className = 'btn-confirmar-mobile';
+  botaoConfirmar.innerHTML = '✓ Confirmar Resposta';
+  botaoConfirmar.style.display = 'none';
+  
+  botaoConfirmar.addEventListener('click', () => {
+    confirmarResposta();
+  });
+  
+  botaoConfirmar.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    confirmarResposta();
+  });
+  
+  return botaoConfirmar;
+}
+
+// Criar botão de cancelar seleção
+function criarBotaoCancelar() {
+  const botaoCancelar = document.createElement('button');
+  botaoCancelar.id = 'btnCancelarMobile';
+  botaoCancelar.className = 'btn-cancelar-mobile';
+  botaoCancelar.innerHTML = '✗ Cancelar';
+  botaoCancelar.style.display = 'none';
+  
+  botaoCancelar.addEventListener('click', () => {
+    cancelarSelecao();
+  });
+  
+  botaoCancelar.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    cancelarSelecao();
+  });
+  
+  return botaoCancelar;
+}
+
+// Função para mostrar botões de confirmação
+function mostrarConfirmacaoMobile(index, botaoSelecionado) {
+  if (!isMobileDevice) return false;
+  
+  console.log('📱 Mostrando confirmação mobile para alternativa:', index);
+  
+  alternativaSelecionadaTemp = index;
+  aguardandoConfirmacao = true;
+  
+  // Adicionar classe visual ao botão selecionado
+  const botoes = alternativasContainer.querySelectorAll('button');
+  botoes.forEach(btn => btn.classList.remove('selecionada-temp'));
+  botaoSelecionado.classList.add('selecionada-temp');
+  
+  // Mostrar botões de confirmação
+  const btnConfirmar = document.getElementById('btnConfirmarMobile');
+  const btnCancelar = document.getElementById('btnCancelarMobile');
+  
+  if (btnConfirmar && btnCancelar) {
+    btnConfirmar.style.display = 'block';
+    btnCancelar.style.display = 'block';
+    
+    // Esconder botão de pular pergunta temporariamente
+    btnProxima.style.display = 'none';
+    
+    // Mostrar feedback temporário
+    feedback.textContent = 'Confirme sua escolha:';
+    feedback.className = 'aguardando-confirmacao';
+    
+    // Scroll suave até os botões de confirmação
+    setTimeout(() => {
+      btnConfirmar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+  
+  return true;
+}
+
+// Função para confirmar resposta
+async function confirmarResposta() {
+  if (!aguardandoConfirmacao || alternativaSelecionadaTemp === null) return;
+  
+  console.log('✅ Confirmando resposta:', alternativaSelecionadaTemp);
+  
+  // Esconder botões de confirmação
+  esconderBotoesConfirmacao();
+  
+  // Executar lógica original de seleção
+  alternativaSelecionada = alternativaSelecionadaTemp;
+  perguntaRespondida = true;
+  aguardandoConfirmacao = false;
+  
+  const pergunta = perguntasSelecionadas[perguntaAtual];
+  let respostaCorreta = -1;
+  
+  if (typeof pergunta.correta === "number") {
+    respostaCorreta = pergunta.correta;
+  } else if (typeof pergunta.correta === "string") {
+    const letraCorreta = pergunta.correta.trim().toUpperCase();
+    respostaCorreta = letraCorreta.charCodeAt(0) - 65;
+  }
+  
+  const acertou = alternativaSelecionada === respostaCorreta;
+  
+  // Mostrar resultado visual
+  mostrarFeedbackVisual(acertou, respostaCorreta);
+  await mostrarFeedback(acertou);
+  
+  if (acertou) {
+    pontuacao += calcularPontuacao();
+    atualizarProgresso();
+  }
+  
+  habilitarBotaoVideo();
+  btnProxima.style.display = 'block';
+  btnProxima.textContent = 'Continuar';
+  btnProxima.onclick = () => proximaPergunta();
+}
+
+// Função para cancelar seleção
+function cancelarSelecao() {
+  if (!aguardandoConfirmacao) return;
+  
+  console.log('❌ Cancelando seleção mobile');
+  
+  // Limpar seleção temporária
+  alternativaSelecionadaTemp = null;
+  aguardandoConfirmacao = false;
+  
+  // Remover classe visual
+  const botoes = alternativasContainer.querySelectorAll('button');
+  botoes.forEach(btn => btn.classList.remove('selecionada-temp'));
+  
+  // Esconder botões de confirmação
+  esconderBotoesConfirmacao();
+  
+  // Restaurar estado original
+  feedback.textContent = '';
+  feedback.className = '';
+  btnProxima.style.display = 'block';
+  btnProxima.textContent = 'Pular Pergunta';
+  btnProxima.onclick = () => pularPergunta();
+}
+
+// Função para esconder botões de confirmação
+function esconderBotoesConfirmacao() {
+  const btnConfirmar = document.getElementById('btnConfirmarMobile');
+  const btnCancelar = document.getElementById('btnCancelarMobile');
+  
+  if (btnConfirmar) btnConfirmar.style.display = 'none';
+  if (btnCancelar) btnCancelar.style.display = 'none';
+}
+
+// Função modificada para criar botão de alternativa com confirmação mobile
+function criarBotaoAlternativaComConfirmacao(alt, index) {
+  const botao = document.createElement('button');
+  botao.textContent = alt;
+  
+  // Dados de controle de toque
+  let touchData = {
+    startTime: 0,
+    startX: 0,
+    startY: 0,
+    moved: false,
+    isScrolling: false
+  };
+  
+  // TouchStart
+  botao.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    touchData = {
+      startTime: Date.now(),
+      startX: touch.clientX,
+      startY: touch.clientY,
+      moved: false,
+      isScrolling: false
+    };
+    
+    botao.classList.add('touching');
+  }, { passive: true });
+  
+  // TouchMove
+  botao.addEventListener('touchmove', (e) => {
+    if (!touchData.startTime) return;
+    
+    const touch = e.touches[0];
+    const deltaX = Math.abs(touch.clientX - touchData.startX);
+    const deltaY = Math.abs(touch.clientY - touchData.startY);
+    
+    if (deltaX > 3 || deltaY > 3) {
+      touchData.moved = true;
+    }
+    
+    if (deltaY > deltaX && deltaY > 8) {
+      touchData.isScrolling = true;
+      botao.classList.remove('touching');
+    }
+  }, { passive: true });
+  
+  // TouchEnd com sistema de confirmação
+  botao.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    
+    const touchDuration = Date.now() - touchData.startTime;
+    botao.classList.remove('touching');
+    
+    // Verificações de bloqueio (mesmo sistema anterior)
+    if (touchData.isScrolling || touchDuration < 80 || 
+        (touchDuration > 800 && touchData.moved) ||
+        alternativaSelecionada !== null || aguardandoConfirmacao) {
+      return;
+    }
+    
+    // MOBILE: Mostrar confirmação ao invés de selecionar diretamente
+    if (isMobileDevice) {
+      mostrarConfirmacaoMobile(index, botao);
+    } else {
+      // DESKTOP: Seleção direta
+      selecionarAlternativa(index, botao);
+    }
+    
+  }, { passive: false });
+  
+  // Click para desktop
+  botao.addEventListener('click', (e) => {
+    if (!('ontouchstart' in window) || e.isTrusted === false) {
+      e.preventDefault();
+      if (!isMobileDevice) {
+        selecionarAlternativa(index, botao);
+      }
+    }
+  });
+  
+  return botao;
+}
+
+// Função exibirPergunta() modificada
+function exibirPerguntaComConfirmacao() {
+  const pergunta = perguntasSelecionadas[perguntaAtual];
+  perguntaRespondida = false;
+  aguardandoConfirmacao = false;
+  alternativaSelecionadaTemp = null;
+  
+  setTimeout(() => {
+    enunciado.textContent = pergunta.enunciado;
+    
+    if (pergunta.imagem && pergunta.imagem !== '') {
+      imagem.src = `assets/${pergunta.imagem}`;
+      imagem.style.display = 'block';
+      imagem.onerror = () => imagem.style.display = 'none';
+    } else {
+      imagem.style.display = 'none';
+    }
+    
+    // Limpar e recriar alternativas
+    alternativasContainer.innerHTML = '';
+    pergunta.alternativas.forEach((alt, index) => {
+      const botao = criarBotaoAlternativaComConfirmacao(alt, index);
+      alternativasContainer.appendChild(botao);
+    });
+    
+    // Adicionar botões de confirmação mobile se necessário
+    if (isMobileDevice) {
+      if (!document.getElementById('btnConfirmarMobile')) {
+        const containerConfirmacao = document.createElement('div');
+        containerConfirmacao.className = 'confirmacao-mobile-container';
+        
+        const btnConfirmar = criarBotaoConfirmacao();
+        const btnCancelar = criarBotaoCancelar();
+        
+        containerConfirmacao.appendChild(btnCancelar);
+        containerConfirmacao.appendChild(btnConfirmar);
+        
+        // Inserir após as alternativas
+        alternativasContainer.parentNode.insertBefore(
+          containerConfirmacao, 
+          alternativasContainer.nextSibling
+        );
+      }
+    }
+    
+    controlarBotaoVideo(pergunta);
+    
+    feedback.textContent = '';
+    feedback.className = '';
+    btnProxima.style.display = 'block';
+    btnProxima.textContent = 'Pular Pergunta';
+    btnProxima.onclick = () => pularPergunta();
+    
+    document.querySelector('.card').style.opacity = '1';
+    alternativasContainer.style.opacity = '1';
+    atualizarProgresso();
+  }, 300);
+}
+
+// Inicialização com detecção de mobile
+function iniciarQuizComConfirmacao(tema) {
+  console.log('🎯 Iniciando quiz com confirmação mobile...');
+  
+  // Detectar dispositivo mobile
+  isMobileDevice = detectarMobile();
+  console.log('📱 Mobile detectado:', isMobileDevice);
+  
+  quizIniciado = true;
+  
+  // Inicializar áudio
+  if (!audioInicializado) {
+    initializeAudioForIOS();
+  }
+  
+  if (tema) {
+    const config = temas[tema];
+    perguntasSelecionadas = perguntas.slice(config.inicio, config.fim + 1);
+  } else {
+    perguntasSelecionadas = [...perguntas];
+  }
+  
+  perguntaAtual = 0;
+  pontuacao = 0;
+  criarBarraProgresso();
+  exibirPerguntaComConfirmacao(); // Usar nova função
+  
+  const menu = document.getElementById('menu');
+  if (menu) menu.style.display = 'none';
+  document.querySelector('.quiz-container').style.display = 'block';
+}
+
+// Função de debug para confirmação mobile
+window.debugConfirmacao = () => {
+  console.log('🔍 DEBUG CONFIRMAÇÃO MOBILE:');
+  console.log('- É mobile:', isMobileDevice);
+  console.log('- Aguardando confirmação:', aguardandoConfirmacao);
+  console.log('- Seleção temporária:', alternativaSelecionadaTemp);
+  console.log('- Botões existem:', {
+    confirmar: !!document.getElementById('btnConfirmarMobile'),
+    cancelar: !!document.getElementById('btnCancelarMobile')
+  });
+};
+
+// Substituir funções originais
+// Use iniciarQuizComConfirmacao() no lugar de iniciarQuiz()
+// Use exibirPerguntaComConfirmacao() no lugar de exibirPergunta()

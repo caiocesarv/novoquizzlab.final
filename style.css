@@ -765,6 +765,178 @@ h1, h2, h3, p {
     }
 }
   
+/* ========================================
+   SISTEMA DE CONFIRMAÇÃO MOBILE
+   ======================================== */
+
+/* Container dos botões de confirmação */
+.confirmacao-mobile-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Botões de confirmação e cancelar */
+.btn-confirmar-mobile,
+.btn-cancelar-mobile {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 48px;
+    min-width: 120px;
+    
+    /* Controle de toque */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Botão Confirmar - Verde */
+.btn-confirmar-mobile {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.btn-confirmar-mobile:hover,
+.btn-confirmar-mobile:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
+    background: linear-gradient(135deg, #5CBF60, #4CAF50);
+}
+
+/* Botão Cancelar - Vermelho */
+.btn-cancelar-mobile {
+    background: linear-gradient(135deg, #f44336, #e53935);
+    color: white;
+    box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
+}
+
+.btn-cancelar-mobile:hover,
+.btn-cancelar-mobile:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(244, 67, 54, 0.4);
+    background: linear-gradient(135deg, #FF5446, #f44336);
+}
+
+/* Estado de seleção temporária */
+.alternativas button.selecionada-temp {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 0 16px rgba(33, 150, 243, 0.4);
+    border: 2px solid #2196F3;
+}
+
+/* Feedback de aguardando confirmação */
+.feedback.aguardando-confirmacao {
+    color: #2196F3;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 10px;
+    background: rgba(33, 150, 243, 0.1);
+    border-radius: 8px;
+    margin: 15px 0;
+    border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+/* Animação de pulse para botões de confirmação */
+@keyframes pulseConfirm {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.btn-confirmar-mobile {
+    animation: pulseConfirm 2s infinite;
+}
+
+/* Estilos específicos para telas pequenas */
+@media (max-width: 480px) {
+    .confirmacao-mobile-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-confirmar-mobile,
+    .btn-cancelar-mobile {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 18px;
+    }
+}
+
+/* Melhorar contraste em modo escuro */
+@media (prefers-color-scheme: dark) {
+    .confirmacao-mobile-container {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .feedback.aguardando-confirmacao {
+        background: rgba(33, 150, 243, 0.2);
+        border-color: rgba(33, 150, 243, 0.4);
+    }
+}
+
+/* Estados de toque para mobile */
+.btn-confirmar-mobile:active {
+    transform: scale(0.98);
+}
+
+.btn-cancelar-mobile:active {
+    transform: scale(0.98);
+}
+
+/* Esconder em desktop se necessário */
+@media (min-width: 1025px) {
+    .confirmacao-mobile-container {
+        /* Os botões ainda aparecerão em desktop se isMobileDevice for true */
+        /* mas você pode forçar esconder com: display: none; */
+    }
+}
+
+/* Ícones nos botões (se quiser adicionar) */
+.btn-confirmar-mobile::before {
+    content: "✓ ";
+    font-size: 1.2em;
+}
+
+.btn-cancelar-mobile::before {
+    content: "✗ ";
+    font-size: 1.2em;
+}
+
+/* Transição suave para mostrar/esconder */
+.confirmacao-mobile-container {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.confirmacao-mobile-container:has(.btn-confirmar-mobile[style*="block"]) {
+    opacity: 1;
+    max-height: 200px;
+}
+
+/* Fallback para navegadores que não suportam :has() */
+.confirmacao-mobile-container.ativo {
+    opacity: 1;
+    max-height: 200px;
+}
+
   .progresso-info {
     flex-direction: column;
     gap: 0.3rem;
