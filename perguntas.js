@@ -737,7 +737,7 @@ const perguntas = [
   },
   {
     "enunciado": "QUESTÃO 53 - A filariose também conhecida como elefantíase, é uma doença parasitária infecciosa. O parasita infecta o sistema linfático humano, causando inflamação e bloqueio dos vasos linfáticos, o que pode levar a edemas (inchaço) em diversas partes do corpo. Essa doença parasitária é causada por qual nematoide e qual agente transmissor?",
-    "imagem": "questao53.png",
+    "imagem": "questao53.jpg",
     "alternativas": [
       "A - Wuchereria bancrofti / Culex.",
       "B - Wuchereria bancrofti / Anopheles.",
