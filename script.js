@@ -1416,7 +1416,7 @@ function mostrarConfirmacaoImediata(index, botaoSelecionado) {
 }
 
 // Função para confirmar resposta (sem mudanças)
-async function confirmarRespostaLimpa() {
+async function confirmarRespostaRapida() {
   if (!aguardandoConfirmacao || alternativaSelecionadaTemp === null) return;
   
   console.log('✅ Confirmando resposta:', alternativaSelecionadaTemp);
@@ -1457,7 +1457,7 @@ async function confirmarRespostaLimpa() {
 }
 
 // Função para cancelar seleção (melhorada)
-function cancelarSelecaoLimpa() {
+function cancelarSelecaoRapida() {
   if (!aguardandoConfirmacao) return;
   
   console.log('❌ Cancelando seleção limpa');
@@ -1501,7 +1501,7 @@ function criarBotaoConfirmacaoUltraResponsivo() {
       e.preventDefault();
       e.stopPropagation();
       confirmTouchId = null;
-      confirmarRespostaLimpa();
+      confirmarRespostaRapida();
     }
   }, { passive: false });
   
@@ -1509,7 +1509,7 @@ function criarBotaoConfirmacaoUltraResponsivo() {
   botaoConfirmar.addEventListener('click', (e) => {
     if (!('ontouchstart' in window)) {
       e.preventDefault();
-      confirmarRespostaLimpa();
+      confirmarRespostaRapida();
     }
   });
   
@@ -1535,7 +1535,7 @@ function criarBotaoCancelarUltraResponsivo() {
       e.preventDefault();
       e.stopPropagation();
       cancelTouchId = null;
-      cancelarSelecaoLimpa();
+      cancelarSelecaoRapida();
     }
   }, { passive: false });
   
@@ -1543,7 +1543,7 @@ function criarBotaoCancelarUltraResponsivo() {
   botaoCancelar.addEventListener('click', (e) => {
     if (!('ontouchstart' in window)) {
       e.preventDefault();
-      cancelarSelecaoLimpa();
+      cancelarSelecaoRapida();
     }
   });
   
