@@ -293,7 +293,7 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
 }
 
 // Inicializar quiz
-async function iniciarQuizComConfirmacao(tema) {
+async function iniciarQuizComToqueLimpo(tema) {
   console.log('🎯 Iniciando quiz...');
   quizIniciado = true;
   
@@ -311,7 +311,7 @@ async function iniciarQuizComConfirmacao(tema) {
   perguntaAtual = 0;
   pontuacao = 0;
   criarBarraProgresso();
-  exibirPerguntaComConfirmacao();
+  exibirPerguntaComToqueLimpo();
   
   const menu = document.getElementById('menu');
   if (menu) menu.style.display = 'none';
@@ -385,7 +385,7 @@ function habilitarBotaoVideo() {
 }
 
 // Exibir pergunta
-function exibirPerguntaComConfirmacao(){
+function exibirPerguntaComToqueLimpo(){
   const pergunta = perguntasSelecionadas[perguntaAtual];
   perguntaRespondida = false;
   setTimeout(() => {
@@ -577,7 +577,7 @@ function proximaPergunta() {
     alternativasContainer.style.opacity = '0';
     
     setTimeout(() => {
-      exibirPerguntaComConfirmacao();
+      exibirPerguntaComToqueLimpo();
     }, 300);
   } else {
     exibirResultadoFinal();
@@ -711,7 +711,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const tema = urlParams.get('tema');
   if (!document.getElementById('menu')) {
-    await iniciarQuizComConfirmacao(tema);
+    await iniciarQuizComToqueLimpo(tema);
   }
   
   // Listener específico para primeira interação
@@ -1069,7 +1069,7 @@ function criarBotaoAlternativaComConfirmacao(alt, index) {
 }
 
 // Função exibirPergunta() modificada
-function exibirPerguntaComConfirmacao() {
+function exibirPerguntaComToqueLimpo() {
   const pergunta = perguntasSelecionadas[perguntaAtual];
   perguntaRespondida = false;
   aguardandoConfirmacao = false;
@@ -1128,7 +1128,7 @@ function exibirPerguntaComConfirmacao() {
 }
 
 // Inicialização com detecção de mobile
-function iniciarQuizComConfirmacao(tema) {
+function iniciarQuizComToqueLimpo(tema) {
   console.log('🎯 Iniciando quiz com confirmação mobile...');
   
   // Detectar dispositivo mobile
@@ -1152,7 +1152,7 @@ function iniciarQuizComConfirmacao(tema) {
   perguntaAtual = 0;
   pontuacao = 0;
   criarBarraProgresso();
-  exibirPerguntaComConfirmacao(); // Usar nova função
+  exibirPerguntaComToqueLimpo(); // Usar nova função
   
   const menu = document.getElementById('menu');
   if (menu) menu.style.display = 'none';
@@ -1170,7 +1170,519 @@ window.debugConfirmacao = () => {
     cancelar: !!document.getElementById('btnCancelarMobile')
   });
 };
+// SISTEMA DE TOQUE LIMPO PARA MOBILE - VERSÃO OTIMIZADA
+// Remove hover effects e cria sistema de clique + confirmação robusto
 
-// Substituir funções originais
-// Use iniciarQuizComConfirmacao() no lugar de iniciarQuiz()
-// Use exibirPerguntaComConfirmacao() no lugar de exibirPergunta()
+// Função para aplicar estilos CSS limpos (sem hover effects)
+function aplicarEstilosMobileLimpos() {
+  let styleElement = document.getElementById('mobile-clean-style');
+  if (!styleElement) {
+    styleElement = document.createElement('style');
+    styleElement.id = 'mobile-clean-style';
+    document.head.appendChild(styleElement);
+  }
+  
+  styleElement.textContent = `
+    /* REMOVER TODOS OS HOVER EFFECTS EM MOBILE */
+    @media (hover: none) and (pointer: coarse) {
+      #alternativas button:hover {
+        background-color: initial !important;
+        transform: none !important;
+        box-shadow: none !important;
+      }
+      
+      #alternativas button:active {
+        background-color: initial !important;
+        transform: none !important;
+      }
+    }
+    
+    /* ESTILOS ESPECÍFICOS PARA MOBILE */
+    #alternativas button {
+      /* Remover animações de toque em mobile */
+      -webkit-tap-highlight-color: transparent !important;
+      touch-action: manipulation !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      
+      /* Visual limpo sem feedback de toque */
+      transition: none !important;
+      transform: none !important;
+    }
+    
+    /* Remover classe touching que causava problemas */
+    #alternativas button.touching {
+      background-color: initial !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    
+    /* Estado de seleção temporária - mais sutil */
+    #alternativas button.selecionada-temp {
+      background-color: rgba(33, 150, 243, 0.2) !important;
+      border: 2px solid #2196f3 !important;
+      color: #ffffff !important;
+      font-weight: bold !important;
+    }
+    
+    /* Permitir scroll livre na imagem */
+    #imagem {
+      touch-action: auto !important;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    
+    /* Container principal - scroll livre */
+    .quiz-container, .card, #enunciado {
+      touch-action: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Botões de confirmação */
+    .confirmacao-mobile-container {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    
+    .btn-confirmar-mobile, .btn-cancelar-mobile {
+      padding: 12px 24px !important;
+      border-radius: 8px !important;
+      font-weight: bold !important;
+      font-size: 16px !important;
+      touch-action: manipulation !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+    
+    .btn-confirmar-mobile {
+      background-color: #4caf50 !important;
+      border: 2px solid #4caf50 !important;
+      color: white !important;
+    }
+    
+    .btn-cancelar-mobile {
+      background-color: #f44336 !important;
+      border: 2px solid #f44336 !important;
+      color: white !important;
+    }
+  `;
+}
+
+// Função para criar botão de alternativa com toque limpo
+function criarBotaoAlternativaLimpo(alt, index) {
+  const botao = document.createElement('button');
+  botao.textContent = alt;
+  
+  // Variáveis para controle de toque robusto
+  let touchData = {
+    startTime: 0,
+    startX: 0,
+    startY: 0,
+    startScrollY: 0,
+    moved: false,
+    isScrolling: false,
+    touchId: null
+  };
+  
+  // TouchStart - inicializar dados
+  botao.addEventListener('touchstart', (e) => {
+    // Prevenir múltiplos toques
+    if (touchData.touchId !== null) return;
+    
+    const touch = e.touches[0];
+    touchData = {
+      startTime: Date.now(),
+      startX: touch.clientX,
+      startY: touch.clientY,
+      startScrollY: window.pageYOffset,
+      moved: false,
+      isScrolling: false,
+      touchId: touch.identifier
+    };
+    
+    // SEM feedback visual durante toque inicial
+    
+  }, { passive: true });
+  
+  // TouchMove - detectar movimento/scroll
+  botao.addEventListener('touchmove', (e) => {
+    // Verificar se é o mesmo toque
+    const currentTouch = Array.from(e.touches).find(t => t.identifier === touchData.touchId);
+    if (!currentTouch || !touchData.startTime) return;
+    
+    const deltaX = Math.abs(currentTouch.clientX - touchData.startX);
+    const deltaY = Math.abs(currentTouch.clientY - touchData.startY);
+    const scrollDelta = Math.abs(window.pageYOffset - touchData.startScrollY);
+    
+    // Detectar movimento significativo
+    if (deltaX > 8 || deltaY > 8) {
+      touchData.moved = true;
+    }
+    
+    // Detectar scroll (mais rigoroso)
+    if ((deltaY > 15 && deltaY > deltaX) || scrollDelta > 5) {
+      touchData.isScrolling = true;
+    }
+    
+  }, { passive: true });
+  
+  // TouchEnd - processar clique
+  botao.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Verificar se é o mesmo toque
+    if (touchData.touchId === null) return;
+    
+    const touchDuration = Date.now() - touchData.startTime;
+    const scrollDelta = Math.abs(window.pageYOffset - touchData.startScrollY);
+    
+    // Reset touch ID
+    touchData.touchId = null;
+    
+    // CONDIÇÕES RIGOROSAS para bloquear clique acidental
+    const shouldBlock = (
+      touchData.isScrolling ||                    // Estava fazendo scroll
+      scrollDelta > 8 ||                         // Página se moveu muito
+      touchDuration < 100 ||                     // Toque muito rápido (acidental)
+      touchDuration > 1200 ||                    // Toque muito longo
+      (touchData.moved && touchDuration < 200) || // Movimento rápido
+      alternativaSelecionada !== null ||         // Já respondeu
+      aguardandoConfirmacao                      // Aguardando confirmação
+    );
+    
+    if (shouldBlock) {
+      console.log('🚫 Clique bloqueado:', {
+        scrolling: touchData.isScrolling,
+        scrollDelta,
+        duration: touchDuration,
+        moved: touchData.moved,
+        jaRespondida: alternativaSelecionada !== null
+      });
+      return;
+    }
+    
+    console.log('✅ Clique válido - selecionando alternativa:', index);
+    
+    // MOBILE: Mostrar confirmação (sem feedback visual de toque)
+    if (isMobileDevice) {
+      mostrarConfirmacaoMobileLimpa(index, botao);
+    } else {
+      // DESKTOP: Seleção direta
+      selecionarAlternativa(index, botao);
+    }
+    
+  }, { passive: false });
+  
+  // Click para desktop (sem mudanças)
+  botao.addEventListener('click', (e) => {
+    // Apenas para desktop (sem touch)
+    if (!('ontouchstart' in window)) {
+      e.preventDefault();
+      if (!isMobileDevice) {
+        selecionarAlternativa(index, botao);
+      }
+    }
+  });
+  
+  return botao;
+}
+
+// Função para mostrar confirmação limpa (sem efeitos visuais durante seleção)
+function mostrarConfirmacaoMobileLimpa(index, botaoSelecionado) {
+  if (!isMobileDevice) return false;
+  
+  console.log('📱 Mostrando confirmação limpa para alternativa:', index);
+  
+  alternativaSelecionadaTemp = index;
+  aguardandoConfirmacao = true;
+  
+  // Aplicar estilo de seleção APENAS após clique confirmado
+  const botoes = alternativasContainer.querySelectorAll('button');
+  botoes.forEach(btn => btn.classList.remove('selecionada-temp'));
+  botaoSelecionado.classList.add('selecionada-temp');
+  
+  // Mostrar botões de confirmação
+  const btnConfirmar = document.getElementById('btnConfirmarMobile');
+  const btnCancelar = document.getElementById('btnCancelarMobile');
+  
+  if (btnConfirmar && btnCancelar) {
+    btnConfirmar.style.display = 'block';
+    btnCancelar.style.display = 'block';
+    
+    // Esconder botão de pular pergunta
+    btnProxima.style.display = 'none';
+    
+    // Mostrar feedback claro
+    feedback.textContent = 'Confirme sua escolha ou cancele para selecionar outra:';
+    feedback.className = 'aguardando-confirmacao';
+    
+    // Scroll suave até os botões (opcional)
+    setTimeout(() => {
+      btnConfirmar.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 150);
+  }
+  
+  return true;
+}
+
+// Função para confirmar resposta (sem mudanças)
+async function confirmarRespostaLimpa() {
+  if (!aguardandoConfirmacao || alternativaSelecionadaTemp === null) return;
+  
+  console.log('✅ Confirmando resposta:', alternativaSelecionadaTemp);
+  
+  // Esconder botões de confirmação
+  esconderBotoesConfirmacao();
+  
+  // Executar lógica original
+  alternativaSelecionada = alternativaSelecionadaTemp;
+  perguntaRespondida = true;
+  aguardandoConfirmacao = false;
+  
+  const pergunta = perguntasSelecionadas[perguntaAtual];
+  let respostaCorreta = -1;
+  
+  if (typeof pergunta.correta === "number") {
+    respostaCorreta = pergunta.correta;
+  } else if (typeof pergunta.correta === "string") {
+    const letraCorreta = pergunta.correta.trim().toUpperCase();
+    respostaCorreta = letraCorreta.charCodeAt(0) - 65;
+  }
+  
+  const acertou = alternativaSelecionada === respostaCorreta;
+  
+  // Mostrar resultado
+  mostrarFeedbackVisual(acertou, respostaCorreta);
+  await mostrarFeedback(acertou);
+  
+  if (acertou) {
+    pontuacao += calcularPontuacao();
+    atualizarProgresso();
+  }
+  
+  habilitarBotaoVideo();
+  btnProxima.style.display = 'block';
+  btnProxima.textContent = 'Continuar';
+  btnProxima.onclick = () => proximaPergunta();
+}
+
+// Função para cancelar seleção (melhorada)
+function cancelarSelecaoLimpa() {
+  if (!aguardandoConfirmacao) return;
+  
+  console.log('❌ Cancelando seleção limpa');
+  
+  // Limpar seleção temporária
+  alternativaSelecionadaTemp = null;
+  aguardandoConfirmacao = false;
+  
+  // Remover feedback visual
+  const botoes = alternativasContainer.querySelectorAll('button');
+  botoes.forEach(btn => btn.classList.remove('selecionada-temp'));
+  
+  // Esconder botões de confirmação
+  esconderBotoesConfirmacao();
+  
+  // Restaurar estado original
+  feedback.textContent = '';
+  feedback.className = '';
+  btnProxima.style.display = 'block';
+  btnProxima.textContent = 'Pular Pergunta';
+  btnProxima.onclick = () => pularPergunta();
+}
+
+// Criar botões de confirmação com touch limpo
+function criarBotaoConfirmacaoLimpo() {
+  const botaoConfirmar = document.createElement('button');
+  botaoConfirmar.id = 'btnConfirmarMobile';
+  botaoConfirmar.className = 'btn-confirmar-mobile';
+  botaoConfirmar.innerHTML = '✓ Confirmar Resposta';
+  botaoConfirmar.style.display = 'none';
+  
+  // Touch limpo para confirmação
+  let confirmTouchId = null;
+  
+  botaoConfirmar.addEventListener('touchstart', (e) => {
+    confirmTouchId = e.touches[0].identifier;
+  }, { passive: true });
+  
+  botaoConfirmar.addEventListener('touchend', (e) => {
+    if (confirmTouchId !== null) {
+      e.preventDefault();
+      e.stopPropagation();
+      confirmTouchId = null;
+      confirmarRespostaLimpa();
+    }
+  }, { passive: false });
+  
+  // Fallback click
+  botaoConfirmar.addEventListener('click', (e) => {
+    if (!('ontouchstart' in window)) {
+      e.preventDefault();
+      confirmarRespostaLimpa();
+    }
+  });
+  
+  return botaoConfirmar;
+}
+
+function criarBotaoCancelarLimpo() {
+  const botaoCancelar = document.createElement('button');
+  botaoCancelar.id = 'btnCancelarMobile';
+  botaoCancelar.className = 'btn-cancelar-mobile';
+  botaoCancelar.innerHTML = '✗ Cancelar';
+  botaoCancelar.style.display = 'none';
+  
+  // Touch limpo para cancelamento
+  let cancelTouchId = null;
+  
+  botaoCancelar.addEventListener('touchstart', (e) => {
+    cancelTouchId = e.touches[0].identifier;
+  }, { passive: true });
+  
+  botaoCancelar.addEventListener('touchend', (e) => {
+    if (cancelTouchId !== null) {
+      e.preventDefault();
+      e.stopPropagation();
+      cancelTouchId = null;
+      cancelarSelecaoLimpa();
+    }
+  }, { passive: false });
+  
+  // Fallback click
+  botaoCancelar.addEventListener('click', (e) => {
+    if (!('ontouchstart' in window)) {
+      e.preventDefault();
+      cancelarSelecaoLimpa();
+    }
+  });
+  
+  return botaoCancelar;
+}
+
+// Função principal para exibir pergunta com sistema limpo
+function exibirPerguntaComToqueLimpo() {
+  const pergunta = perguntasSelecionadas[perguntaAtual];
+  perguntaRespondida = false;
+  aguardandoConfirmacao = false;
+  alternativaSelecionadaTemp = null;
+  
+  setTimeout(() => {
+    enunciado.textContent = pergunta.enunciado;
+    
+    if (pergunta.imagem && pergunta.imagem !== '') {
+      imagem.src = `assets/${pergunta.imagem}`;
+      imagem.style.display = 'block';
+      imagem.onerror = () => imagem.style.display = 'none';
+    } else {
+      imagem.style.display = 'none';
+    }
+    
+    // Recriar alternativas com sistema limpo
+    alternativasContainer.innerHTML = '';
+    pergunta.alternativas.forEach((alt, index) => {
+      const botao = criarBotaoAlternativaLimpo(alt, index);
+      alternativasContainer.appendChild(botao);
+    });
+    
+    // Adicionar botões de confirmação mobile
+    if (isMobileDevice) {
+      if (!document.getElementById('btnConfirmarMobile')) {
+        const containerConfirmacao = document.createElement('div');
+        containerConfirmacao.className = 'confirmacao-mobile-container';
+        
+        const btnConfirmar = criarBotaoConfirmacaoLimpo();
+        const btnCancelar = criarBotaoCancelarLimpo();
+        
+        containerConfirmacao.appendChild(btnCancelar);
+        containerConfirmacao.appendChild(btnConfirmar);
+        
+        alternativasContainer.parentNode.insertBefore(
+          containerConfirmacao, 
+          alternativasContainer.nextSibling
+        );
+      }
+    }
+    
+    controlarBotaoVideo(pergunta);
+    
+    feedback.textContent = '';
+    feedback.className = '';
+    btnProxima.style.display = 'block';
+    btnProxima.textContent = 'Pular Pergunta';
+    btnProxima.onclick = () => pularPergunta();
+    
+    document.querySelector('.card').style.opacity = '1';
+    alternativasContainer.style.opacity = '1';
+    atualizarProgresso();
+  }, 300);
+}
+
+// Função principal para inicializar quiz com toque limpo
+function iniciarQuizComToqueLimpo(tema) {
+  console.log('🎯 Iniciando quiz com sistema de toque limpo...');
+  
+  // Detectar dispositivo mobile
+  isMobileDevice = detectarMobile();
+  console.log('📱 Mobile detectado:', isMobileDevice);
+  
+  // Aplicar estilos limpos se for mobile
+  if (isMobileDevice) {
+    aplicarEstilosMobileLimpos();
+  }
+  
+  quizIniciado = true;
+  
+  // Inicializar áudio
+  if (!audioInicializado) {
+    initializeAudioForIOS();
+  }
+  
+  if (tema) {
+    const config = temas[tema];
+    perguntasSelecionadas = perguntas.slice(config.inicio, config.fim + 1);
+  } else {
+    perguntasSelecionadas = [...perguntas];
+  }
+  
+  perguntaAtual = 0;
+  pontuacao = 0;
+  criarBarraProgresso();
+  exibirPerguntaComToqueLimpo();
+  
+  const menu = document.getElementById('menu');
+  if (menu) menu.style.display = 'none';
+  document.querySelector('.quiz-container').style.display = 'block';
+}
+
+// Função de debug para sistema limpo
+window.debugToqueLimpo = () => {
+  console.log('🔍 DEBUG TOQUE LIMPO:');
+  console.log('- É mobile:', isMobileDevice);
+  console.log('- Aguardando confirmação:', aguardandoConfirmacao);
+  console.log('- Seleção temporária:', alternativaSelecionadaTemp);
+  console.log('- Estilos aplicados:', !!document.getElementById('mobile-clean-style'));
+  
+  const botoes = alternativasContainer.querySelectorAll('button');
+  console.log('- Botões de alternativas:', botoes.length);
+  botoes.forEach((btn, i) => {
+    console.log(`  Botão ${i}:`, {
+      touchAction: getComputedStyle(btn).touchAction,
+      classes: Array.from(btn.classList)
+    });
+  });
+};
+
+// INSTRUÇÕES DE USO:
+// 1. Substitua iniciarQuizComConfirmacao() por iniciarQuizComToqueLimpo()
+// 2. Substitua exibirPerguntaComConfirmacao() por exibirPerguntaComToqueLimpo()
+// 3. O sistema agora tem:
+//    - Zero feedback visual durante toque/scroll
+//    - Detecção rigorosa de clique vs scroll
+//    - Confirmação limpa após seleção
+//    - Estilos CSS otimizados para mobile
+
+//oi
