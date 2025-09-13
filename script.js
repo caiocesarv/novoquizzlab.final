@@ -311,7 +311,7 @@ async function iniciarQuizComToqueLimpo(tema) {
   perguntaAtual = 0;
   pontuacao = 0;
   criarBarraProgresso();
-  exibirPerguntaComToqueLimpo();
+  exibirPerguntaComImagemCorrigida();
   
   const menu = document.getElementById('menu');
   if (menu) menu.style.display = 'none';
@@ -385,7 +385,7 @@ function habilitarBotaoVideo() {
 }
 
 // Exibir pergunta
-function exibirPerguntaComToqueLimpo(){
+function exibirPerguntaComImagemCorrigida(){
   const pergunta = perguntasSelecionadas[perguntaAtual];
   perguntaRespondida = false;
   setTimeout(() => {
@@ -577,7 +577,7 @@ function proximaPergunta() {
     alternativasContainer.style.opacity = '0';
     
     setTimeout(() => {
-      exibirPerguntaComToqueLimpo();
+      exibirPerguntaComImagemCorrigida();
     }, 300);
   } else {
     exibirResultadoFinal();
@@ -1069,7 +1069,7 @@ function criarBotaoAlternativaComConfirmacao(alt, index) {
 }
 
 // Função exibirPergunta() modificada
-function exibirPerguntaComToqueLimpo() {
+function exibirPerguntaComImagemCorrigida() {
   const pergunta = perguntasSelecionadas[perguntaAtual];
   perguntaRespondida = false;
   aguardandoConfirmacao = false;
@@ -1129,7 +1129,7 @@ function exibirPerguntaComToqueLimpo() {
 
 // Inicialização com detecção de mobile
 function iniciarQuizComToqueLimpo(tema) {
-  console.log('🎯 Iniciando quiz com confirmação mobile...');
+  console.log('Iniciando quiz com confirmação mobile...');
   
   // Detectar dispositivo mobile
   isMobileDevice = detectarMobile();
@@ -1139,6 +1139,8 @@ function iniciarQuizComToqueLimpo(tema) {
   if (isMobileDevice) {
     iniciarSistemaUltraResponsivo();
     aplicarEstilosMobileUltraResponsivos();
+    inicializarCorrecaoScrollImagens();
+    inicializarCorrecaoScrollImagens();
   }
   
   quizIniciado = true;
@@ -1551,7 +1553,7 @@ function criarBotaoCancelarUltraResponsivo() {
 }
 
 // Função principal para exibir pergunta com sistema limpo
-function exibirPerguntaComToqueLimpo() {
+function exibirPerguntaComImagemCorrigida() {
   const pergunta = perguntasSelecionadas[perguntaAtual];
   perguntaRespondida = false;
   aguardandoConfirmacao = false;
@@ -1639,7 +1641,7 @@ function iniciarQuizComToqueLimpo(tema) {
   perguntaAtual = 0;
   pontuacao = 0;
   criarBarraProgresso();
-  exibirPerguntaComToqueLimpo();
+  exibirPerguntaComImagemCorrigida();
   
   const menu = document.getElementById('menu');
   if (menu) menu.style.display = 'none';
@@ -2137,3 +2139,634 @@ window.debugUltraResponsivo = () => {
     Array.from(botoes).every(btn => btn.offsetHeight >= 44));
 };
 
+// SOLUÇÃO PARA SCROLL LIVRE SOBRE IMAGENS NO MOBILE
+// Adicione estas funções ao seu código existente
+
+// Função para configurar comportamento de scroll livre nas imagens
+function configurarScrollLivreImagens() {
+  const imagem = document.getElementById('imagem');
+  
+  if (!imagem) return;
+  
+  console.log('🖼️ Configurando scroll livre para imagens...');
+  
+  // Remover todos os event listeners anteriores da imagem
+  imagem.replaceWith(imagem.cloneNode(true));
+  const imagemNova = document.getElementById('imagem');
+  
+  // Configurar propriedades CSS para permitir scroll
+  imagemNova.style.touchAction = 'auto';
+  imagemNova.style.webkitTouchCallout = 'none';
+  imagemNova.style.webkitUserSelect = 'none';
+  imagemNova.style.userSelect = 'none';
+  imagemNova.style.pointerEvents = 'none'; // Permitir que eventos passem através
+  
+  // Adicionar eventos específicos para imagem
+  imagemNova.addEventListener('touchstart', (e) => {
+    // Permitir propagação para scroll
+    e.stopPropagation = () => {}; // Neutralizar stopPropagation
+  }, { passive: true });
+  
+  imagemNova.addEventListener('touchmove', (e) => {
+    // Permitir scroll livre
+    e.stopPropagation = () => {}; // Neutralizar stopPropagation
+  }, { passive: true });
+  
+  imagemNova.addEventListener('touchend', (e) => {
+    // Permitir propagação
+    e.stopPropagation = () => {}; // Neutralizar stopPropagation
+  }, { passive: true });
+  
+  console.log('✅ Scroll livre configurado para imagem');
+}
+
+// CSS específico para corrigir scroll sobre imagens
+function aplicarCSSScrollImagens() {
+  let styleElement = document.getElementById('image-scroll-fix-style');
+  if (!styleElement) {
+    styleElement = document.createElement('style');
+    styleElement.id = 'image-scroll-fix-style';
+    document.head.appendChild(styleElement);
+  }
+  
+  styleElement.textContent = `
+    /* CORREÇÃO DE SCROLL SOBRE IMAGENS */
+    #imagem {
+      /* Permitir scroll livre sobre a imagem */
+      touch-action: auto !important;
+      pointer-events: none !important;
+      -webkit-touch-callout: none !important;
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      
+      /* Garantir que a imagem não interfira no scroll */
+      position: relative !important;
+      z-index: 1 !important;
+      
+      /* Melhorar performance de scroll */
+      -webkit-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
+      will-change: auto !important;
+    }
+    
+    /* Container da imagem deve permitir scroll */
+    .imagem-container, .card {
+      touch-action: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overflow: visible !important;
+    }
+    
+    /* Garantir que elementos próximos à imagem não interfiram */
+    #enunciado {
+      touch-action: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Container principal deve ter scroll livre */
+    .quiz-container {
+      touch-action: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overflow-y: auto !important;
+    }
+    
+    /* Body e html com scroll otimizado */
+    html, body {
+      touch-action: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+    
+    /* Específico para mobile */
+    @media (hover: none) and (pointer: coarse) {
+      #imagem {
+        /* Forçar que a imagem não capture eventos de toque */
+        pointer-events: none !important;
+        touch-action: auto !important;
+      }
+      
+      /* Garantir scroll suave em mobile */
+      * {
+        -webkit-overflow-scrolling: touch !important;
+      }
+    }
+  `;
+  
+  console.log('✅ CSS de correção de scroll aplicado');
+}
+
+// Função para detectar e corrigir problemas específicos da imagem
+function corrigirComportamentoImagem() {
+  const imagem = document.getElementById('imagem');
+  
+  if (!imagem) return;
+  
+  // Observer para detectar quando imagem carrega
+  const imageObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+        // Reconfigurar quando src da imagem muda
+        setTimeout(() => {
+          configurarScrollLivreImagens();
+        }, 100);
+      }
+    });
+  });
+  
+  // Observer para mudanças na imagem
+  imageObserver.observe(imagem, {
+    attributes: true,
+    attributeFilter: ['src', 'style']
+  });
+  
+  // Configurar imagem atual
+  configurarScrollLivreImagens();
+}
+
+// Função para criar container otimizado da imagem
+function criarContainerImagemOtimizado() {
+  const imagemAtual = document.getElementById('imagem');
+  
+  if (!imagemAtual || imagemAtual.parentNode.classList.contains('imagem-container-otimizada')) {
+    return;
+  }
+  
+  // Criar container wrapper
+  const container = document.createElement('div');
+  container.className = 'imagem-container-otimizada';
+  container.style.cssText = `
+    touch-action: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow: visible !important;
+    position: relative !important;
+    width: 100% !important;
+  `;
+  
+  // Mover imagem para dentro do container
+  imagemAtual.parentNode.insertBefore(container, imagemAtual);
+  container.appendChild(imagemAtual);
+  
+  console.log('✅ Container otimizado criado para imagem');
+}
+
+// Função principal para corrigir scroll sobre imagens
+function inicializarCorrecaoScrollImagens() {
+  if (!isMobileDevice) {
+    console.log('⏭️ Não é mobile, pulando correção de scroll');
+    return;
+  }
+  
+  console.log('🔧 Iniciando correção de scroll sobre imagens...');
+  
+  // Aplicar CSS de correção
+  aplicarCSSScrollImagens();
+  
+  // Criar container otimizado
+  criarContainerImagemOtimizado();
+  
+  // Corrigir comportamento da imagem
+  corrigirComportamentoImagem();
+  
+  // Configuração adicional para iOS
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    document.body.style.webkitOverflowScrolling = 'touch';
+    document.documentElement.style.webkitOverflowScrolling = 'touch';
+  }
+  
+  console.log('✅ Correção de scroll sobre imagens concluída!');
+}
+
+// Função para verificar e corrigir imagem a cada pergunta
+function verificarImagemNaPergunta() {
+  setTimeout(() => {
+    const imagem = document.getElementById('imagem');
+    
+    if (imagem && imagem.style.display !== 'none') {
+      console.log('🖼️ Imagem detectada na pergunta, aplicando correções...');
+      configurarScrollLivreImagens();
+    }
+  }, 500); // Aguardar carregamento da imagem
+}
+
+// Modificação na função exibirPerguntaComImagemCorrigida para incluir correção de imagem
+function exibirPerguntaComImagemCorrigida() {
+  const pergunta = perguntasSelecionadas[perguntaAtual];
+  perguntaRespondida = false;
+  aguardandoConfirmacao = false;
+  alternativaSelecionadaTemp = null;
+  
+  setTimeout(() => {
+    enunciado.textContent = pergunta.enunciado;
+    
+    if (pergunta.imagem && pergunta.imagem !== '') {
+      imagem.src = `assets/${pergunta.imagem}`;
+      imagem.style.display = 'block';
+      imagem.onerror = () => imagem.style.display = 'none';
+      
+      // NOVA LINHA: Verificar e corrigir imagem
+      verificarImagemNaPergunta();
+    } else {
+      imagem.style.display = 'none';
+    }
+    
+    // ... resto da função igual ao seu código atual
+    
+    // Recriar alternativas com sistema ultra-responsivo
+    alternativasContainer.innerHTML = '';
+    pergunta.alternativas.forEach((alt, index) => {
+      const botao = criarBotaoAlternativaUltraResponsivo(alt, index);
+      alternativasContainer.appendChild(botao);
+    });
+    
+    // Adicionar botões de confirmação mobile se necessário
+    if (isMobileDevice) {
+      if (!document.getElementById('btnConfirmarMobile')) {
+        const containerConfirmacao = document.createElement('div');
+        containerConfirmacao.className = 'confirmacao-mobile-container';
+        
+        const btnConfirmar = criarBotaoConfirmacaoUltraResponsivo();
+        const btnCancelar = criarBotaoCancelarUltraResponsivo();
+        
+        containerConfirmacao.appendChild(btnCancelar);
+        containerConfirmacao.appendChild(btnConfirmar);
+        
+        alternativasContainer.parentNode.insertBefore(
+          containerConfirmacao, 
+          alternativasContainer.nextSibling
+        );
+      }
+    }
+    
+    controlarBotaoVideo(pergunta);
+    
+    feedback.textContent = '';
+    feedback.className = '';
+    btnProxima.style.display = 'block';
+    btnProxima.textContent = 'Pular Pergunta';
+    btnProxima.onclick = () => pularPergunta();
+    
+    document.querySelector('.card').style.opacity = '1';
+    alternativasContainer.style.opacity = '1';
+    atualizarProgresso();
+  }, 300);
+}
+
+// Função de debug para problemas de scroll
+window.debugScrollImagens = () => {
+  console.log('🔍 DEBUG SCROLL IMAGENS:');
+  
+  const imagem = document.getElementById('imagem');
+  if (imagem) {
+    const computedStyle = getComputedStyle(imagem);
+    console.log('- Imagem encontrada:', {
+      display: imagem.style.display,
+      touchAction: computedStyle.touchAction,
+      pointerEvents: computedStyle.pointerEvents,
+      src: imagem.src.substring(imagem.src.lastIndexOf('/') + 1),
+      dimensoes: `${imagem.offsetWidth}x${imagem.offsetHeight}`
+    });
+    
+    // Testar scroll
+    const scrollTop = window.pageYOffset;
+    console.log('- Scroll atual:', scrollTop);
+    
+    // Verificar container
+    const container = imagem.closest('.imagem-container-otimizada');
+    console.log('- Container otimizado:', !!container);
+  } else {
+    console.log('- Nenhuma imagem encontrada');
+  }
+  
+  // Verificar body scroll
+  const bodyStyle = getComputedStyle(document.body);
+  console.log('- Body scroll:', {
+    overflowY: bodyStyle.overflowY,
+    touchAction: bodyStyle.touchAction,
+    webkitOverflowScrolling: bodyStyle.webkitOverflowScrolling
+  });
+};
+
+// SOLUÇÃO PARA SCROLL LIVRE SOBRE IMAGENS NO MOBILE
+// Adicione estas funções ao seu código existente
+
+// Função para configurar comportamento de scroll livre nas imagens
+function configurarScrollLivreImagens() {
+  const imagem = document.getElementById('imagem');
+  
+  if (!imagem) return;
+  
+  console.log('🖼️ Configurando scroll livre para imagens...');
+  
+  // Remover todos os event listeners anteriores da imagem
+  imagem.replaceWith(imagem.cloneNode(true));
+  const imagemNova = document.getElementById('imagem');
+  
+  // Configurar propriedades CSS para permitir scroll
+  imagemNova.style.touchAction = 'auto';
+  imagemNova.style.webkitTouchCallout = 'none';
+  imagemNova.style.webkitUserSelect = 'none';
+  imagemNova.style.userSelect = 'none';
+  imagemNova.style.pointerEvents = 'none'; // Permitir que eventos passem através
+  
+  // Adicionar eventos específicos para imagem
+  imagemNova.addEventListener('touchstart', (e) => {
+    // Permitir propagação para scroll
+    e.stopPropagation = () => {}; // Neutralizar stopPropagation
+  }, { passive: true });
+  
+  imagemNova.addEventListener('touchmove', (e) => {
+    // Permitir scroll livre
+    e.stopPropagation = () => {}; // Neutralizar stopPropagation
+  }, { passive: true });
+  
+  imagemNova.addEventListener('touchend', (e) => {
+    // Permitir propagação
+    e.stopPropagation = () => {}; // Neutralizar stopPropagation
+  }, { passive: true });
+  
+  console.log('✅ Scroll livre configurado para imagem');
+}
+
+// CSS específico para corrigir scroll sobre imagens
+function aplicarCSSScrollImagens() {
+  let styleElement = document.getElementById('image-scroll-fix-style');
+  if (!styleElement) {
+    styleElement = document.createElement('style');
+    styleElement.id = 'image-scroll-fix-style';
+    document.head.appendChild(styleElement);
+  }
+  
+  styleElement.textContent = `
+    /* CORREÇÃO DE SCROLL SOBRE IMAGENS */
+    #imagem {
+      /* Permitir scroll livre sobre a imagem */
+      touch-action: auto !important;
+      pointer-events: none !important;
+      -webkit-touch-callout: none !important;
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      
+      /* Garantir que a imagem não interfira no scroll */
+      position: relative !important;
+      z-index: 1 !important;
+      
+      /* Melhorar performance de scroll */
+      -webkit-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
+      will-change: auto !important;
+    }
+    
+    /* Container da imagem deve permitir scroll */
+    .imagem-container, .card {
+      touch-action: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overflow: visible !important;
+    }
+    
+    /* Garantir que elementos próximos à imagem não interfiram */
+    #enunciado {
+      touch-action: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Container principal deve ter scroll livre */
+    .quiz-container {
+      touch-action: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overflow-y: auto !important;
+    }
+    
+    /* Body e html com scroll otimizado */
+    html, body {
+      touch-action: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+    
+    /* Específico para mobile */
+    @media (hover: none) and (pointer: coarse) {
+      #imagem {
+        /* Forçar que a imagem não capture eventos de toque */
+        pointer-events: none !important;
+        touch-action: auto !important;
+      }
+      
+      /* Garantir scroll suave em mobile */
+      * {
+        -webkit-overflow-scrolling: touch !important;
+      }
+    }
+  `;
+  
+  console.log('✅ CSS de correção de scroll aplicado');
+}
+
+// Função para detectar e corrigir problemas específicos da imagem
+function corrigirComportamentoImagem() {
+  const imagem = document.getElementById('imagem');
+  
+  if (!imagem) return;
+  
+  // Observer para detectar quando imagem carrega
+  const imageObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+        // Reconfigurar quando src da imagem muda
+        setTimeout(() => {
+          configurarScrollLivreImagens();
+        }, 100);
+      }
+    });
+  });
+  
+  // Observer para mudanças na imagem
+  imageObserver.observe(imagem, {
+    attributes: true,
+    attributeFilter: ['src', 'style']
+  });
+  
+  // Configurar imagem atual
+  configurarScrollLivreImagens();
+}
+
+// Função para criar container otimizado da imagem
+function criarContainerImagemOtimizado() {
+  const imagemAtual = document.getElementById('imagem');
+  
+  if (!imagemAtual || imagemAtual.parentNode.classList.contains('imagem-container-otimizada')) {
+    return;
+  }
+  
+  // Criar container wrapper
+  const container = document.createElement('div');
+  container.className = 'imagem-container-otimizada';
+  container.style.cssText = `
+    touch-action: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow: visible !important;
+    position: relative !important;
+    width: 100% !important;
+  `;
+  
+  // Mover imagem para dentro do container
+  imagemAtual.parentNode.insertBefore(container, imagemAtual);
+  container.appendChild(imagemAtual);
+  
+  console.log('✅ Container otimizado criado para imagem');
+}
+
+// Função principal para corrigir scroll sobre imagens
+function inicializarCorrecaoScrollImagens() {
+  if (!isMobileDevice) {
+    console.log('⏭️ Não é mobile, pulando correção de scroll');
+    return;
+  }
+  
+  console.log('🔧 Iniciando correção de scroll sobre imagens...');
+  
+  // Aplicar CSS de correção
+  aplicarCSSScrollImagens();
+  
+  // Criar container otimizado
+  criarContainerImagemOtimizado();
+  
+  // Corrigir comportamento da imagem
+  corrigirComportamentoImagem();
+  
+  // Configuração adicional para iOS
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    document.body.style.webkitOverflowScrolling = 'touch';
+    document.documentElement.style.webkitOverflowScrolling = 'touch';
+  }
+  
+  console.log('✅ Correção de scroll sobre imagens concluída!');
+}
+
+// Função para verificar e corrigir imagem a cada pergunta
+function verificarImagemNaPergunta() {
+  setTimeout(() => {
+    const imagem = document.getElementById('imagem');
+    
+    if (imagem && imagem.style.display !== 'none') {
+      console.log('🖼️ Imagem detectada na pergunta, aplicando correções...');
+      configurarScrollLivreImagens();
+    }
+  }, 500); // Aguardar carregamento da imagem
+}
+
+// Modificação na função exibirPerguntaComToqueLimpo para incluir correção de imagem
+function exibirPerguntaComImagemCorrigida() {
+  const pergunta = perguntasSelecionadas[perguntaAtual];
+  perguntaRespondida = false;
+  aguardandoConfirmacao = false;
+  alternativaSelecionadaTemp = null;
+  
+  setTimeout(() => {
+    enunciado.textContent = pergunta.enunciado;
+    
+    if (pergunta.imagem && pergunta.imagem !== '') {
+      imagem.src = `assets/${pergunta.imagem}`;
+      imagem.style.display = 'block';
+      imagem.onerror = () => imagem.style.display = 'none';
+      
+      // NOVA LINHA: Verificar e corrigir imagem
+      verificarImagemNaPergunta();
+    } else {
+      imagem.style.display = 'none';
+    }
+    
+    // ... resto da função igual ao seu código atual
+    
+    // Recriar alternativas com sistema ultra-responsivo
+    alternativasContainer.innerHTML = '';
+    pergunta.alternativas.forEach((alt, index) => {
+      const botao = criarBotaoAlternativaUltraResponsivo(alt, index);
+      alternativasContainer.appendChild(botao);
+    });
+    
+    // Adicionar botões de confirmação mobile se necessário
+    if (isMobileDevice) {
+      if (!document.getElementById('btnConfirmarMobile')) {
+        const containerConfirmacao = document.createElement('div');
+        containerConfirmacao.className = 'confirmacao-mobile-container';
+        
+        const btnConfirmar = criarBotaoConfirmacaoUltraResponsivo();
+        const btnCancelar = criarBotaoCancelarUltraResponsivo();
+        
+        containerConfirmacao.appendChild(btnCancelar);
+        containerConfirmacao.appendChild(btnConfirmar);
+        
+        alternativasContainer.parentNode.insertBefore(
+          containerConfirmacao, 
+          alternativasContainer.nextSibling
+        );
+      }
+    }
+    
+    controlarBotaoVideo(pergunta);
+    
+    feedback.textContent = '';
+    feedback.className = '';
+    btnProxima.style.display = 'block';
+    btnProxima.textContent = 'Pular Pergunta';
+    btnProxima.onclick = () => pularPergunta();
+    
+    document.querySelector('.card').style.opacity = '1';
+    alternativasContainer.style.opacity = '1';
+    atualizarProgresso();
+  }, 300);
+}
+
+// Função de debug para problemas de scroll
+window.debugScrollImagens = () => {
+  console.log('🔍 DEBUG SCROLL IMAGENS:');
+  
+  const imagem = document.getElementById('imagem');
+  if (imagem) {
+    const computedStyle = getComputedStyle(imagem);
+    console.log('- Imagem encontrada:', {
+      display: imagem.style.display,
+      touchAction: computedStyle.touchAction,
+      pointerEvents: computedStyle.pointerEvents,
+      src: imagem.src.substring(imagem.src.lastIndexOf('/') + 1),
+      dimensoes: `${imagem.offsetWidth}x${imagem.offsetHeight}`
+    });
+    
+    // Testar scroll
+    const scrollTop = window.pageYOffset;
+    console.log('- Scroll atual:', scrollTop);
+    
+    // Verificar container
+    const container = imagem.closest('.imagem-container-otimizada');
+    console.log('- Container otimizado:', !!container);
+  } else {
+    console.log('- Nenhuma imagem encontrada');
+  }
+  
+  // Verificar body scroll
+  const bodyStyle = getComputedStyle(document.body);
+  console.log('- Body scroll:', {
+    overflowY: bodyStyle.overflowY,
+    touchAction: bodyStyle.touchAction,
+    webkitOverflowScrolling: bodyStyle.webkitOverflowScrolling
+  });
+};
+
+// INSTRUÇÕES DE IMPLEMENTAÇÃO:
+
+/* 
+1. Adicione esta chamada na função iniciarQuizComToqueLimpo(), após detectar mobile:
+
+if (isMobileDevice) {
+  iniciarSistemaUltraResponsivo();
+  aplicarEstilosMobileUltraResponsivos();
+  inicializarCorrecaoScrollImagens(); // NOVA LINHA
+}
+
+2. Substitua a função exibirPerguntaComToqueLimpo() por exibirPerguntaComImagemCorrigida()
+   ou adicione verificarImagemNaPergunta() na função existente onde a imagem é configurada.
+
+3. Para testar, use: debugScrollImagens() no console do navegador
+
+*/
