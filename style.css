@@ -123,11 +123,17 @@ header h2 {
 }
 
 #imagem {
-    touch-action: pan-y !important; /* permite rolar para baixo no mobile */
-    -webkit-touch-callout: default; /* deixa o comportamento padrão */
-    -webkit-user-select: auto;
-    user-select: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+
+  /* Permite scroll na página normalmente */
+  touch-action: pan-y !important;  /* só vertical */
+  -webkit-user-drag: none;         /* não arrastar imagem */
+  -webkit-touch-callout: none;     /* não abrir menu iOS */
 }
+
 
 
 /* Alternativas responsivas */
