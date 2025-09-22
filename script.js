@@ -369,7 +369,7 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
             border: 2px solid ${avaliacao.cor};
         ">
             <div style="
-                font-size: 1.5rem;
+                font-size: 2.5rem;
                 font-weight: bold;
                 color: ${avaliacao.cor};
                 margin-bottom: 0.5rem;
@@ -377,7 +377,7 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
                 ${acertos} acertos
             </div>
             <div style="
-                font-size: 1.1rem;
+                font-size: 1.5rem;
                 color: ${avaliacao.cor};
                 font-weight: bold;
             ">
