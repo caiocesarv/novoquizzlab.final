@@ -125,9 +125,16 @@ header h2 {
 #imagem {
   max-width: 100%;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  display: block;
+  margin: 0 auto;
+
+  /* Permite scroll na página normalmente */
+  touch-action: pan-y !important;  /* só vertical */
+  -webkit-user-drag: none;         /* não arrastar imagem */
+  -webkit-touch-callout: none;     /* não abrir menu iOS */
 }
+
+
 
 /* Alternativas responsivas */
 .alternativas {
