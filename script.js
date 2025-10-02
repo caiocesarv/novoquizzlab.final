@@ -2,13 +2,13 @@
 // Sons
 // =========================
 const somCorreto = new Audio("assets/correto.mp3");
-somCorreto.volume = 0.4;
+somCorreto.volume = 1.0;
 
 const somErrado = new Audio("assets/errado.mp3");
-somErrado.volume = 0.4;
+somErrado.volume = 1.0;
 
 const somConclusao = new Audio("assets/conclusao.mp3");
-somConclusao.volume = 0.4;
+somConclusao.volume = 1.0;
 
 function tocarSom(som) {
   som.pause();
