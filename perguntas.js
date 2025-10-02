@@ -258,11 +258,11 @@ const perguntas = [
     "enunciado": "QUESTÃO 19- A anemia megaloblástica é causada pela deficiência de cobalamina (vitamina B12) e/ou ácido fólico (vitamina B9). As principais causas da anemia megaloblástica são: dieta insuficiente (vegetariana), baixa absorção, medicação (quimioterapia), hepatopatias, anemia hemolítica e alcoolismo. A anemia perniciosa é outra causa de anemia megaloblástica, onde os autoanticorpos são produzidos contra as células parietais do estômago, causando gastrite atrófica e reduzindo a produção de fator intrínseco, indispensável para a absorção da vitamina B12 no duodeno. Em uma anemia megaloblástica (imagem), que alterações citológicas são essas?",
     "imagem": "questao19.png",
     "alternativas": [
-      "A - macrófago  / 2 – dacriócito / 3 - macroovalócito / 4 - hiposegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
-      "B - macrócito  / 2 – dacriócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
-      "C - macrócito  / 2 – codócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - Corpúsculos de Pappenheimer.",
-      "D - macrófago / 2 – dacriócito / 3 - macroovalócito / 4 - hiposegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
-      "E - macrócito  / 2 – codócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - Corpúsculos de Pappenheimer."
+      "A - 1 - macrófago  / 2 – dacriócito / 3 - macroovalócito / 4 - hiposegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
+      "B - 2 - macrócito  / 2 – dacriócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
+      "C - 3 - macrócito  / 2 – codócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - Corpúsculos de Pappenheimer.",
+      "D - 4 - macrófago / 2 – dacriócito / 3 - macroovalócito / 4 - hiposegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
+      "E - 5 - macrócito / 2 – codócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - Corpúsculos de Pappenheimer."
     ],
     "correta": "B",
     "topico": "HEMÁCIAS e ANEMIAS",
