@@ -259,10 +259,10 @@ const perguntas = [
     "imagem": "questao19.png",
     "alternativas": [
       "A - 1 - macrófago  / 2 – dacriócito / 3 - macroovalócito / 4 - hiposegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
-      "B - 2 - macrócito  / 2 – dacriócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
-      "C - 3 - macrócito  / 2 – codócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - Corpúsculos de Pappenheimer.",
-      "D - 4 - macrófago / 2 – dacriócito / 3 - macroovalócito / 4 - hiposegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
-      "E - 5 - macrócito / 2 – codócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - Corpúsculos de Pappenheimer."
+      "B - 1 - macrócito  / 2 – dacriócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
+      "C - 1 - macrócito  / 2 – codócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - Corpúsculos de Pappenheimer.",
+      "D - 1 - macrófago / 2 – dacriócito / 3 - macroovalócito / 4 - hiposegmentação dos neutrófilos / 5 - corpúsculo de Howell-Jolly",
+      "E - 1 - macrócito / 2 – codócito / 3 - macroovalócito / 4 - hipersegmentação dos neutrófilos / 5 - Corpúsculos de Pappenheimer."
     ],
     "correta": "B",
     "topico": "HEMÁCIAS e ANEMIAS",
