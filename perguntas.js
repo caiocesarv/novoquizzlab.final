@@ -13,7 +13,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "C:\Users\cesar\OneDrive\Documentos\finalizar quizz\novoquizzlab.final\assets\teste.mp4"
+    "video": "https://youtu.be/EKxoJ364Xm0"
   },
   {
     "enunciado": "QUESTÃO 02- O corpúsculo de Howell-Jolly é um fragmento de material nuclear, formado por um cromossomo que se separou do fuso mitótico em uma expressão nuclear incompleta. Apresenta-se como uma inclusão arredondada com 1 a 2µ de diâmetro e de coloração semelhante ao do núcleo. Onde o corpúsculo de Howell-Jolly está mais presente?",
@@ -27,7 +27,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/gM3Hlxg53qs"
   },
   {
     "enunciado": "QUESTÃO 03- Qual das células da eritropoese constitui de 1 a 4% das células da medula óssea, onde ocorre também o início da hemoglobinização e é considerada a célula do segundo dia da eritropoese?\n Células da imagem:\n 1 = Proeritroblasto / 2 = Eritroblasto basófilo / 3 =  Eritroblasto policromático / 4 =  Eritroblasto ortocromático.",
@@ -41,7 +41,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/1i1ARJqKLf8"
   },
   {
     "enunciado": "QUESTÃO 04- Preencha os espaços em branco:\n A hemácia em lágrima também é conhecida como ___________, hemácia em gota, hemácia em raquete ou hemácia em pera. É observada com maior frequência na ____________________________e na anemia megaloblástica, mas, as anemias com oxidação da hemoglobina e formação de corpos de Heinz, também formam hemácias em lágrima. Após esplenectomia, as hemácias em lágrima ____________em muito nos pacientes com mielofibrose e talassemia maior.",
@@ -55,7 +55,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/EykBeZxkh_Q"
   },
   {
     "enunciado": "QUESTÃO 05- Qual afirmação abaixo sobre a anemia falciforme está incorreta?",
@@ -69,7 +69,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/Y44r1wxO29w"
   },
   {
     "enunciado": "QUESTÃO 06- A microangiopatia que ocorre na PTT, também pode correr em outras patologias, como exemplo: na coagulação intravascular disseminada (CIVD), na síndrome hemolítico-urêmica (SHU) e na síndrome HELLP. O diagnóstico diferencial entre a síndrome HELLP, a SHU e o PTT, é difícil, já que todas são caracterizadas no sangue periférico por apresentarem esquistócitos e plaquetopenia. Quem são as hemácias que compõe os esquistócitos?",
@@ -83,7 +83,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/MTAlvoaJovk"
   },
   {
     "enunciado": "QUESTÃO 07- Nessa forma de anemia, os sintomas são causados pela aglutinação das hemácias em temperaturas abaixo de 37 graus, nas extremidades do organismo que levam à redução do fluxo sanguíneo. Costumam ser produzidos em resposta a infecções ou por doenças linfoproliferativas. As formas mais comuns em resposta a infecções, ocorre em pneumonias (por Mycobacterium pneumoniae). No hemograma, é observada as hemácias agrupadas, que são responsáveis por falsas elevações dos índices hematimétricos da amostra. Qual o nome dessa anemia?",
@@ -97,7 +97,7 @@ const perguntas = [
     ],
     "correta": "D",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/etQbSS3ucTc"
   },
   {
     "enunciado": "QUESTÃO 08- Nos pacientes que apresentam homozigose dessa anemia, geralmente as alterações hematológicas são graves, costumando apresentar uma Hb inferior a 6g/dL (evidente hipocromia), intensa pecilocitose, esquizócitos, hemácias em lágrima e eritroblastos circulantes, alguns com grânulos basofílicos característicos (RNA). Quando há o hiperesplenismo, pode ocorrer leucopenia ou plaquetopenia. Na maioria das vezes, a dosagem de bilirrubina indireta está elevada, bem como a ferritina sérica. Obtém-se o diagnóstico pela eletroforese da hemoglobina, que mostra evidente aumento das hemoglobinas fetal e A2. Que anemia é essa?",

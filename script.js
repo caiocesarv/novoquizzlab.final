@@ -255,23 +255,51 @@ function exibirResultadoFinal() {
 // =========================
 // Botão de vídeo
 // =========================
+function extrairIdYouTube(url) {
+  if (!url) return null;
+  
+  // Formatos suportados:
+  // https://www.youtube.com/watch?v=VIDEO_ID
+  // https://youtu.be/VIDEO_ID
+  // https://www.youtube.com/embed/VIDEO_ID
+  
+  const regexPatterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\?\/]+)/,
+    /^([a-zA-Z0-9_-]{11})$/ // ID direto
+  ];
+  
+  for (let pattern of regexPatterns) {
+    const match = url.match(pattern);
+    if (match && match[1]) {
+      return match[1];
+    }
+  }
+  
+  return null;
+}
+
 function controlarBotaoVideo(pergunta) {
   if (!btnVideo) return;
 
+  // Esconde o vídeo ao trocar de pergunta
+  videoContainer.style.display = 'none';
+  videoPlayer.src = '';
+  
+  // Reseta o texto do botão
+  btnVideo.textContent = '▶️ Assistir Explicação em Vídeo';
+
   if (pergunta.video && pergunta.video !== '') {
-    btnVideo.style.display = 'block';
+    btnVideo.style.display = 'inline-block';
     if (!perguntaRespondida) {
       btnVideo.disabled = true;
       btnVideo.style.opacity = '0.5';
     } else {
       btnVideo.disabled = false;
       btnVideo.style.opacity = '1';
-      videoPlayer.src = pergunta.video;
     }
   } else {
     btnVideo.style.display = 'none';
   }
-  videoContainer.style.display = 'none';
 }
 
 function habilitarBotaoVideo() {
@@ -319,10 +347,6 @@ function iniciarQuiz() {
   criarBarraProgresso();
   exibirPergunta();
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  iniciarQuiz();
-});
 
 // Função: avaliação diagnóstica
 function obterAvaliacaoDiagnostica(acertos, totalQuestoes) {
@@ -387,3 +411,41 @@ function criarHtmlAvaliacaoDiagnostica(acertos) {
     </div>
   `;
 }
+
+// =========================
+// EVENT LISTENER DO BOTÃO DE VÍDEO - IMPORTANTE!
+// =========================
+document.addEventListener('DOMContentLoaded', () => {
+  iniciarQuiz();
+  
+  // Event listener para o botão de vídeo
+  if (btnVideo) {
+    btnVideo.addEventListener('click', function() {
+      const pergunta = perguntasSelecionadas[perguntaAtual];
+      
+      // Extrai o ID do vídeo do YouTube
+      const videoId = extrairIdYouTube(pergunta.video);
+      
+      if (!videoId) {
+        alert('URL de vídeo inválida!');
+        return;
+      }
+      
+      // Alterna visibilidade do vídeo
+      if (videoContainer.style.display === 'none' || videoContainer.style.display === '') {
+        // Mostra o vídeo
+        videoPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        videoContainer.style.display = 'block';
+        btnVideo.textContent = '⏸️ Fechar Vídeo';
+        
+        // Scroll suave até o vídeo
+        videoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        // Esconde o vídeo
+        videoPlayer.src = '';
+        videoContainer.style.display = 'none';
+        btnVideo.textContent = '▶️ Assistir Explicação em Vídeo';
+      }
+    });
+  }
+});
