@@ -111,7 +111,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/vOpkdqxKqFo"
   },
   {
     "enunciado": "QUESTÃO 09- A diseritropoiese é um processo anormal de formação de glóbulos vermelhos na medula óssea, caracterizado pela presença de eritroblastos displásicos, ou seja, células precursoras dos glóbulos vermelhos com alterações morfológicas. A diseritropoese pode ser um achado em diversas condições, incluindo anemias congênitas e síndromes mielodisplásicas também. Mas, que célula é essa da seta?",
@@ -125,7 +125,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/JzPdB8Ursfs"
     
   },
   {
@@ -140,7 +140,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/vjiEXDsKKa4"
   },
   {
     "enunciado": "QUESTÃO 11- Essas hemácias perderam a definição do contorno da membrana celular, ficando com aparência imprecisa e deformada. Este tipo de fenômeno não é incomum, já que pacientes com altas taxas de lipídios (hiperlipidemia), mais precisamente com dosagem bioquímica de triglicerídeos superiores a 1.000mg/dL no soro, podem apresentar. A origem desta hemácia deve-se ao excesso de lipídios, que prejudica o equilíbrio da composição da membrana da hemácia, que é lipoproteica. Qual o nome dessas hemácias da imagem?",
@@ -154,7 +154,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/qLfm_B8YV1s"
   },
   {
     "enunciado": "QUESTÃO 12- Qual das afirmativas abaixo está errada sobre os esferócitos?",
@@ -168,7 +168,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/45NQ8igmyO8"
   },
   {
     "enunciado": "QUESTÃO 13- No sangue periférico dos pacientes portadores dessa hemoglobinopatia são observadas numerosos codócitos e cristais (setas na imagem). Esses cristais são densos e apresentam vários graus de curvatura. Essa hemoglobinopatia é uma variante falcêmica de caráter hereditário. Clinicamente, os pacientes portadores podem se apresentar de modo mais brando que os pacientes portadores da HB SS. Que cristais são esses da imagem?",
@@ -182,7 +182,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/7tiGZ7hjSmA"
   },
   {
     "enunciado": "QUESTÃO 14- As Hemácias “cruzadas”, sobrepostas em forma de “X” foram observadas em grande número por campo em alguns pacientes com eliptocitose hereditária sintomática. Nesses pacientes apresentando este fenômeno, as hemácias foram lavadas com solução salina a 0,9%, por 5 vezes. Após a lavagem, foram confeccionados alguns novos esfregaços, e a pesquisa citológica de hemácias “cruzadas” foi negativa, comprovando a alteração de cargas elétricas entre as hemácias, anulada pela lavagem delas. Em qual alteração as Hemácias “cruzadas” são classificadas?",
@@ -196,7 +196,7 @@ const perguntas = [
     ],
     "correta": "A",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/qMe3cMuVyEE"
   },
   {
     "enunciado": "QUESTÃO 15- Qual afirmativa abaixo sobre os corpúsculos de Heinz está errada?",
@@ -210,7 +210,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/NkUNWu-sbuY"
   },
   {
     "enunciado": "QUESTÃO 16- O reticulócito não apresenta núcleo e tem um tempo de maturação médio de 18h antes de se transformar em uma hemácia madura. Mantém uma capacidade residual de sintetizar proteínas e mitocôndrias. O reticulócito apresenta vestígios de RNA, responsável pela policromasia. Estas células surgem no 5o a 7o dia do início da eritropoese e são observadas apenas na coloração com o azul de cresil brilhante. Na imagem observamos uma intensa reticulocitose de 42% (vn: 0,5 – 1,5%). Em qual situação isso pode ocorrer?",
@@ -224,7 +224,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/MqiiaWs6Q7A"
   },
   {
     "enunciado": "QUESTÃO 17- Essas pequenas inclusões irregulares, que se localizam na periferia da hemácia, representa mitocôndrias e ribossomos carregados de ferro, agregados de ferritina, ou fagossomos que contêm ferritina agregada. O eritroblasto ortocromático, o reticulócito e a hemácia podem apresentar um ou mais dessas inclusões. O siderócito é uma hemácia que apresenta essas inclusões. Em pacientes esplenectomizados é normal o aumento dessas pequenas inclusões, já que é o baço que faz sua retirada. Também se observa esse aumento na síndrome mielodisplásica, na anemia sideroblástica, no alcoolismo, na anemia deseritropoética e na toxicidade por isoniazida. Que o nome dessa inclusão nas hemácias?",
@@ -238,7 +238,7 @@ const perguntas = [
     ],
     "correta": "A",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/r7uqvv9Gdxo"
   },
   {
     "enunciado": "QUESTÃO 18- Sobre o rouleaux eritrocitário qual afirmativa abaixo está errada?",
@@ -1263,7 +1263,7 @@ const perguntas = [
     "enunciado": "QUESTÃO 93 - É um Linfoma de células B, de crescimento agressivo, com um curso variável. Nesse linfoma cerca de 85% dos casos ocorre a translocação cromossômica t(11;14), que leva à superexpressão da proteína ciclina D1. No sangue periférico é observado comumente a presença de células linfoides com endentações e nucléolo excêntrico (imagem). Qual o nome desse linfoma?",
     "imagem": "questao93.jpg",
     "alternativas": [
-      "A - Linfoma de Folicular.",
+      "A - Linfoma Folicular.",
       "B - Linfoma Difuso de Grandes Células B.",
       "C - Linfoma de Células do Manto.",
       "D - Linfoma Esplênico da Zona Marginal.",
