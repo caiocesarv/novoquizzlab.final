@@ -697,7 +697,7 @@ const perguntas = [
   
   // HEMOPARASITAS - Questões 50 a 55
   {
-    "enunciado": "QUESTÃO 50 - Essa hemoparasitose pode se apresentar em duas fases: aguda e crônica. A fase aguda pode ser assintomática ou apresentar sintomas como febre, fraqueza e inchaços. A fase crônica pode afetar o coração e o sistema digestivo, com complicações como insuficiência cardíaca e problemas gastrointestinais. Na fase aguda, no sangue periférico pode surgir o protozoário unicelular Trypanosoma cruzi (setas), apresentando um único flagelo, e uma única mitocôndria alongada, e terminada e um cinetoplasto que contêm o DNA mitocondrial. Qual o nome dessa hemoparasitose?",
+    "enunciado": "QUESTÃO 50 - Essa hemoparasitose pode se apresentar em duas fases: aguda e crônica. A fase aguda pode ser assintomática ou apresentar sintomas como febre, fraqueza e inchaços. A fase crônica pode afetar o coração e o sistema digestivo, com complicações como insuficiência cardíaca e problemas gastrointestinais. Na fase aguda, no sangue periférico pode surgir o protozoário unicelular Trypanosoma cruzi (setas), apresentando um único flagelo, núcleo e terminada e um cinetoplasto que contêm o DNA mitocondrial. Qual o nome dessa hemoparasitose?",
     "imagem": "questao50.jpg",
     "alternativas": [
       "A - Tripanossomíase americana.",
