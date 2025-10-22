@@ -252,7 +252,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/OepFmBhImtM"
   },
   {
     "enunciado": "QUESTÃO 19- A anemia megaloblástica é causada pela deficiência de cobalamina (vitamina B12) e/ou ácido fólico (vitamina B9). As principais causas da anemia megaloblástica são: dieta insuficiente (vegetariana), baixa absorção, medicação (quimioterapia), hepatopatias, anemia hemolítica e alcoolismo. A anemia perniciosa é outra causa de anemia megaloblástica, onde os autoanticorpos são produzidos contra as células parietais do estômago, causando gastrite atrófica e reduzindo a produção de fator intrínseco, indispensável para a absorção da vitamina B12 no duodeno. Em uma anemia megaloblástica (imagem), que alterações citológicas são essas?",
@@ -266,7 +266,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/zQrzqhGIkcs"
   },
   {
     "enunciado": "QUESTÃO 20- Essa anemia por anormalidades na membrana celular acomete principalmente os caucasianos, chineses, japoneses e indianos, porém nos africanos ocidentais a incidência é ainda maior. Os genes mais frequentemente associados são os da espectrina e da proteína 4.1r, onde promovem modificações na estrutura da membrana, e quando a hemácia se alonga para passar em um capilar muito fino, não consegue mais voltar a sua forma normal. Qual o nome dessa anemia e qual a percentagem no sangue periférico desses pecilócitos para sugerir homozigose?",
@@ -280,7 +280,7 @@ const perguntas = [
     ],
     "correta": "D",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/j3DH_F2X7SM"
   },
   {
     "enunciado": "QUESTÃO 21- Sobre as alterações displásicas nos eritroblastos da imagem, qual afirmativa abaixo está incorreta?",
@@ -294,7 +294,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/4_cvDxc-z4I"
   },
   {
     "enunciado": "QUESTÃO 22- Existem alguns tipos de hemácias que podem apresentar formas alongadas e isso pode gerar um erro na identificação. Essas alterações morfológicas podem indicar condições como anemia falciforme, anemia por deficiência de ferro e até anemias por anormalidades na membrana. Quais os nomes dessas formas de hemácias alongadas da imagem?",
@@ -308,7 +308,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "HEMÁCIAS e ANEMIAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/ynNpAU3jEMM"
   },
   
   // ... continue com as outras 19 questões de HEMÁCIAS e ANEMIAS
@@ -326,7 +326,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/4qZ_UgSJLYQ"
   },
   {
     "enunciado": "QUESTÃO 24 - Os neutrófilos com pseudo-Pelger-Huët (PPH) apresentam uma aparência semelhante à anomalia de Pelger-Huët (APH), condição hereditária que causa núcleos hiposegmentados. Mas no caso do PPH, essa condição é adquirida e não genética e os núcleos geralmente se apresentam arredondado com cromatina densa.  Sobre as causas da formação da PPH: qual afirmativa abaixo está correta?",
@@ -340,7 +340,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/ql0C33aZbqw"
   },
   {
     "enunciado": "QUESTÃO 25 -Esta síndrome pode ser desencadeada por diversos fatores, incluindo: Infecções virais, como o vírus Epstein-Barr (EBV) e infecções bacterianas. Nas doenças autoimunes, como no lúpus e na artrite reumatoide e também nas leucemias e nos linfomas também pode ocorrer. Os fatores genéticos podem desencadear essa alteração por predispor a uma resposta imunológica excessiva. Qual o nome dessa síndrome?",
@@ -354,7 +354,7 @@ const perguntas = [
     ],
     "correta": "D",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/Szv7pNKo8k4"
   },
   {
     "enunciado": "QUESTÃO 26 - Essas células são plasmócitos com diversos vacúolos de imunoglobulina de tamanho, cor e quantidade variáveis no citoplasma da célula. O surgimento desta célula é bastante frequente em casos reativos, porém pode ocorrer também em doenças das células plasmáticas. Como é conhecida essa célula e que tipo de imunoglobulina está presente nos seus vacúolos? ",
@@ -368,7 +368,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/7NyTh5EgdWA"
   },
   {
     "enunciado": "QUESTÃO 27 - Durante a coleta do sangue para o hemograma e a confecção do esfregaço, essas células (imagem), podem se descolar da veia e cair na lâmina durante a inserção ou a retirada da agulha utilizada na coleta. Tais células se apresentam no esfregaço do sangue periférico com morfologia por vezes! similares aos tricoleucócitos.Essas células revestem a superfície interna das câmaras do coração, dos vasos sanguíneos e dos vasos linfáticos. A sua principal função é controlar o fluxo sanguíneo e a pressão arterial, por meio da secreção de vasodilatadores como o ácido nítrico. Qual o nome dessas células?",
@@ -382,7 +382,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/Yagjy05QaQI"
   },
   {
     "enunciado": "QUESTÃO 28 - A Mucopolissacaridose tipo IV ou síndrome de Mórquio, apresenta um comprometimento ósseo severo ainda na infância. Nos dois primeiros anos de vida a presença no sangue periférico de grandes e escassas granulações em 65% dos neutrófilos em média (setas), pode ser a única e importante indicação para o diagnóstico. Como já existe terapia enzimática recombinante para a síndrome de Mórquio, é muito importante relatar no laudo e informar ao médico estas inclusões. A síndrome de Mórquio é uma?",
@@ -396,7 +396,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/pqUd0pPqxO4"
   },
   {
     "enunciado": "QUESTÃO 29 - A mucopolissacaridose tipo VI (MPS VI) ou síndrome de Maroteux-Lamy é uma doença autossômica recessiva e seus portadores apresentam diminuição ou falta de produção das enzimas responsáveis pela metabolização dos glicosaminoglicanos (GAG): sulfato de dermatan e condroitin, promovendo depósitos desses GAG em todos os leucócitos (imagens). Qual o nome dessa famosa alteração?",
@@ -410,7 +410,7 @@ const perguntas = [
     ],
     "correta": "D",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/BLtx1WVz1QE"
   },
   {
     "enunciado": "QUESTÃO 30 - São células eosinófilas que exibem grânulos basofílicos além dos grânulos eosinofílicos típicos. A presença desses grânulos basofílicos é considerada uma alteração celular, indicando uma possível disfunção na maturação e função das células eosinófilicas.  Qual o nome dessas células? ",
@@ -424,7 +424,7 @@ const perguntas = [
     ],
     "correta": "A",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/06yj8_QifSM"
   },
   {
     "enunciado": "QUESTÃO 31 - Essa anomalia é muito rara e se apresenta com uma inclusão de coloração azulada, aderida a parede celular dos neutrófilos, eosinófilos e basófilos (setas), que corresponde ao retículo endoplasmático destruído. Devido à presença de macroplaquetas e plaquetas gigantes na forma elíptica, geralmente a contagem de plaquetas automatizada é mais baixa que o número real. Qual o nome dessa anomalia?",
@@ -438,7 +438,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/5h2dFriJTS0"
   },
   {
     "enunciado": "QUESTÃO 32 - Em casos de infecções bacterianas como salmonelose e shiguelose, o sistema imunológico reage produzindo mais leucócitos do sangue para combater a infecção. No entanto, essa resposta pode incluir a liberação de células imaturas na corrente sanguínea antes que elas estejam totalmente maduras, resultando em?",
@@ -452,7 +452,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/k3YDsYm2x74"
   },
   {
     "enunciado": "QUESTÃO 33 - É uma inclusão leucocitária que ocorre apenas nos neutrófilos e se apresenta com uma coloração azul-pálida, frequentemente localizada na periferia da célula. Trata-se de um corpúsculo na maioria das vezes único, e representa a liquefação do retículo endoplasmático do neutrófilo, geralmente associados a quadros infecciosos graves, queimaduras, inflamação, na administração das citocinas G-CSF / GM-CSF e na gravidez. É muito comum haver granulação tóxica na mesma célula. Qual o nome dessa inclusão?",
@@ -466,7 +466,7 @@ const perguntas = [
     ],
     "correta": "A",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/6zZ0hV1Pr_4"
   },
   {
     "enunciado": "QUESTÃO 34 - É uma doença genética rara e grave, caracterizada por infecções recorrentes, albinismo oculocutâneo e alterações neurológicas. É causada por mutações em um gene denominado LYST, que afeta o transporte e a função dos lisossomos dentro das células do sistema imunológico. Devido à deficiência do sistema imunológico, há mais predisposição a infecções bacterianas graves, especialmente nas vias respiratórias. No sangue periférico é observada inclusões de coloração variável: eosinofílica e acinzentada em granulócitos e blasto (1,2, e 4) e avermelhada em linfócitos (3). Que doença é essa?",
@@ -480,7 +480,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/MvIDVDpeMhs"
   },
   {
     "enunciado": "QUESTÃO 35 - Preencha os espaços em branco:\n A dengue é uma doença viral aguda classificada em quatro tipos imunológicos. No sangue periférico, geralmente observam-se leucopenia, plaquetopenia variável e pequenos ___________________________ citoplasmática. Na dengue hemorrágica, além das manifestações citadas, ocorre também ___________________ com ____________________ e plaquetopenia acentuada.",
@@ -494,7 +494,7 @@ const perguntas = [
     ],
     "correta": "D",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/qnrMdutmNOo"
   },
   {
     "enunciado": "QUESTÃO 36 - Essas células não são células pilosas nem vilosas! São células com prolongamentos nos filamentos de actina de membrana. São decorrentes de mutações no gene da proteína WDR1 que promove imunodeficiências primárias relacionadas à actina (PIDs). As PIDs levam à imunidade linfoide aberrante, causando doenças inflamatórias e eminente óbito. Por isso é muito importante e necessário o reconhecimento dessa alteração celular bem como sua rápida comunicação ao médico solicitante. Em qual célula essas alterações ocorrem?",
@@ -508,7 +508,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/gFjCm_6hcms"
   },
   {
     "enunciado": "QUESTÃO 37 - Essa alteração no citoplasma dos neutrófilos já foi bem definida em publicações científicas. O que significa essa área dos neutrófilos?",
@@ -522,7 +522,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/1Oq7oZNd79U"
   },
   {
     "enunciado": 'QUESTÃO 38 - Também conhecida como a "doença do beijo", essa infecção viral comum, geralmente é causada pelo vírus Epstein-Barr (VEB) que é transmitida principalmente pela saliva. A doença pode causar sintomas como febre, dor de garganta, fadiga e inchaço dos gânglios linfáticos. Embora, geralmente benigna pode levar a complicações em alguns casos. Qual o nome dessa doença infecciosa e qual o tipo celular (imagem) que surge geralmente em grande número no hemograma?',
@@ -536,7 +536,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/TAnrjrzfMHg"
   },
   {
     "enunciado": "QUESTÃO 39 - É uma doença infecciosa aguda e altamente comunicável, causada pela bactéria gram-negativa Bordetella pertussis. É caracterizada pelos paroxismos de tosse violenta acompanhada por um “estridor” inspiratório alto, Essa doença mata centenas de milhares de crianças no mundo a cada ano. No sangue periférico, é comum leucocitose e acentuada linfocitose, geralmente apresentando evidente atipia linfocitária pela presença de linfócitos lobulares (imagem). Que doença infecciosa é essa?",
@@ -550,7 +550,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/uYMD8T3YSx8"
   },
   {
     "enunciado": "QUESTÃO 40 - Sobre o mastócito, qual afirmativa abaixo está correta?",
@@ -564,7 +564,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/SnJdyxiy0A4"
   },
   {
     "enunciado": "QUESTÃO 41 - O teste cromatina sexual ou corpúsculo de Barr é útil na determinação do sexo genético e no diagnóstico de anomalias cromossômicas ligadas ao sexo. O teste é negativo quando há ausência de baquetas em 200 neutrófilos contados na lâmina, o que corresponde aos cromossomos 46XY (homens normais), ou 45X0 (síndrome de Turner). O teste é positivo na presença de uma baqueta em um ou mais neutrófilos (uma seta na imagem), que corresponde ao cromossomo 46XX (mulheres normais), e também ao 47XXY (síndrome de Klinefelter) , ou quando há duas baquetas nos neutrófilos (duas setas), relativos a mulheres 46XXX.  O que é o corpúsculo de Barr?",
@@ -578,7 +578,7 @@ const perguntas = [
     ],
     "correta": "A",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/c76xIVLs2mU"
   },
   {
     "enunciado": "QUESTÃO 42 - É uma síndrome de hipersensibilidade induzida por medicamentos (drogas), que apresenta: erupções cutâneas, febre, linfadenopatia, envolvimento de órgãos (fígado, rim e pulmão) e alterações hematológicas, como: evidente eosinofilia, leucocitose e linfocitose com a presença e por vezes de linfócitos reativos (imagem). Os medicamentos antiepiléticos (por exemplo, carbamazepina, lamotrigina, fenitoína e fenobarbital) e alopurinol são uma das causas relatadas mais frequentes. Qual o nome dessa síndrome?",
@@ -592,7 +592,7 @@ const perguntas = [
     ],
     "correta": "A",
     "topico": "LEUCÓCITOS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/qIPGi80ryxI"
   },
   // ... continue com as outras questões de LEUCÓCITOS
   
@@ -609,7 +609,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "PLAQUETAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/-kdFIylZlLc"
   },
   {
     "enunciado": "QUESTÃO 44 - As macroplaquetas e as plaquetas gigantes apresentam atividade enzimática e metabólica maiores, e com isso, alto potencial trombótico. O volume plaquetário médio (MPV), também é um marcador da função plaquetária. Níveis elevados de MPV têm sido identificados como fatores de risco para o infarto do miocárdio em pacientes com doença coronariana. Um paciente, sem sintomas, apresentou uma falsa contagem das plaquetas de 75.000 /mm3 (imagem). As macroplaquetas e as plaquetas gigantes geralmente não são contadas pelos contadores automatizados, devido ao tamanho. O que ocorreu?",
@@ -623,7 +623,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "PLAQUETAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/k4DAdPg7qOg"
   },
   {
     "enunciado": "QUESTÃO 45 - A plaqueta é denominada como gigante, quando seu tamanho é maior que a média do tamanho das hemácias. Este tipo de plaqueta tem uma maior predisposição para as alterações nos grânulos plaquetários.  As plaquetas gigantes devem ser citadas no laudo do hemograma em qualquer percentagem, até mesmo na presença de raras na lâmina. Qual das doenças abaixo não é caracterizada pela presença de plaquetas gigantes?",
@@ -637,7 +637,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "PLAQUETAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/ihX7XZrh9dI"
   },
   {
     "enunciado": "QUESTÃO 46 - Sobre a Pseudotrombocitopenia induzida pelo EDTA, qual alternativa abaixo está errada?",
@@ -651,7 +651,7 @@ const perguntas = [
     ],
     "correta": "D",
     "topico": "PLAQUETAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/Oprw5_nr9A4"
   },
   {
     "enunciado": "QUESTÃO 47 - Preencha os espaços em branco:\n__________________ ocorre porque os autoanticorpos plasmáticos se ligam ao complexo de glicoproteínas __________ das plaquetas, que foram expostas, devido a ação do EDTA. Logo depois, estes autoanticorpos se ligam pela _________, ao receptor III dos neutrófilos, formando as pontes entre plaquetas e neutrófilos. Este fenômeno ocorre __________ e é mais frequente em pacientes com doenças autoimunes ou neoplasias, principalmente na leucemia linfoide crônica.",
@@ -665,7 +665,7 @@ const perguntas = [
     ],
     "correta": "A",
     "topico": "PLAQUETAS",
-    "video": "https://www.youtube.com/watch?v=1c6PvbzRLbE&list=RD1c6PvbzRLbE&start_radio=1"
+    "video": "https://youtu.be/24AfwWxUGJE"
   },
   {
     "enunciado": "QUESTÃO 48 - Uma das principais alterações quantitativas das plaquetas é a trombocitose ou também denominada plaquetose, que se refere a um número aumentado de plaquetas  no sangue periférico. A trombocitose primária ou clonal é causada pela proliferação neoplásica na medula óssea, já a trombocitose secundária ou reativa ocorre principalmente devido ao aumento de trombopoetina, IL-6 e catecolaminas. Qual alternativa abaixo é uma trombocitose primária?",
@@ -678,7 +678,8 @@ const perguntas = [
       "E - Trombocitemia reativa."
     ],
     "correta": "B",
-    "topico": "PLAQUETAS"
+    "topico": "PLAQUETAS",
+    "video": "https://youtu.be/GLJew7F3Fow"
   },
   {
     "enunciado": "QUESTÃO 49 - Essas estruturas podem se apresentar no sangue periférico de várias formas e tamanhos e geralmente com aspecto de “corpo estranho”.  Geralmente podem surgir em pacientes com a síndrome mielodisplásica, leucemia mieloide crônica ou com a trombocitemia essencial e raramente surgem em pacientes sem alterações hematológicas. Que estruturas são essas?",
@@ -691,7 +692,8 @@ const perguntas = [
       "E - Promegacariócitos. "
     ],
     "correta": "D",
-    "topico": "PLAQUETAS"
+    "topico": "PLAQUETAS",
+    "video": "https://youtu.be/1-0NPFGfcAY"
   },
   // ... continue com as outras questões de PLAQUETAS
   
@@ -707,7 +709,8 @@ const perguntas = [
       "E - Todas estão corretas. "
     ],
     "correta": "E",
-    "topico": "HEMOPARASITAS"
+    "topico": "HEMOPARASITAS",
+    "video": "https://youtu.be/4rGnJNX0_1A"
   },
   {
     "enunciado": "QUESTÃO 51 - A malária, ou impaludismo, é uma doença infecciosa, causada por protozoários do gênero Plasmodium, (Plasmodium vivax, o Plasmodium falciparum, o Plasmodium malariae e o Plasmodium ovale). Tem como vetores as fêmeas de alguns mosquitos infectados do gênero Anopheles. É a maior causa de anemia em muitas partes do mundo. Nessa imagem de um paciente com malária, há algumas formas do protozoáio, qual o nome dessa forma das setas da imagem?",
@@ -720,7 +723,8 @@ const perguntas = [
       "E – Esquizócitos."
     ],
     "correta": "B",
-    "topico": "HEMOPARASITAS"
+    "topico": "HEMOPARASITAS",
+    "video": "https://youtu.be/KuA6qJioZGM"
   },
   {
     "enunciado": "QUESTÃO 52 - Esse fungo primitivamente pulmonar, geralmente benigno, pode evoluir para as formas graves disseminadas, com inclusão na forma amastigota no citoplasma dos neutrófilos e monócitos (imagem). O habitat deste fungo é geralmente o solo, principalmente naqueles associados com aves (pardais, pombos e galináceos) e morcegos. A forma disseminada apresenta-se como “oportunista” em pacientes imunodeprimidos. Que fungo é esse?",
@@ -733,7 +737,8 @@ const perguntas = [
       "E - Criptococose."
     ],
     "correta": "D",
-    "topico": "HEMOPARASITAS"
+    "topico": "HEMOPARASITAS",
+    "video": "https://youtu.be/_uSdHHmMSGM"
   },
   {
     "enunciado": "QUESTÃO 53 - A filariose também conhecida como elefantíase, é uma doença parasitária infecciosa. O parasita infecta o sistema linfático humano, causando inflamação e bloqueio dos vasos linfáticos, o que pode levar a edemas (inchaço) em diversas partes do corpo. Essa doença parasitária é causada por qual nematoide e qual agente transmissor?",
@@ -746,7 +751,8 @@ const perguntas = [
       "E - Wuchereria bancrofti / Aedes aegypti."
     ],
     "correta": "A",
-    "topico": "HEMOPARASITAS"
+    "topico": "HEMOPARASITAS",
+    "video": "https://youtu.be/elUl_KBOqG0"
   },
   {
     "enunciado": "QUESTÃO 54 - Essa doença infecciosa é transmitida pela picada de mosquitos flebotomíneos (mosquitos palha) e se manifesta principalmente como lesões na pele, mas pode também afetar as mucosas. O material foi coletado em uma lesão de pele (imagem). O que são essas estruturas observadas nessa imagem?",
@@ -759,7 +765,8 @@ const perguntas = [
       "E - Esporotricose na forma amastigota extracelular."
     ],
     "correta": "B",
-    "topico": "HEMOPARASITAS"
+    "topico": "HEMOPARASITAS",
+    "video": "https://youtu.be/Y663oedU8v8"
   },
   {
     "enunciado": 'QUESTÃO 55 - Em uma pesquisa de leishmania em uma lesão cutânea, foi observada formas de leveduras no interior de alguns macrófagos, mas, essas leveduras se apresentavam em formas ovais e redondas (setas vermelhas) e até alongadas (setas amarelas) "forma de charuto". A paciente relatou que a lesão cutânea foi provocada por uma arranhadura de um gato. A biologia molecular para leishmania foi negativa! Que doença é essa?',
@@ -772,7 +779,8 @@ const perguntas = [
       "E - Esporotricose."
     ],
     "correta": "E",
-    "topico": "HEMOPARASITAS"
+    "topico": "HEMOPARASITAS",
+    "video": "https://youtu.be/lglsf8oAxJQ"
   },
  
   // ... continue com as outras questões de HEMOPARASITAS
@@ -789,7 +797,8 @@ const perguntas = [
       "E - Todas estão corretas."
     ],
     "correta": "E",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/YafBS_dHucs"
   },
   {
     "enunciado": "QUESTÃO 57 - Os bastonetes de Auer são inclusões citoplasmáticas cristalinas em forma de agulha ou bastão, geralmente azurófilas. Sobre os bastonetes de Auer, qual afirmativa abaixo está errada?",
@@ -802,7 +811,8 @@ const perguntas = [
       "E - Através da microscopia eletrônica, em 1977, concluiu-se que a formação dos bastonetes de Auer é causada por defeitos na formação, agregação e concentração de grânulos de peroxidase e enzimas lisossomais."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/a6NM5rEIy_A"
   },
   {
     "enunciado": "QUESTÃO 58 - Nessa neoplasia hematológica é bastante comum a presença de rouleaux eritrocitário, pico monoclonal da imunoglobulina M (IgM),  linfócitos plasmocitoides geralmente com evidente alteração celular (imagem) e aumento da viscosidade do sangue. Os sintomas mais comuns são: fadiga, perda de peso, sangramento e alterações neurológicos. Qual o nome dessa neoplasia hematológica?",
@@ -815,7 +825,8 @@ const perguntas = [
       "E - Linfoma difuso de grandes células B."
     ],
     "correta": "A",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/m-niPW7JgwQ"
   },
   {
     "enunciado": "QUESTÃO 59 - O crescimento desordenado de células plasmáticas maduras e imaturas com substituição medular é a melhor definição para o Mieloma Múltiplo. Mas, esse paciente com Mieloma Múltiplo apresentou numerosos vacúolos na maioria dos plasmócitos. Por que isso ocorreu?",
@@ -828,7 +839,8 @@ const perguntas = [
       "E - Artefato."
     ],
     "correta": "A",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/uY-TelmAnvQ"
   },
   {
     "enunciado": "QUESTÃO 60 - São células com projeções citoplasmáticas com semelhança aos tricoleucócitos, porém, essas projeções são diferentes, são polares. No entanto, a maior diferença entre essas células da imagem e os tricoleucócitos é a cromatina, onde nessas células se apresenta mais condensada. Que células são essas?",
@@ -841,7 +853,8 @@ const perguntas = [
       "E – Plasmócitos."
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/dxT0jxRpxrM"
   },
   {
     "enunciado": "QUESTÃO 61 - A leucemia linfoide aguda (LLA) tem maior incidência em pacientes de cor branca e na idade de 2 a 5 anos, diminuindo a frequência na adolescência e na idade adulta e novamente crescendo na faixa etária de 60 anos. O tipo de LLA mais comum (CD10+), de células precursoras B, é a que predomina na infância, com incidência igual em ambos os sexos, enquanto a LLA de células T (LLA-T) tem predomínio no sexo masculino. Neste paciente com LLA quem são os linfócitos dessa imagem?",
@@ -854,7 +867,8 @@ const perguntas = [
       "E - Células 4, 7 e 9."
     ],
     "correta": "E",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/klYTUa9hnPg"
   },
   {
     "enunciado": "QUESTÃO 62 - É um tipo agressivo de linfoma, causado pela associação com o vírus linfotrópico de células T humanas (HTLV-I), geralmente é fatal e classifica-se na forma aguda, crônica, linfomatosa e indolente (smoldering). Outra forma clínica, a tumoral primária de pele, tem características diferentes. A forma aguda, linfomatosa e a tumoral primária de pele são as de pior prognóstico. No sangue periférico (imagem) e medula óssea ocorre a infiltração de células linfoides pleomórficas e convolutas. Qual linfoma está sugerindo?",
@@ -867,7 +881,8 @@ const perguntas = [
       "E - Linfoma de células T tipo paniculítico subcutâneo."
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/UHE-hvrg0qM"
   },
   {
     "enunciado": "QUESTÃO 63 - Esses blastos são grandes e apresentam citoplasmas abundantes, basofílicos e frequentemente sem grânulos visíveis, o núcleo tem cromatina frouxa apresentando um ou mais nucléolos proeminentes, refletindo a sua alta atividade metabólica, necessária para sustentar sua proliferação e maturação. Nesses blastos não são observados os bastonetes de Auer. Que tipo de blasto sugerem essas células da imagem?",
@@ -880,7 +895,8 @@ const perguntas = [
       "E - Proeritroblastos."
     ],
     "correta": "D",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/AFnJg8dRn7w"
   },
   {
     "enunciado": "QUESTÃO 64 - Essa neoplasia hematológica afeta principalmente idosos do sexo masculino. Apresenta-se com a contagem de blastos mieloides inferior a 5%, sendo que na contagem diferencial pode chegar a mais de 80% dessas células da imagem. Cerca de 20% dos casos, progride para leucemia mieloide aguda. Qual o nome dessa neoplasia hematológica e que células são essas?",
@@ -893,7 +909,8 @@ const perguntas = [
       "E - Leucemia Promielocítica Aguda – Promielócitos anômalos."
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/mNy0zgMcmH0"
   },
   {
     "enunciado": "QUESTÃO 65 - Um paciente portador de uma neoplasia mieloproliferativa crônica em remissão, apresentou recidiva da doença, com aumento do número de leucócitos e percentual de blastos. Nesta imagem do sangue periférico, tem quantos blastos?",
@@ -906,7 +923,8 @@ const perguntas = [
       "E - Todas as células são blastos."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/nc5Au8cXeMY"
   },
   {
     "enunciado": "QUESTÃO 66 - A maturação do mieloblasto (1) até o promielócito normal (6) é rápida, mas, passa por algumas fases: a cromatina começa a ficar heterogênea (2) e após estímulo, a zona de Golgi vai começando a produção dos grânulos e o amadurecimento da cromatina (3,4,5). Mas, quais os valores normais dos promielócitos na medula óssea e no sangue periférico?",
@@ -919,7 +937,8 @@ const perguntas = [
       "E - Medula óssea: até 5% e sangue periférico: 0%"
     ],
     "correta": "E",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/k41Dwh9pgGI"
   },
   {
     "enunciado": "QUESTÃO 67 - Uma amostra de sangue de um paciente de 60 anos apresentou 100.000 leucócitos/mm3, com predomínio de células com alta relação núcleo/citoplasma, núcleo arredondado e exibindo geralmente um único e grande nucléolo. A plataforma digital classificou essas células como blastos, você concorda?",
@@ -932,7 +951,8 @@ const perguntas = [
       "E - Não! essas células são monócitos anômalos."
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/lSDaZDYjCNg"
   },
   {
     "enunciado": "QUESTÃO 68 - A tricoleucemia é uma leucemia indolente e rara que representa apenas de 2% a 4% de todas as leucemias. Muitos pacientes são diagnosticados durante exames de rotina devido à ausência de sintomas.  A incidência é maior nos homens (cerca de quatro vezes mais que nas mulheres). A destruição do citoplasma dos tricoleucócitos ocorre em que local do corpo? e por ação de qual célula?",
@@ -945,7 +965,8 @@ const perguntas = [
       "E - Na medula óssea – Mastócitos."
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/9hkFol3Vpmg"
   },
   {
     "enunciado": "QUESTÃO 69 - Essa síndrome é uma transformação agressiva da Leucemia Linfoide Crônica (LLC) geralmente para o linfoma difuso de grandes células B (imagem). Essa síndrome é um evento de mau prognóstico. Estudos confirmam que essa transformação agressiva acomete cerca de 2% a 8% dos pacientes com LLC e só ocorre em pacientes que tiveram infecção prévia pelo vírus Epstain barr. Qual o nome dessa síndrome?",
@@ -958,7 +979,8 @@ const perguntas = [
       "E - Síndrome de Patau."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/0YiSmTXQbpE"
   },
   {
     "enunciado": "QUESTÃO 70 - O mieloma múltiplo ocorre com maior frequência em homens do que em mulheres, sendo a idade média do surgimento da doença de 62 anos. A incidência da doença em pacientes afrodescendentes é o dobro em relação aos brancos. O mieloma múltiplo representa 1% de todos os casos de câncer e 10% de todos os casos de doenças hematológicas. Nessa imagem exibe uma característica morfológica dos plasmócitos (setas), que pode contribuir para o comportamento agressivo do mieloma, qual o seu nome?",
@@ -971,7 +993,8 @@ const perguntas = [
       "E - Halo perinuclear (Retículo endolasmático)."
     ],
     "correta": "A",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": "https://youtu.be/P51Eebm9cpQ"
   },
   {
     "enunciado": "QUESTÃO 71 - Paciente com perda de peso inexplicada, fez hemograma e se surpreendeu com a uma contagem de leucócitos superior a 660.000/mm3. Foi diagnosticada uma Leucemia Mieloide Crônica (LMC). Sobre a LMC, qual alternativa abaixo está correta?",
@@ -984,7 +1007,8 @@ const perguntas = [
       "E - Todas estão corretas."
     ],
     "correta": "E",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 72 - Considera-se a leucemia de células plasmáticas como primária quando o diagnóstico é feito na forma leucêmica da doença (60% dos casos) e secundária se ela for decorrente de um mieloma múltiplo (40% dos casos). A Leucemia de células plasmáticas é caracterizada pela presença de mais de:",
@@ -997,7 +1021,8 @@ const perguntas = [
       "E - 15.000 plasmócitos /mm3 na medula óssea."
     ],
     "correta": "A",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 73 - Paciente idosa, portadora da síndrome 5q- (deleção do braço longo do cromossomo 5), apresentou no hemograma uma anemia macrocítica e leucocitose de 40.000 leucócitos/mm³ com predomínio dessas células. Que células são essas?",
@@ -1010,7 +1035,8 @@ const perguntas = [
       "E - Linfócitos NK."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 74 - Essas inclusões são características dos blastos mieloides e são visualizados como partículas intracelulares densas e escuras. São derivadas de grânulos contendo catalase (microperoxissomos), esta enzima desempenha um papel importante na metabolização do peróxido de hidrogênio. Qual o nome dessas inclusões?",
@@ -1023,7 +1049,8 @@ const perguntas = [
       "E - Corpos de Russel. "
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 75 - A vimentina é uma proteína de filamento intermediário do citoesqueleto. Na Leucemia Linfocítica Crônica (LLC) esta proteína apresenta uma expressão do arranjo anômalo, promovendo uma maior fragilidade celular e produzindo as manchas nucleares características dessa leucemia. Na LLC, qual o nome dessas manchas ou sombras nucleares da imagem?",
@@ -1036,7 +1063,8 @@ const perguntas = [
       "E - Manchas de Gumprecht."
     ],
     "correta": "E",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 76 - Este subtipo de leucemia mieloide aguda caracteriza-se por duas linhagens de células leucêmicas, ocorrendo frequentemente em pacientes com mais de 50 anos e com incidência de 1,4 mulheres para cada homem. Nessa leucemia aguda quase todos os pacientes apresentam inversão de cromossomo 16 [inv(16) (p13;q22)] e apenas 10% mostram a trasnslocação 16[t(16;16)(p13.1;q22)]. Que leucemia mieloide aguda é essa?",
@@ -1049,7 +1077,8 @@ const perguntas = [
       "E - Leucemia Mielóide Aguda - Monoblástica  sem  maturação (LMA – M5a)."
     ],
     "correta": "D",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 77 - Este subtipo de leucemia mieloide aguda caracteriza-se pela alta percentagem de blastos na medula óssea, representando mais de 90% das células nucleadas e com maturação inferior a 10%.  Que subtipo de leucemia mieloide aguda é essa?",
@@ -1062,7 +1091,8 @@ const perguntas = [
       "E - Leucemia Mielóide Aguda - Monoblástica  sem  maturação (LMA – M5a)."
     ],
     "correta": "A",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 78 - Essa morfologia apresentando um prolongamento do citoplasma do blasto é mais frequentemente vista na leucemia linfoide aguda (LLA), especialmente do tipo LLA-L2, e pode ser um indício importante para o diagnóstico. Mas, essa forma pode surgir raramente em outras leucemias agudas. Como é denominada essa morfologia desses blastos?",
@@ -1075,7 +1105,8 @@ const perguntas = [
       "E - “Blebs blasts”."
     ],
     "correta": "D",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 79 - É um subtipo raro de leucemia mielóide aguda (LMA), que representa de 3% a 5% dos casos de LMA. O aspirado de medula óssea ou biópsia desse subtipo, mostra uma população de células blásticas pleomórficas e basofílicas, podendo apresentar projeções citoplasmáticas (blebs), que é a primeira diferenciação morfológica característica dessa linhagem. Que leucemia mielóide aguda é essa?",
@@ -1088,7 +1119,8 @@ const perguntas = [
       "E - Leucemia Mielóide Aguda - Megacarioblástica (LMA – M7)."
     ],
     "correta": "E",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 80 - A metade dos pacientes com mielofibrose primária apresentam uma mutação no gene JAK2, que controla enzimas envolvidas no crescimento das células e na resposta imune.  Enquanto outros pacientes apresentam mutação no gene CALR, relacionado a fabricação da proteína calreticulina necessária para o bom funcionamento celular, ou no gene MPL, receptor de trombopoetina. No sangue periférico dos pacientes com mielofibrose pode surgir macroplaquetas e plaquetas gigantes com bubbles, mas quais são os 4 achados citológicos mais frequentes da mielofibrose",
@@ -1101,7 +1133,8 @@ const perguntas = [
       "E - Dacriócito – Basófilo – Eritroblasto – Blasto mieloide."
     ],
     "correta": "E",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 81 - Essa neoplasia foi classificada em 2016 pela OMS como leucemia aguda e neoplasia derivada de precursores hematopoiéticos mielóides.  É uma doença rara e agressiva que se manifesta com lesões cutâneas e envolvimento de medula óssea com disseminação leucêmica em alguns casos, mas, pode afetar vários órgãos e linfonodos. As Células dendríticas plasmocitoides blásticas com “expansões citoplasmáticas em formato de pseudópodes” infiltram na medula óssea (imagem) e sangue periférico. Qual o nome dessa neoplasia?",
@@ -1114,7 +1147,8 @@ const perguntas = [
       "E - Neoplasia de Células Dendríticas Plasmocitoides Maduras (NCDPM)."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 82 - O tratamento da LLA em idosos muitas vezes requer protocolos mais suaves e estratégias de consolidação adaptadas para minimizar a toxicidade. Entretanto, a LLA em idosos tem maior prevalência da linhagem B, maior incidência de rearranjos genéticos como o cromossomo Filadélfia (Ph+) que pode estar associada a um pior prognóstico. Como a citologia periférica tem uma imensa importância na identificação de blastos na LLA, quais são os blastos dessa imagem?",
@@ -1127,7 +1161,8 @@ const perguntas = [
       "E - 1, 3 e 6"
     ],
     "correta": "D",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 83 - Paciente 28 anos, apresentou coagulação intravascular disseminada (CIVD), foi internado e no hemograma apresentou uma contagem de leucócitos superior a  100.000/mm3 e 95% de células com granulações e algumas apresentando feixes de bastonetes de Auer (seta). O cariótipo apresentou a translocação t(15;17) (q22;q12), que leva a formação de um gene de fusão chamado PML-RARA. Que leucemia mieloide aguda é essa? ",
@@ -1140,7 +1175,8 @@ const perguntas = [
       "E - Leucemia Mielóide Aguda - Megacarioblástica (LMA – M7)."
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 84 - Essa leucemia tem um grau de maturação superior a 10% das células não eritroides na medula óssea. São comuns nesse subtipo de leucemia mieloide aguda (LMA), achados mielodisplásicos. Os mieloblasto pode apresentar  bastonetes de Auer (seta). Nesse subtipo de LMA ocorre uma lesão genética: a translocação cromossômica t(8;21). Qual o nome desse subtipo de Leucemia Mielóide?",
@@ -1153,7 +1189,8 @@ const perguntas = [
       "E - Leucemia Mielóide Aguda - Eritroleucemia (LMA – M6)."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 85 - Sobre a Leucemia Mieloide Aguda com blastos de morfologia Cup-Like (LMA-CL), qual alternativa abaixo está errada?",
@@ -1166,7 +1203,8 @@ const perguntas = [
       "E - Todas estão erradas."
     ],
     "correta": "D",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 86 - É uma característica que pode ocorrer em pacientes com leucemia aguda, no contexto da hematologia, refere-se à ausência de células intermediárias entre os blastos e os neutrófilos segmentados no sangue periférico (imagem). Qual o nome dessa característica?",
@@ -1179,7 +1217,8 @@ const perguntas = [
       "E - Apoptose.  "
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 87 - Qual o nome deste aumento no tamanho dos neutrófilos que pode ocorrer nas Síndromes Mielodisplásicas ou mesmo após tratamento com quimioterapia?",
@@ -1192,7 +1231,8 @@ const perguntas = [
       "E - Assincronismo."
     ],
     "correta": "D",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 88 - Um paciente com Linfoma não Hodgkin de células B agressivo, apresentou mais de 300.000 leucócitos/mm³ e começou o tratamento com quimioterapia, com isso, provocou uma intensa apoptose celular (imagem), levando a liberação de grande quantidade de subprodutos na circulação. Resultando em hiperuricemia, hiperfosfatemia, hipercalemia e apresentando sintomas clínicos como: arritmia cardíaca e convulsão. Em alguns casos promove até a morte súbita do paciente. Qual o nome dessa síndrome?",
@@ -1205,7 +1245,8 @@ const perguntas = [
       "E - Síndrome tumoral."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 89 - Esse linfoma é predominante em idosos do sexo masculino com a idade média de 63 anos e exibe anormalidades imunológicas e alta produção de IgM monoclonal. A linfadenomegalia generalizada, a esplenomegalia, a anemia hemolítica e a síndrome de hiperviscosidade são alterações que ocorrem frequentemente nesse linfoma. Na medula óssea e sangue periférico ocorre a presença de linfócitos plasmocitoides (imagem). Qual o nome desse linfoma?",
@@ -1218,7 +1259,8 @@ const perguntas = [
       "E - Linfoma linfoblástico B."
     ],
     "correta": "A",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 90 - É um Linfoma de células B de extrema importância clínica devido a sua alta agressividade, frequentemente afeta a mandíbula, o abdômen ou o sistema nervoso central. É associado ao vírus Epstein-Barr (EBV) ou ao vírus da imunodeficiência humana (HIV), bem como a translocações cromossômicas envolvendo o oncogene MYC. No sangue periférico é comum a presença de células linfoides com intensa basofilia e apresentando vacúolos. Qual o nome desse linfoma?",
@@ -1231,7 +1273,8 @@ const perguntas = [
       "E - Linfoma linfoblástico. "
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 91 - A principal diferença entre a Micose Fungoide e a Síndrome de Sézary é o grau de envolvimento do sangue. Na Micose Fungoide, as células T podem estar presentes na pele e, às vezes, nos linfonodos, mas em pequena quantidade no sangue. Já na Síndrome de Sézary, as células T estão presentes em grandes quantidades no sangue periférico, tornando-a uma forma leucêmica. Como são descritas essas células no laudo do hemograma para que o hematologista investigue uma Micose Fungoide/Síndrome de Sézary?",
@@ -1244,7 +1287,8 @@ const perguntas = [
       "E - Células linfoides endentadas."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 92 - Essa forma de tricoleucemia geralmente apresenta um número maior de células pilosas no sangue periférico em comparação a outras formas. Nessa forma de tricoleucemia geralmente ocorre também um aumento na contagem total de leucócitos (leucocitose), em relação às outras formas. Que forma é essa?",
@@ -1257,7 +1301,8 @@ const perguntas = [
       "E - Tricoleucemia agressiva."
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 93 - É um Linfoma de células B, de crescimento agressivo, com um curso variável. Nesse linfoma cerca de 85% dos casos ocorre a translocação cromossômica t(11;14), que leva à superexpressão da proteína ciclina D1. No sangue periférico é observado comumente a presença de células linfoides com endentações e nucléolo excêntrico (imagem). Qual o nome desse linfoma?",
@@ -1270,7 +1315,8 @@ const perguntas = [
       "E - Linfoma linfoblástico."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 94 - Este linfoma é bastante agressivo, mas responde bem a quimioterapia, com remissão completa na maioria dos casos. É o tipo mais comum de linfoma não Hodgkin. No sangue periférico, observa-se geralmente uma evidente linfocitose, com células linfoides grandes de cromatina compacta e difusa (imagem). Qual o nome desse linfoma?",
@@ -1283,7 +1329,8 @@ const perguntas = [
       "E - Linfoma de células da zona marginal extranodal (tipo MALT)."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": 'QUESTÃO 95 - Nesse linfoma, em 20% dos casos pode ocorrer a conhecida variante blastoide, mais agressiva e caracterizada por apresentar células com aspecto "blástico". Geralmente ocorre em casos de recorrência do linfoma clássico e podem indicar uma doença mais agressiva, com pior prognóstico e resposta reduzida ao tratamento. As alterações morfológicas dessas células linfoides exibem tamanho celular aumentado, grandes nucléolos, cromatina intermediária e algumas endentações nucleares. Que linfoma é esse?',
@@ -1296,7 +1343,8 @@ const perguntas = [
       "E - Linfoma linfoblástico."
     ],
     "correta": "C",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 96 - Entre os linfomas não Hodgkin, o linfoma folicular é um dos mais frequentes no Brasil. Os achados genéticos desse linfoma incluem a translocação t(14;18) em quase 90% dos pacientes. Essa translocação resulta na expressão da oncoproteína bcl-2, que é capaz de impedir a apoptose das células linfoides. No linfoma folicular, é comum o envolvimento do sangue periférico apresentando leucocitose com linfocitose e o surgimento de células linfoides com uma característica morfológica clássica desse linfoma, qual?",
@@ -1309,7 +1357,8 @@ const perguntas = [
       "E - Células linfoides endentadas."
     ],
     "correta": "D",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 97 - A Leucemia Mieloide Aguda - Monocítica com Maturação (LMA-M5b), caracteriza-se pela presença de células monocitárias anômalas. Nessa leucemia aguda os promonócitos devem ser contados como blastos, mas, para isso é importante saber identificá-los. A enzima lisozima com ação antibacteriana contra bactérias gram-positivas, geralmente se apresenta várias vezes aumentada na LMA-M5b. Nessa imagem de um paciente com LMA-M5b, que células são essas?",
@@ -1322,7 +1371,8 @@ const perguntas = [
       "E - Mieloblasto (1) monócito (2) e promonócito (3)."
     ],
     "correta": "B",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 98 - Os blastos podem apresentar alterações nas proteínas da membrana, que pode levar à adesão célula-a-célula. Essa alteração facilita a interação e a ligação entre blastos (imagem), o que é importante em processos como a formação de agregados celulares e a disseminação da doença. Qual das proteínas da membrana abaixo está envolvida nesse adesão?",
@@ -1335,7 +1385,8 @@ const perguntas = [
       "E - Proteína Banda 4.1"
     ],
     "correta": "A",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 99 - Sobre a Leucemia Promielocítica Aguda – Variante Hipogranular (LMA-M3v), qual afirmativa abaixo está correta?",
@@ -1348,7 +1399,8 @@ const perguntas = [
       "E - Todas estão corretas."
     ],
     "correta": "E",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   },
   {
     "enunciado": "QUESTÃO 100 - No sangue periférico da Síndrome Mielodisplásica (SMD), geralmente é observada várias alterações: a pancitopenia é um achado frequente, os eritroblastos podem estar presentes, a contagem de reticulócitos é baixa, os blastos mieloides (número 3 na imagem) podem está presentes em até em 5% e a presença de neutrófilos hipogranúlicos (número 2 na imagem). Mas, que célula é essa do número 1 da imagem?",
@@ -1361,7 +1413,8 @@ const perguntas = [
       "E - Célula com assincronismo maturativo núcleo-citoplasmático."
     ],
     "correta": "E",
-    "topico": "LEUCEMIAS e LINFOMAS"
+    "topico": "LEUCEMIAS e LINFOMAS",
+    "video": ""
   }
 
 
