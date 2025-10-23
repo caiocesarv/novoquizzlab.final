@@ -1008,7 +1008,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/bxphbVP-pQ8"
   },
   {
     "enunciado": "QUESTÃO 72 - Considera-se a leucemia de células plasmáticas como primária quando o diagnóstico é feito na forma leucêmica da doença (60% dos casos) e secundária se ela for decorrente de um mieloma múltiplo (40% dos casos). A Leucemia de células plasmáticas é caracterizada pela presença de mais de:",
@@ -1022,7 +1022,7 @@ const perguntas = [
     ],
     "correta": "A",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/KayiFkIuHGw"
   },
   {
     "enunciado": "QUESTÃO 73 - Paciente idosa, portadora da síndrome 5q- (deleção do braço longo do cromossomo 5), apresentou no hemograma uma anemia macrocítica e leucocitose de 40.000 leucócitos/mm³ com predomínio dessas células. Que células são essas?",
@@ -1036,7 +1036,7 @@ const perguntas = [
     ],
     "correta": "C",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/XUgfE3FYmpA"
   },
   {
     "enunciado": "QUESTÃO 74 - Essas inclusões são características dos blastos mieloides e são visualizados como partículas intracelulares densas e escuras. São derivadas de grânulos contendo catalase (microperoxissomos), esta enzima desempenha um papel importante na metabolização do peróxido de hidrogênio. Qual o nome dessas inclusões?",
@@ -1050,7 +1050,7 @@ const perguntas = [
     ],
     "correta": "B",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/2uKoGPl3KuA"
   },
   {
     "enunciado": "QUESTÃO 75 - A vimentina é uma proteína de filamento intermediário do citoesqueleto. Na Leucemia Linfocítica Crônica (LLC) esta proteína apresenta uma expressão do arranjo anômalo, promovendo uma maior fragilidade celular e produzindo as manchas nucleares características dessa leucemia. Na LLC, qual o nome dessas manchas ou sombras nucleares da imagem?",
@@ -1064,7 +1064,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/no0vH5jHxh0"
   },
   {
     "enunciado": "QUESTÃO 76 - Este subtipo de leucemia mieloide aguda caracteriza-se por duas linhagens de células leucêmicas, ocorrendo frequentemente em pacientes com mais de 50 anos e com incidência de 1,4 mulheres para cada homem. Nessa leucemia aguda quase todos os pacientes apresentam inversão de cromossomo 16 [inv(16) (p13;q22)] e apenas 10% mostram a trasnslocação 16[t(16;16)(p13.1;q22)]. Que leucemia mieloide aguda é essa?",
@@ -1078,7 +1078,7 @@ const perguntas = [
     ],
     "correta": "D",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/5e1rWWbC6_Y"
   },
   {
     "enunciado": "QUESTÃO 77 - Este subtipo de leucemia mieloide aguda caracteriza-se pela alta percentagem de blastos na medula óssea, representando mais de 90% das células nucleadas e com maturação inferior a 10%.  Que subtipo de leucemia mieloide aguda é essa?",
@@ -1092,7 +1092,7 @@ const perguntas = [
     ],
     "correta": "A",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/EHozDufth-I"
   },
   {
     "enunciado": "QUESTÃO 78 - Essa morfologia apresentando um prolongamento do citoplasma do blasto é mais frequentemente vista na leucemia linfoide aguda (LLA), especialmente do tipo LLA-L2, e pode ser um indício importante para o diagnóstico. Mas, essa forma pode surgir raramente em outras leucemias agudas. Como é denominada essa morfologia desses blastos?",
@@ -1106,7 +1106,7 @@ const perguntas = [
     ],
     "correta": "D",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/r3rhM6ma_6M"
   },
   {
     "enunciado": "QUESTÃO 79 - É um subtipo raro de leucemia mielóide aguda (LMA), que representa de 3% a 5% dos casos de LMA. O aspirado de medula óssea ou biópsia desse subtipo, mostra uma população de células blásticas pleomórficas e basofílicas, podendo apresentar projeções citoplasmáticas (blebs), que é a primeira diferenciação morfológica característica dessa linhagem. Que leucemia mielóide aguda é essa?",
@@ -1120,7 +1120,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/5iQbge__dpQ"
   },
   {
     "enunciado": "QUESTÃO 80 - A metade dos pacientes com mielofibrose primária apresentam uma mutação no gene JAK2, que controla enzimas envolvidas no crescimento das células e na resposta imune.  Enquanto outros pacientes apresentam mutação no gene CALR, relacionado a fabricação da proteína calreticulina necessária para o bom funcionamento celular, ou no gene MPL, receptor de trombopoetina. No sangue periférico dos pacientes com mielofibrose pode surgir macroplaquetas e plaquetas gigantes com bubbles, mas quais são os 4 achados citológicos mais frequentes da mielofibrose",
@@ -1134,7 +1134,7 @@ const perguntas = [
     ],
     "correta": "E",
     "topico": "LEUCEMIAS e LINFOMAS",
-    "video": ""
+    "video": "https://youtu.be/z0dtPl1L9IE"
   },
   {
     "enunciado": "QUESTÃO 81 - Essa neoplasia foi classificada em 2016 pela OMS como leucemia aguda e neoplasia derivada de precursores hematopoiéticos mielóides.  É uma doença rara e agressiva que se manifesta com lesões cutâneas e envolvimento de medula óssea com disseminação leucêmica em alguns casos, mas, pode afetar vários órgãos e linfonodos. As Células dendríticas plasmocitoides blásticas com “expansões citoplasmáticas em formato de pseudópodes” infiltram na medula óssea (imagem) e sangue periférico. Qual o nome dessa neoplasia?",
