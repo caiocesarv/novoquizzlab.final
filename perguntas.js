@@ -1200,7 +1200,7 @@ const perguntas = [
       "B - A Leucemia Mieloide Aguda com blastos de morfologia “cup-like” (LMA-CL) tem sido associada com a presença de mutações no gene NPM1 e no FLT3.",
       "C - Na microscopia eletrônica é observada uma coleção de mitocôndrias dentro da bolsa nuclear invaginada, comprimindo a cromatina.",
       "D - É comum a presença de mais de 50% dos blastos com a morfologia cup-like.",
-      "E - Todas estão erradas."
+      "E - Todas estão corretas."
     ],
     "correta": "D",
     "topico": "LEUCEMIAS e LINFOMAS",
